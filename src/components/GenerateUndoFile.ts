@@ -5,11 +5,19 @@ import type { NamedFile, Result } from "../core/types.ts";
 import * as path from "@std/path";
 import { configDir } from "../utils/configDir.ts";
 
+/**
+ * TODO: Describe the GenerateUndoFile class.
+ */
 export class GenerateUndoFile extends BaseComponent {
 	constructor() {
 		super("GenerateUndoFile");
 	}
 
+	/**
+	 * TODO: Describe the process method.
+	 * @param input - {Map<string, unknown>}
+	 * @returns Promise<Result<Map<string, unknown>, Map<string, unknown>>>
+	 */
 	async process(
 		input: Map<string, unknown>,
 	): Promise<Result<Map<string, unknown>, Map<string, unknown>>> {
@@ -41,6 +49,8 @@ export class GenerateUndoFile extends BaseComponent {
 
 	/**
 	 * Build CSV content for undo file.
+	 * @param namedFiles - {NamedFile[]}
+	 * @returns string
 	 *
 	 * @future
 	 *   When MOVE mode is implemented:

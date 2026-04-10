@@ -5,12 +5,20 @@ import type { PipelineComponent } from "../core/PipelineComponent.ts";
 import type { FilePair, Result } from "../core/types.ts";
 import { existsSync } from "@std/fs";
 
+/**
+ * TODO: Describe the ReadFilePairs class.
+ */
 export class ReadFilePairs extends BaseComponent
 	implements PipelineComponent<Map<string, unknown>, Map<string, unknown>> {
 	constructor() {
 		super("ReadFilePairs");
 	}
 
+	/**
+	 * TODO: Describe the process method.
+	 * @param input - {Map<string, unknown>}
+	 * @returns Promise<Result<Map<string, unknown>, Map<string, unknown>>>
+	 */
 	async process(
 		input: Map<string, unknown>,
 	): Promise<Result<Map<string, unknown>, Map<string, unknown>>> {
@@ -40,6 +48,11 @@ export class ReadFilePairs extends BaseComponent
 	}
 
 	// Your old logic goes here
+	/**
+	 * TODO: Describe the readPairsFromDirectory method.
+	 * @param dirPath - {string}
+	 * @returns Promise<FilePair[]>
+	 */
 	private async readPairsFromDirectory(dirPath: string): Promise<FilePair[]> {
 		this.emitDebug(`Scanning directory: ${dirPath}`);
 
@@ -94,11 +107,22 @@ export class ReadFilePairs extends BaseComponent
 		return pairs;
 	}
 
+	/**
+	 * TODO: Describe the matches method.
+	 * @param filename - {string}
+	 * @param pattern - {string}
+	 * @returns boolean
+	 */
 	private matches(filename: string, pattern: string): boolean {
 		const regex = new RegExp("^" + pattern.replace(/\*/g, ".*") + "$", "i");
 		return regex.test(filename);
 	}
 
+	/**
+	 * TODO: Describe the extractJobId method.
+	 * @param filename - {string}
+	 * @returns string
+	 */
 	private extractJobId(filename: string): string | null {
 		const excelMatch = filename.match(
 			/^(\d{3}-\d{4,5}-\d)_FLPivot\.xlsx$/i,

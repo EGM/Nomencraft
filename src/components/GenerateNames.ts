@@ -55,6 +55,12 @@ export function findByJobId(
 ): { pdfNewName?: string } | null;
 
 // Implementation
+/**
+ * TODO: Describe the findByJobId function.
+ * @param jobId - {string}
+ * @param items - {T[]}
+ * @returns T
+ */
 export function findByJobId<T extends { jobId: string }>(
 	jobId: string,
 	items: T[],
@@ -86,6 +92,9 @@ export function findByJobId<T extends { jobId: string }>(
 // GenerateNames Component
 // ------------------------------------------------------------
 
+/**
+ * TODO: Describe the GenerateNames class.
+ */
 export class GenerateNames extends BaseComponent {
 	constructor() {
 		super("GenerateNames");

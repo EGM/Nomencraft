@@ -45,6 +45,11 @@ export class ParseExcelFiles extends BaseComponent {
 		super("ParseExcelFiles");
 	}
 
+	/**
+	 * TODO: Describe the process method.
+	 * @param input - {Map<string, unknown>}
+	 * @returns Promise<Result<Map<string, unknown>, Map<string, unknown>>>
+	 */
 	async process(
 		input: Map<string, unknown>,
 	): Promise<Result<Map<string, unknown>, Map<string, unknown>>> {
@@ -85,6 +90,8 @@ export class ParseExcelFiles extends BaseComponent {
 
 	/**
 	 * Parse a single Excel file into structured ParsedData.
+	 * @param filePath - {string}
+	 * @returns Promise<any>
 	 */
 	private async parseFile(filePath: string): Promise<ParsedData | null> {
 		this.emitDebug(`Parsing Excel file: ${filePath}`);
