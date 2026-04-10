@@ -10,11 +10,19 @@ export abstract class BaseService {
 	protected logs: LogEntry[] = [];
 	protected readonly componentName: string;
 
+	/**
+	 * Creates an instance of the class.
+	 * @param componentName - {string}
+	 */
 	constructor(componentName: string) {
 		this.componentName = componentName;
 		this.log("debug", `Initializing ${componentName}`);
 	}
 
+	/**
+	 * TODO: Describe the observe method.
+	 * @param event - {{ level: "debug" | "info" | "warn" | "error"; message: string; details?: Record<string, unknown>; }}
+	 */
 	protected observe(
 		event: {
 			level: "debug" | "info" | "warn" | "error";

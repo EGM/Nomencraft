@@ -1,4 +1,5 @@
 // src/services/PatternService.test.ts
+// deno-lint-ignore-file
 import { assert, assertEquals, assertStringIncludes } from "@std/assert";
 import { createConfigDir } from "../utils/configDir.ts";
 import { ensureDir } from "@std/fs/ensure-dir";

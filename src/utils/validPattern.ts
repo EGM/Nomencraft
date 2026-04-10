@@ -3,11 +3,26 @@
 import { parse } from "@std/yaml";
 import { basename } from "@std/path";
 
+/**
+ * Validates the structure and content of a pattern YAML file.
+ * Ensures required fields are present and that the pattern entries are well-formed.
+ */
 export interface PatternValidationResult {
+	/**
+	 * Indicates whether the pattern file is valid.
+	 */
 	ok: boolean;
+	/**
+	 * If validation fails, contains a descriptive error message.
+	 */
 	error?: string;
 }
 
+/**
+ * TODO: Describe the validatePatternFile function.
+ * @param filePath - {string}
+ * @returns Promise<import("/virtual").PatternValidationResult>
+ */
 export async function validatePatternFile(
 	filePath: string,
 ): Promise<PatternValidationResult> {

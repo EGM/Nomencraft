@@ -6,9 +6,6 @@
 export type Result<I, O> =
 	| { success: true; value: O }
 	| { success: false; input: I; error: string };
-export type newResult<I, S, F> =
-	| { success: true; value: S }
-	| { success: false; input: I; error: F };
 
 /**
  * Log entry structure for audit trails.
@@ -20,11 +17,6 @@ export type LogEntry = {
 	component: string;
 	details?: Record<string, unknown>;
 };
-
-/**
- * Allow any type for details (future-me hates this, but sometimes necessary).
- */
-//export type FutureMeHatesThisType = unknown;
 
 /**
  * Controller execution modes.
@@ -57,9 +49,13 @@ export interface Measurement {
  * A Sample represents a specific bottle/instance collected.
  */
 export interface Sample {
+	/** todo */
 	id: string; // The Lab ID (e.g., "762-8118-1")
+	/** todo */
 	site: string; // The Site ID (e.g., "EFA-2")
+	/** todo */
 	date: string; // Collection Date
+	/** todo */
 	sampledBy: string; // Who pulled it
 
 	// Array of measurements. Allows multiple parameters per sample.
@@ -70,24 +66,38 @@ export interface Sample {
  * The final parsed data for a Job.
  */
 export interface ParsedData {
+	/** todo */
 	job_id: string; // The Job Number (e.g., "762-8118") - Prefix of Lab IDs
+	/** todo */
 	sample_date: string; // The date of the job
+	/** todo */
 	type_code: string; // Determined later (W, M, D, etc.)
+	/** todo */
 	samples: Sample[]; // List of all bottles/samples in this job
 }
 
 export interface FilePair {
+	/** todo */
 	jobId: string;
+	/** todo */
 	excelPath: string;
+	/** todo */
 	pdfPath?: string;
 }
 
 export interface NamedFile {
+	/** todo */
 	originalPath: string;
+	/** todo */
 	newPath: string;
+	/** todo */
 	typeCode: string;
+	/** todo */
 	typeWord: string;
+	/** todo */
 	reason: string;
+	/** todo */
 	pdfPath?: string;
+	/** todo */
 	pdfNewName?: string;
 }

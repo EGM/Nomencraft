@@ -1,4 +1,5 @@
 // src/core/createPipeline.test.ts
+// deno-lint-ignore-file
 import { assert, assertEquals } from "@std/assert";
 import { createPipeline } from "./createPipeline.ts";
 import { BaseComponent } from "./BaseComponent.ts";

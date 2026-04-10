@@ -16,6 +16,10 @@ let log: Logger;
 let writeFile: null | FileWriter;
 
 // Reusable function to configure logger
+/**
+ * TODO: Describe this arrow function (<anonymous>).
+ * @param { json, quiet, logFilename } - {LoggerOptions}
+ */
 export const configureLogger = (
 	{ json, quiet, logFilename }: LoggerOptions,
 ) => {
@@ -29,6 +33,17 @@ export const configureLogger = (
 };
 
 // Call this once at startup
+/**
+ * Logs a message with the specified level.
+ * @param level
+ * @param message
+ * @param component
+ * @param details
+ * @returns void
+ * @example
+ * appLog("info", "Application started", "Main");
+ * appLog("error", "Failed to load config", "ConfigLoader", { filename: "config.yaml" });
+ */
 export const appLog = (
 	level: "debug" | "info" | "warn" | "error",
 	message: string,

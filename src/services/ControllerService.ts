@@ -10,6 +10,9 @@ import { createPipeline } from "../core/createPipeline.ts";
 import { Result } from "../core/types.ts";
 import { configDir } from "../utils/configDir.ts";
 
+/**
+ * TODO: Describe the ControllerService class.
+ */
 export class ControllerService extends BaseService {
 	constructor(private options, private path: string) {
 		super("ControllerService");
@@ -17,6 +20,10 @@ export class ControllerService extends BaseService {
 		//console.log("ControllerService initialized with options:", options);
 	}
 
+	/**
+	 * TODO: Describe the observe method.
+	 * @param component - {BaseComponent}
+	 */
 	observe(component: BaseComponent) {
 		component.addEventListener("debug", (e: Event) => {
 			const detail = (e as CustomEvent).detail;
@@ -47,6 +54,10 @@ export class ControllerService extends BaseService {
 		});
 	}
 
+	/**
+	 * TODO: Describe the execute method.
+	 * @returns Promise<Result<void>>
+	 */
 	protected async execute(): Promise<Result<void>> {
 		// 1. Build blackboard
 		const board = new Map<string, unknown>();

@@ -13,6 +13,9 @@ export interface PatternServiceOptions {
 	force: boolean; // for add(): overwrite existing pattern if true
 }
 
+/**
+ * TODO: Describe the PatternService class.
+ */
 export class PatternService extends BaseService {
 	private patternsDir!: string;
 
@@ -50,6 +53,11 @@ export class PatternService extends BaseService {
 	// Pattern directory utilities
 	// ------------------------------------------------------------
 
+	/**
+	 * TODO: Describe the fileExists method.
+	 * @param path - {string}
+	 * @returns Promise<boolean>
+	 */
 	private async fileExists(path: string): Promise<boolean> {
 		try {
 			await Deno.stat(path);
@@ -82,6 +90,10 @@ export class PatternService extends BaseService {
 		return results;
 	}
 
+	/**
+	 * TODO: Describe the listPatterns method.
+	 * @returns Promise<Result<void, string[]>>
+	 */
 	private async listPatterns(): Promise<Result<void, string[]>> {
 		try {
 			const names: string[] = [];
@@ -116,6 +128,11 @@ export class PatternService extends BaseService {
 		}
 	}
 
+	/**
+	 * TODO: Describe the getPatternInfo method.
+	 * @param name - {string}
+	 * @returns Promise<Result<void, unknown>>
+	 */
 	private async getPatternInfo(name: string): Promise<Result<void, unknown>> {
 		const matches = await this.findAllPatternFiles(name);
 
@@ -151,6 +168,11 @@ export class PatternService extends BaseService {
 		}
 	}
 
+	/**
+	 * TODO: Describe the validatePattern method.
+	 * @param name - {string}
+	 * @returns Promise<Result<void, string>>
+	 */
 	private async validatePattern(name: string): Promise<Result<void, string>> {
 		const matches = await this.findAllPatternFiles(name);
 
@@ -191,6 +213,12 @@ export class PatternService extends BaseService {
 		}
 	}
 
+	/**
+	 * TODO: Describe the addPattern method.
+	 * @param file - {string}
+	 * @param force - {boolean}
+	 * @returns Promise<Result<void, string>>
+	 */
 	private async addPattern(
 		file: string,
 		force: boolean,

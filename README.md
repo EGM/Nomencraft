@@ -25,6 +25,10 @@ Welcome, Initiate. You stand at the threshold of **Artis Nomen** — the ancient
   We do not bludgeon filenames into shape.  
   We *coax* them. Gently. Like civilized people.
 
+- 💣 **Code is temporary.**  
+  Intention is *fragile.*  
+  Confusion is *eternal.*
+
 ### 🕯️ The Path of the Renamer
 
 All who walk the path begin with a single file.  

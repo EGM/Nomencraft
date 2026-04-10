@@ -1,4 +1,5 @@
 // hooks.test.ts
+
 // @intent Demonstrate and verify hook behavior in executable form.
 // @ai Keep tests readable; they double as documentation.
 
