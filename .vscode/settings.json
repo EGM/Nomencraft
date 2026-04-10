@@ -1,0 +1,58 @@
+{
+  // Turn on the Deno language server for this workspace
+  "deno.enable": true,
+  // Point to your config file (deno.json or deno.jsonc)
+  "deno.config": "./deno.json",
+  // Use Deno as the formatter
+  "editor.defaultFormatter": "denoland.vscode-deno",
+  "editor.formatOnSave": true,
+  // Enable Deno linting
+  "deno.lint": true,
+  // Enable Deno test integration (Test Explorer)
+  "deno.testing.enable": true,
+  // Disable VS Code’s built‑in JS/TS validators
+  // (prevents Node/Vitest/TS Server from hijacking files)
+  "js/ts.validate.enabled": false,
+  // Make import suggestions come from Deno ecosystems
+  "deno.suggest.imports.hosts": {
+    "https://jsr.io": true
+  },
+  // Optional: keep formatting consistent across the workspace
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  // Workspace dictionary
+  "cSpell.words": [
+    "Artis",
+    "asynciterable",
+    "CBOD",
+    "Ferarum",
+    "infantilize",
+    "Kjeldahl",
+    "MLSS",
+    "MLVSS",
+    "Nomencraft",
+    "Orthophosphate",
+    "Principia",
+    "therapize",
+    "Trichloroethane",
+    "Validatable",
+    "WWTP"
+  ],
+  "cSpell.ignoreWords": [
+    "Lumo",
+    "Renamer",
+    "bursty",
+    "iankulin",
+    "lfirst",
+    "reallyfinal",
+    "replayable",
+    "stdlib"
+  ],
+  // TODO Tree settings
+  "todoSidebar.activeFile": "./docs/TODO.md",
+  "todoSidebar.onDoneAction": "move",
+  "todoSidebar.hiddenSections": [
+    "Done",
+    "Hidden*"
+  ]
+}

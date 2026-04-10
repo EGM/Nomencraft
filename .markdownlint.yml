@@ -1,0 +1,10 @@
+# Local workspace configuration for markdownlint
+# Schema available at:
+#   https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.yaml
+#
+# MD013/line-length : Line length : https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md013.md
+MD013: false
+# MD033/no-inline-html : Inline HTML : https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md033.md
+MD033:
+  allowed_elements: []
+MD042: false

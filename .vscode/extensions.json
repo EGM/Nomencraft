@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        // Spell Checker
+        "streetsidesoftware.code-spell-checker",
+        // Language Server Client
+        "denoland.vscode-deno",
+        // TODO Tree
+        "sebastiansafari.todo-sidebar-md"
+    ]
+}

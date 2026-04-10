@@ -1,0 +1,92 @@
+# patterns.yaml
+# Defines the rules for identifying sample types and generating filenames.
+
+- name: "Daily"
+  code: "D"
+  type_word: "Daily"
+  triggers:
+    - parameter: "Total Suspended Solids"
+      sites: ["EFA-2"]
+    - parameter: "Coliform, Fecal"
+      sites: ["EFA-2"]
+    - parameter: "Carbonaceous Biochemical Oxygen Demand"
+      sites: ["EFA-2"]
+  date_format: "day_of_week"
+
+- name: "Weekend"
+  code: "S"
+  type_word: "Daily"
+  triggers:
+    - parameter: "Total Suspended Solids"
+      sites: ["EFA-2"]
+  date_format: "day_of_week"
+
+- name: "Weekly"
+  code: "W"
+  type_word: "Weekly"
+  triggers:
+    - parameter: "Total Suspended Solids"
+      sites: ["INF-1", "EFA-1"]
+    - parameter: "Coliform, Fecal"
+      sites: ["EFA-1 CCC #1", "EFA-1 CCC #2"]
+    - parameter: "Carbonaceous Biochemical Oxygen Demand"
+      sites: ["INF-1"]
+  date_format: "fixed"
+
+- name: "MLVSS"
+  code: "V"
+  type_word: "MLVSS"
+  triggers:
+    - parameter: "MLSS"
+      sites: ["Ditch #1", "Ditch #2", "Ditch #3"]
+    - parameter: "MLVSS"
+      sites: ["Ditch #1", "Ditch #2", "Ditch #3"]
+  date_format: "fixed"
+
+- name: "Monthly"
+  code: "M"
+  type_word: "Monthly"
+  triggers:
+    - parameter: "Total Dissolved Solids"
+      sites: ["EFA-1"]
+    - parameter: "Ammonia (as N)"
+      sites: ["INF-1", "EFA-2"]
+    - parameter: "Nitrogen, Kjeldahl"
+      sites: ["INF-1", "EFA-2"]
+    - parameter: "Orthophosphate as P, Dissolved"
+      sites: ["INF-1", "EFA-2"]
+    - parameter: "Total Phosphorus as P"
+      sites: ["INF-1", "EFA-2"]
+    - parameter: "Nitrogen, Organic"
+      sites: ["INF-1", "EFA-2"]
+    - parameter: "Nitrogen, Total"
+      sites: ["INF-1", "EFA-2"]
+    - parameter: "Nitrate as N"
+      sites: ["INF-1", "EFA-2"]
+    - parameter: "Nitrate Nitrite as N"
+      sites: ["INF-1", "EFA-2"]
+    - parameter: "Nitrite as N"
+      sites: ["INF-1", "EFA-2"]
+  date_format: "fixed"
+
+- name: "Quarterly"
+  code: "Q"
+  type_word: "Q1 MW" # Base word, engine will update Q1->Q4
+  triggers:
+    - parameter: "Total Dissolved Solids"
+      sites: ["MWC-15", "MWC-16", "MWC-3", "MWC-5", "MWC-7", "MWC-9", "MWC-14"]
+    - parameter: "Chloride"
+      sites: ["MWC-15", "MWC-16", "MWC-3", "MWC-5", "MWC-7", "MWC-9", "MWC-14"]
+    - parameter: "Nitrate as N"
+      sites: ["MWC-15", "MWC-16", "MWC-3", "MWC-5", "MWC-7", "MWC-9", "MWC-14"]
+  date_format: "quarter"
+
+- name: "Annual"
+  code: "A"
+  type_word: "Annual DW"
+  triggers:
+    - parameter: "1,1,1-Trichloroethane"
+      sites: ["RWS-A"]
+    - parameter: "Benzene"
+      sites: ["RWS-A"]
+  date_format: "fixed"

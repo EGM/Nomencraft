@@ -1,0 +1,5 @@
+# Ignore files and directories related to research and logs
+.research
+*.lnk
+logs/
+*.log
