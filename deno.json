@@ -100,7 +100,8 @@
       "command": "deno fmt && deno lint && deno test -P=test",
       "description": "Runs fmt, lint, and tests with the correct permissions set"
     },
-    "rtemp": "deno run --allow-env=INIT_CWD blah3.ts"
+    "dlint": "deno doc --lint src/ ",
+    "docs": "deno doc --html --output=docs/html src/ "
   },
   "test": {
     "include": [

@@ -2,6 +2,12 @@
 import type { PipelineComponent } from "./PipelineComponent.ts";
 import type { Result } from "./types.ts";
 
+/**
+ * TODO: Describe the runPipeline function.
+ * @param initial - {I}
+ * @param components - {PipelineComponent<I, I>[]}
+ * @returns Promise<Result<I, I>>
+ */
 export async function runPipeline<I>(
 	initial: I,
 	components: Array<PipelineComponent<I, I>>,

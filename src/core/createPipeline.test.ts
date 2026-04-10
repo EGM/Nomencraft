@@ -3,6 +3,9 @@ import { assert, assertEquals } from "@std/assert";
 import { createPipeline } from "./createPipeline.ts";
 import { BaseComponent } from "./BaseComponent.ts";
 
+/**
+ * TODO: Describe the MockA class.
+ */
 class MockA extends BaseComponent {
 	constructor() {
 		super("MockA");
@@ -14,6 +17,9 @@ class MockA extends BaseComponent {
 	}
 }
 
+/**
+ * TODO: Describe the MockB class.
+ */
 class MockB extends BaseComponent {
 	constructor() {
 		super("MockB");
@@ -24,6 +30,9 @@ class MockB extends BaseComponent {
 		return { success: true as const, input, value: input };
 	}
 }
+/**
+ * TODO: Describe the FailAtB class.
+ */
 class FailAtB extends BaseComponent {
 	constructor() {
 		super("FailAtB");
@@ -34,6 +43,9 @@ class FailAtB extends BaseComponent {
 		return { success: false as const, input, error: "boom" };
 	}
 }
+/**
+ * TODO: Describe the MockC class.
+ */
 class MockC extends BaseComponent {
 	constructor() {
 		super("MockC");
