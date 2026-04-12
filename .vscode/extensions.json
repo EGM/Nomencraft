@@ -5,6 +5,8 @@
         // Language Server Client
         "denoland.vscode-deno",
         // TODO Tree
-        "sebastiansafari.todo-sidebar-md"
+        "sebastiansafari.todo-sidebar-md",
+        // TSDoc Annotation Generator
+        "swust-weblab-lmh.annotation"
     ]
 }

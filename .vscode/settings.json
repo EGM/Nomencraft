@@ -54,5 +54,43 @@
   "todoSidebar.hiddenSections": [
     "Done",
     "Hidden*"
-  ]
+  ],
+  "annotation.behavior": {
+    "mode": "replace",
+  },
+  "annotation.global": {
+    "authorInfo": "John LaDuke",
+    "versionInfo": "0.0.0-dev",
+    "licenseInfo": "MIT",
+    "copyrightInfo": "(c) 2026 John LaDuke",
+  },
+  "annotation.class.tags": {
+    "classTag": true,
+    "abstractTag": true,
+    "extendsTag": true,
+    "implementsTag": true,
+    "authorTag": true,
+    "aliasTag": false,
+    "versionTag": true,
+    "nameTag": true,
+    "descriptionTag": true,
+    "seeTag": true,
+    "exampleTag": true,
+    "templateTag": true,
+  },
+  "annotation.method.tags": {
+    "aliasTag": false
+  },
+  "annotation.property.tags": {
+    "aliasTag": false
+  },
+  "annotation.interface.tags": {
+    "aliasTag": false
+  },
+  "annotation.enum.tags": {
+    "aliasTag": false
+  },
+  "annotation.typedef.tags": {
+    "aliasTag": false
+  }
 }
