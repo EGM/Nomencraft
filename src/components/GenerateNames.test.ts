@@ -1,10 +1,17 @@
 // src/components/GenerateNames.test.ts
 import { assert, assertEquals } from "@std/assert";
 import { GenerateNames } from "./GenerateNames.ts";
-import { FilePair, NamedFile, ParsedData } from "../core/types.ts";
+import { NamedFile, ParsedData } from "../core/types.ts";
 
 // --- Helpers -------------------------------------------------------------
 
+/**
+ * @name makeFilePair
+ * @function
+ * @returns {{ jobId: string; excelPath: string; pdfPath: string; }[]}
+ * @access public
+ * @description Creates a mock file pair for testing purposes.
+ */
 function makeFilePair() {
 	return [{
 		jobId: "762-8118-1",
@@ -13,6 +20,14 @@ function makeFilePair() {
 	}];
 }
 
+/**
+ * @name makeParsedData
+ * @function
+ * @param {Partial<ParsedData>} overrides
+ * @returns {{ job_id: string; sample_date: string; type_code?: string; samples: { site: string; id: string; date: string; sampledBy: string; measurements: { parameter: string; unit: string; value: string; site: string; labId: string; }[]; }[]; }[]}
+ * @access public
+ * @description Creates a mock parsed data object for testing purposes. Allows overriding specific fields to test different scenarios.
+ */
 function makeParsedData(overrides: Partial<ParsedData> = {}) {
 	return [{
 		job_id: "762-8118-1",

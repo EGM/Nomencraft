@@ -6,18 +6,46 @@ import type { FilePair, Result } from "../core/types.ts";
 import { existsSync } from "@std/fs";
 
 /**
- * TODO: Describe the ReadFilePairs class.
+ * @name ReadFilePairs
+ * @class
+ * @extends BaseComponent
+ * @implements {PipelineComponent<Map<string, unknown>, Map<string, unknown>>}
+ * @author John LaDuke
+ * @version 0.0.0-dev
+ * @description Scans a directory for Excel and PDF files, extracts job IDs from filenames, and produces paired `FilePair` objects linking each Excel file to its corresponding PDF when available.
+ * @intent Serves as the pipeline’s entry point for file discovery, ensuring that downstream components receive a clean, structured list of file pairs with consistent job identifiers.
+ * @see {@link BaseComponent} — lifecycle behavior
+ * @see {@link PipelineComponent} — interface contract
+ * @see {@link FilePair} — output structure
+ * @example
+ * ```typescript
+ * const r = new ReadFilePairs();
+ * const board = new Map([["dirPath", "/path/to/files"]]);
+ * const result = await r.process(board);
+ * ```
  */
 export class ReadFilePairs extends BaseComponent
 	implements PipelineComponent<Map<string, unknown>, Map<string, unknown>> {
+	/**
+	 * @name constructor
+	 * @constructor
+	 * @access public
+	 * @description Initializes the component and registers its name with the BaseComponent lifecycle system.
+	 * @intent Ensures the component is identifiable in logs, lifecycle events, and error emissions.
+	 */
 	constructor() {
 		super("ReadFilePairs");
 	}
 
 	/**
-	 * TODO: Describe the process method.
-	 * @param input - {Map<string, unknown>}
-	 * @returns Promise<Result<Map<string, unknown>, Map<string, unknown>>>
+	 * @name process
+	 * @method
+	 * @async
+	 * @param {Map<string, unknown>} input
+	 * @returns {Promise<Result<Map<string, unknown>, Map<string, unknown>>>}
+	 * @access public
+	 * @description Validates the presence of a directory path, reads file pairs from the directory, and stores the resulting `filePairs` array back into the blackboard.
+	 * @intent Acts as the orchestrator for directory scanning, delegating the actual pairing logic while maintaining consistent lifecycle behavior.
 	 */
 	async process(
 		input: Map<string, unknown>,
@@ -49,9 +77,14 @@ export class ReadFilePairs extends BaseComponent
 
 	// Your old logic goes here
 	/**
-	 * TODO: Describe the readPairsFromDirectory method.
-	 * @param dirPath - {string}
-	 * @returns Promise<FilePair[]>
+	 * @name readPairsFromDirectory
+	 * @method
+	 * @async
+	 * @param {string} dirPath
+	 * @returns {Promise<FilePair[]>}
+	 * @access private
+	 * @description Scans the target directory, identifies Excel and PDF files, extracts job IDs, and constructs `FilePair` objects linking related files.
+	 * @intent Encapsulates the directory‑level logic for discovering and pairing files, isolating pattern matching, job ID extraction, and warning behavior from the main process flow.
 	 */
 	private async readPairsFromDirectory(dirPath: string): Promise<FilePair[]> {
 		this.emitDebug(`Scanning directory: ${dirPath}`);
@@ -108,10 +141,14 @@ export class ReadFilePairs extends BaseComponent
 	}
 
 	/**
-	 * TODO: Describe the matches method.
-	 * @param filename - {string}
-	 * @param pattern - {string}
-	 * @returns boolean
+	 * @name matches
+	 * @method
+	 * @param {string} filename
+	 * @param {string} pattern
+	 * @returns {boolean}
+	 * @access private
+	 * @description Checks whether a filename matches a simple wildcard pattern by converting the pattern into a case‑insensitive regular expression.
+	 * @intent Provides lightweight glob‑style matching without requiring external libraries.
 	 */
 	private matches(filename: string, pattern: string): boolean {
 		const regex = new RegExp("^" + pattern.replace(/\*/g, ".*") + "$", "i");
@@ -119,9 +156,13 @@ export class ReadFilePairs extends BaseComponent
 	}
 
 	/**
-	 * TODO: Describe the extractJobId method.
-	 * @param filename - {string}
-	 * @returns string
+	 * @name extractJobId
+	 * @method
+	 * @param {string} filename
+	 * @returns {string | null}
+	 * @access private
+	 * @description Extracts a job ID from either an Excel filename (`*_FLPivot.xlsx`) or a PDF filename (`J####-# ...`), returning the normalized job ID or null if no match is found.
+	 * @intent Unifies job ID extraction across different file naming conventions so the pairing logic can rely on consistent identifiers.
 	 */
 	private extractJobId(filename: string): string | null {
 		const excelMatch = filename.match(

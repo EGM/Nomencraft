@@ -6,17 +6,43 @@ import * as path from "@std/path";
 import { configDir } from "../utils/configDir.ts";
 
 /**
- * TODO: Describe the GenerateUndoFile class.
+ * @name GenerateUndoFile
+ * @class
+ * @extends BaseComponent
+ * @author John LaDuke
+ * @version 0.0.0-dev
+ * @description Generates a CSV file containing the original and new filenames for all renamed files, enabling the rename operation to be undone later.
+ * @intent Acts as the final step in the naming pipeline by producing a reversible audit trail of all file renames, ensuring safe rollback capability.
+ * @see {@link BaseComponent} — lifecycle behavior
+ * @see {@link Result} — structure returned by `process()`
+ * @example
+ * ```typescript
+ * const g = new GenerateUndoFile();
+ * const board = new Map([["namedFiles", namedFiles]]);
+ * const result = await g.process(board);
+ * ```
  */
 export class GenerateUndoFile extends BaseComponent {
+	/**
+	 * @name constructor
+	 * @constructor
+	 * @access public
+	 * @description Initializes the component and registers its name with the BaseComponent lifecycle system.
+	 * @intent Ensures the component is identifiable in logs, lifecycle events, and error emissions.
+	 */
 	constructor() {
 		super("GenerateUndoFile");
 	}
 
 	/**
-	 * TODO: Describe the process method.
-	 * @param input - {Map<string, unknown>}
-	 * @returns Promise<Result<Map<string, unknown>, Map<string, unknown>>>
+	 * @name process
+	 * @method
+	 * @async
+	 * @param {Map<string, unknown>} input
+	 * @returns {Promise<Result<Map<string, unknown>, Map<string, unknown>>>}
+	 * @access public
+	 * @description Validates the presence of generated file metadata, builds the undo CSV content, writes it to the config directory, and stores the resulting file path in the blackboard.
+	 * @intent Provides a deterministic, automated way to record rename operations so they can be reversed without manual tracking.
 	 */
 	async process(
 		input: Map<string, unknown>,
@@ -48,16 +74,13 @@ export class GenerateUndoFile extends BaseComponent {
 	}
 
 	/**
-	 * Build CSV content for undo file.
-	 * @param namedFiles - {NamedFile[]}
-	 * @returns string
-	 *
-	 * @future
-	 *   When MOVE mode is implemented:
-	 *     - Add a "newPath" column
-	 *     - Undo logic must:
-	 *         - rename if newPath === path
-	 *         - move back if newPath !== path
+	 * @name buildUndoCsv
+	 * @method
+	 * @param {NamedFile[]} namedFiles
+	 * @returns {string}
+	 * @access private
+	 * @description Constructs the CSV content representing original and new filenames, optionally including PDF rename information when present.
+	 * @intent Encapsulates the formatting logic for undo data so the CSV structure remains consistent and easy to parse.
 	 */
 	private buildUndoCsv(namedFiles: NamedFile[]): string {
 		const hasAnyPdf = namedFiles.some((f) => f.pdfPath);

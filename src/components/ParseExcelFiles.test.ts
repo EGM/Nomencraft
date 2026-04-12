@@ -24,6 +24,15 @@ const mockImportSheet = async <T>(
 };
 __setImportSheetMock(mockImportSheet);
 // --- Helpers -------------------------------------------------------------
+/**
+ * @name normalizeSheet
+ * @function
+ * @param {Record<string, unknown>[]} raw
+ * @returns {Record<string, unknown>[]}
+ * @access public
+ * @description Normalizes raw worksheet rows by converting Excel-style placeholder keys (`__EMPTY`, `__EMPTY_n`) into sequential column letters (`A`, `B`, `C`, …).
+ * @intent Provides a consistent, human-readable column structure so tests can operate on predictable keys instead of Excel’s sparse placeholder fields.
+ */
 function normalizeSheet(
 	raw: Record<string, unknown>[],
 ): Record<string, unknown>[] {
@@ -45,6 +54,22 @@ function normalizeSheet(
 	});
 }
 
+/**
+ * @name makeRows
+ * @function
+ * @param {{
+ *   samples?: number;
+ *   parameters?: {
+ *     name: string;
+ *     unit: string;
+ *     values: string[]
+ *   }[];
+ * }}
+ * @returns {Record<string, unknown>[]}
+ * @access public
+ * @description Generates a synthetic worksheet structure containing sample IDs, sampling metadata, parameter definitions, and a terminating notes row.
+ * @intent Creates flexible, parameterized mock sheet data for testing different parsing scenarios in ParseExcelFiles, including varying sample counts and measurement sets.
+ */
 function makeRows({
 	samples = 2,
 	parameters = [{ name: "pH", unit: "SU", values: ["7.1", "7.3"] }],

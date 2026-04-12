@@ -2,59 +2,60 @@
 
 import { importSheet, ImportTypes } from "../utils/sheet.ts";
 import { BaseComponent } from "../core/BaseComponent.ts";
-import type {
-	FilePair,
-	Measurement,
-	ParsedData,
-	Result,
-	Sample,
-} from "../core/types.ts";
+import type { FilePair, ParsedData, Result, Sample } from "../core/types.ts";
 
 /**
- * @intent
- *   Parse all Excel files listed in `filePairs` and extract structured
- *   laboratory sample data (samples, measurements, metadata).
- *
- * @input
- *   - Map<string, unknown> (blackboard)
- *   - Required keys:
- *       - "filePairs": Array<{ excelPath: string }>
- *
- * @output
- *   - Mutates blackboard by setting:
- *       - "parsedData": ParsedData[]
- *
- * @decision
+ * @name ParseExcelFiles
+ * @class
+ * @extends BaseComponent
+ * @author John LaDuke
+ * @version 0.0.0-dev
+ * @description Parses all Excel files listed in `filePairs` and extract structured laboratory sample data (samples, measurements, metadata).
+ * @intent Implements the core Excel‑to‑structured‑data transformation for the pipeline, enforcing strict validation rules and surfacing malformed sheets through controlled failures while allowing soft warnings for recoverable issues.
+ * @ai Invariants:
+ *   - ParsedData must contain at least one sample.
+ *   - Each sample must contain at least one measurement.
+ *   - Sheet structure is assumed to follow the UDS template.
  *   - Hard failures use this.failed(), which throws and stops the pipeline.
  *   - Soft failures use emitWarning(), which logs but continues.
  *   - Missing or malformed sheets produce hard failures.
  *   - Missing metadata rows produce warnings and return null for that file.
- *
- * @future
- *   - Consider parallelizing file parsing for performance.
- *   - Consider caching parsed sheets for debugging or replay.
- *
- * @ai
- *   - Invariants:
- *       - ParsedData must contain at least one sample.
- *       - Each sample must contain at least one measurement.
- *       - Sheet structure is assumed to follow the UDS template.
+ * @see {@link BaseComponent} — lifecycle behavior
+ * @see {@link Result} — structure returned by 'process()'
+ * @see {@link importSheet} — raw sheet import mechanism
+ * @example
+ * ```typescript
+ * const p = new ParseExcelFiles();
+ * const board = new Map([["filePairs", [{ excelPath: "/path/to/file.xlsx" }]]]);
+ * const result = await p.process(board);
+ * ```
  */
 export class ParseExcelFiles extends BaseComponent {
+	/**
+	 * @name constructor
+	 * @constructor
+	 * @access public
+	 * @description Initializes the component and registers its name with the BaseComponent lifecycle system.
+	 * @intent Ensures the component is identifiable in logs, lifecycle events, and error emissions.
+	 */
 	constructor() {
 		super("ParseExcelFiles");
 	}
 
 	/**
-	 * TODO: Describe the process method.
-	 * @param input - {Map<string, unknown>}
-	 * @returns Promise<Result<Map<string, unknown>, Map<string, unknown>>>
+	 * @name process
+	 * @method
+	 * @async
+	 * @param {Map<string, unknown>} input
+	 * @returns {Promise<Result<Map<string, unknown>, Map<string, unknown>>>}
+	 * @access public
+	 * @description Validates the `filePairs` input, parses each Excel file, collects all successfully parsed results, and writes the aggregated `parsedData` array back into the blackboard.
+	 * @intent Acts as the orchestrator for file‑level parsing, ensuring each file is processed independently while maintaining consistent lifecycle and error‑handling behavior.
 	 */
 	async process(
 		input: Map<string, unknown>,
 	): Promise<Result<Map<string, unknown>, Map<string, unknown>>> {
 		this.started();
-		//console.log("ParseExcelFiles received input:",Object.fromEntries(input.entries()),);
 
 		try {
 			const filePairs = input.get("filePairs");
@@ -89,9 +90,14 @@ export class ParseExcelFiles extends BaseComponent {
 	}
 
 	/**
-	 * Parse a single Excel file into structured ParsedData.
-	 * @param filePath - {string}
-	 * @returns Promise<any>
+	 * @name parseFile
+	 * @method
+	 * @async
+	 * @param {string} filePath
+	 * @returns {Promise<ParsedData | null>}
+	 * @access private
+	 * @description Reads an Excel file from disk, imports its sheet data, parses it into structured sample information, validates the result, and returns either a `ParsedData` object or null.
+	 * @intent Encapsulates the full workflow for handling a single Excel file, isolating file I/O, sheet parsing, and validation so `process()` remains focused on orchestration.
 	 */
 	private async parseFile(filePath: string): Promise<ParsedData | null> {
 		this.emitDebug(`Parsing Excel file: ${filePath}`);
@@ -135,15 +141,15 @@ export class ParseExcelFiles extends BaseComponent {
 	}
 
 	/**
-	 * Extract a cell value by column index.
-	 * Excel import uses "__EMPTY", "__EMPTY_1", "__EMPTY_2", etc.
+	 * @name getVal
+	 * @method
+	 * @param {Record<string, unknown>} row
+	 * @param {number} colIndex
+	 * @returns {string}
+	 * @access private
+	 * @description Extracts a cell value from a row using either normalized letter‑based keys or raw `__EMPTY_n` keys.
+	 * @intent Provides a unified access method that shields the rest of the parser from inconsistencies in sheet import formats.
 	 */
-	/*
-	private getVal(row: Record<string, unknown>, colIndex: number): string {
-		const key = colIndex === 0 ? "__EMPTY" : `__EMPTY_${colIndex}`;
-		return row[key]?.toString() || "";
-	}
-	*/
 	private getVal(row: Record<string, unknown>, colIndex: number): string {
 		// Try letter-based keys first (after normalization)
 		const letterKey = String.fromCharCode(65 + colIndex); // 0=A, 1=B, 2=C
@@ -157,8 +163,13 @@ export class ParseExcelFiles extends BaseComponent {
 	}
 
 	/**
-	 * Parse the sheet into structured sample + measurement data.
-	 * Returns null on soft structural failures.
+	 * @name parseSheet
+	 * @method
+	 * @param {Record<string, unknown>[]} rows
+	 * @returns {ParsedData | null}
+	 * @access private
+	 * @description Parses raw worksheet rows into structured sample metadata and measurement data, including sample IDs, sites, dates, and parameter values.
+	 * @intent Implements the sheet‑level parsing logic that transforms loosely structured Excel rows into strongly typed ParsedData, handling missing rows, malformed structures, and termination conditions.
 	 */
 	private parseSheet(
 		rows: Record<string, unknown>[],
@@ -272,7 +283,13 @@ export class ParseExcelFiles extends BaseComponent {
 	}
 
 	/**
-	 * Validation Rules
+	 * @name validate
+	 * @method
+	 * @param {ParsedData} data
+	 * @returns {string | null}
+	 * @access private
+	 * @description Applies validation rules to a parsed dataset, ensuring each sample has measurements and that no duplicate measurement tuples exist.
+	 * @intent Prevents downstream components from receiving incomplete or contradictory data by enforcing structural integrity at the parsing stage.
 	 */
 	private validate(data: ParsedData): string | null {
 		// 1. Every sample must have at least one measurement

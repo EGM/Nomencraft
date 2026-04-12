@@ -1,27 +1,52 @@
 // src/components/GenerateNames.ts
-
 import { BaseComponent } from "../core/BaseComponent.ts";
 import type { FilePair, NamedFile, ParsedData, Result } from "../core/types.ts";
 import { parse as parseYaml } from "@std/yaml";
 
-// ------------------------------------------------------------
-// Shared Types
-// ------------------------------------------------------------
-
+/**
+ * @interface
+ * @name PatternConfig
+ * @description Defines the structure of a naming pattern used to generate standardized file names based on job metadata.
+ * @intent Provides a strict contract for YAML‑loaded pattern definitions so downstream logic can rely on consistent fields.
+ */
 interface PatternConfig {
+	/**
+	 * @property
+	 * @type {string}
+	 * @name name
+	 * @description The human‑readable name of the pattern.
+	 */
 	name: string;
+	/**
+	 * @property
+	 * @type {string}
+	 * @name code
+	 * @description A short code representing the pattern, used in generated filenames.
+	 */
 	code: string;
+	/**
+	 * @property
+	 * @type {string}
+	 * @name type_word
+	 * @description A descriptive label used when constructing PDF filenames.
+	 */
 	type_word: string;
-	triggers: Array<{
-		parameter: string;
-		sites: string[];
-	}>;
+	/**
+	 * @property
+	 * @type {Array<{ parameter: string; sites: string[]; }>}
+	 * @name triggers
+	 * @description A list of trigger rules that determine whether this pattern applies to a given job.
+	 * @intent Allows pattern selection to be driven by measurement parameters and sampling sites.
+	 */
+	triggers: Array<{ parameter: string; sites: string[] }>;
+	/**
+	 * @property
+	 * @type {"day_of_week" | "fixed" | "quarter"}
+	 * @name date_format
+	 * @description Specifies how the date should be interpreted when generating names.
+	 */
 	date_format: "day_of_week" | "fixed" | "quarter";
 }
-
-// ------------------------------------------------------------
-// findByJobId — Polymorphic Overload Set
-// ------------------------------------------------------------
 
 /**
  * findByJobId
@@ -56,10 +81,15 @@ export function findByJobId(
 
 // Implementation
 /**
- * TODO: Describe the findByJobId function.
- * @param jobId - {string}
- * @param items - {T[]}
- * @returns T
+ * @name findByJobId
+ * @function
+ * @param {string} jobId
+ * @param {T[]} items
+ * @returns {T | null}
+ * @access public
+ * @template T
+ * @description Retrieves an item matching the given jobId from arrays with differing job identifier shapes.
+ * @intent Provides a unified fallback mechanism when array ordering cannot be trusted or invariants are broken.
  */
 export function findByJobId<T extends { jobId: string }>(
 	jobId: string,
@@ -88,24 +118,46 @@ export function findByJobId<T extends { jobId: string }>(
 	return null;
 }
 
-// ------------------------------------------------------------
-// GenerateNames Component
-// ------------------------------------------------------------
-
 /**
- * TODO: Describe the GenerateNames class.
+ * @name GenerateNames
+ * @class
+ * @extends BaseComponent
+ * @author John LaDuke
+ * @version 0.0.0-dev
+ * @description Processes parsed job data, applies naming patterns, and generates standardized filenames for Excel and PDF outputs.
+ * @intent Acts as the naming engine for the pipeline, ensuring consistent, predictable file naming across all jobs.
+ * @see {@link BaseComponent} — lifecycle behavior
+ * @see {@link Result} — structure returned by process()
+ * @example
+ * const g = new GenerateNames();
+ * const board = new Map([
+ *   ["parsedData", parsedList],
+ *   ["patternPath", "./patterns.yaml"],
+ *   ["filePairs", filePairs]
+ * ]);
+ * const result = await g.process(board);
  */
 export class GenerateNames extends BaseComponent {
+	/**
+	 * @name constructor
+	 * @constructor
+	 * @access public
+	 * @description Initializes the component and registers its name with the BaseComponent lifecycle system.
+	 * @intent Ensures the component is identifiable in logs, lifecycle events, and error emissions.
+	 */
 	constructor() {
 		super("GenerateNames");
 	}
 
 	/**
-	 * IMPORTANT INVARIANT:
-	 * filePairs[], parsedData[], and namedFiles[] MUST remain in the same order.
-	 * Do NOT reorder, sort, or filter these arrays.
-	 * If you modify upstream components, preserve this ordering.
-	 * If ordering is ever uncertain, use findByJobId() as a fallback.
+	 * @name process
+	 * @method
+	 * @async
+	 * @param {Map<string, unknown>} input
+	 * @returns {Promise<Result<Map<string, unknown>, Map<string, unknown>>>}
+	 * @access public
+	 * @description Validates required inputs, loads naming patterns, processes each job, generates filenames, and writes the results back into the blackboard.
+	 * @intent Coordinates the entire naming workflow, enforcing invariants and ensuring that each job receives a correctly matched pattern and resulting filenames.
 	 */
 	async process(
 		input: Map<string, unknown>,
@@ -237,6 +289,16 @@ export class GenerateNames extends BaseComponent {
 	// Internal helpers
 	// ------------------------------------------------------------
 
+	/**
+	 * @name loadPatterns
+	 * @method
+	 * @async
+	 * @param {string} patternPath
+	 * @returns {Promise<PatternConfig[]>}
+	 * @access private
+	 * @description Loads and parses the YAML pattern file from disk, validating its structure before returning the pattern list.
+	 * @intent Centralizes pattern loading so the rest of the component can assume valid, well‑formed pattern data.
+	 */
 	private async loadPatterns(patternPath: string): Promise<PatternConfig[]> {
 		try {
 			const stat = await Deno.stat(patternPath);
@@ -261,6 +323,16 @@ export class GenerateNames extends BaseComponent {
 		}
 	}
 
+	/**
+	 * @name findMatchedPattern
+	 * @method
+	 * @param {ParsedData} job
+	 * @param {PatternConfig[]} patterns
+	 * @returns {PatternConfig | null}
+	 * @access private
+	 * @description Attempts to find a pattern whose triggers match the job’s measurement parameters and sampling sites.
+	 * @intent Implements the rule‑based logic that determines which naming pattern applies to a given job.
+	 */
 	private findMatchedPattern(
 		job: ParsedData,
 		patterns: PatternConfig[],
@@ -285,6 +357,17 @@ export class GenerateNames extends BaseComponent {
 		return null;
 	}
 
+	/**
+	 * @name generateNames
+	 * @method
+	 * @param {ParsedData} job
+	 * @param {PatternConfig} pattern
+	 * @param {FilePair} filePair
+	 * @returns {NamedFile[]}
+	 * @access private
+	 * @description Constructs Excel and PDF filenames for a job based on its metadata, the matched pattern, and the associated file pair.
+	 * @intent Encapsulates the naming rules so that filename generation remains deterministic, consistent, and isolated from the rest of the workflow.
+	 */
 	private generateNames(
 		job: ParsedData,
 		pattern: PatternConfig,
