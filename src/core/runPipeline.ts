@@ -3,10 +3,16 @@ import type { PipelineComponent } from "./PipelineComponent.ts";
 import type { Result } from "./types.ts";
 
 /**
- * TODO: Describe the runPipeline function.
- * @param initial - {I}
- * @param components - {PipelineComponent<I, I>[]}
- * @returns Promise<Result<I, I>>
+ * @name runPipeline
+ * @function
+ * @async
+ * @param {I} initial
+ * @param {Array<PipelineComponent<I, I>>} components
+ * @returns {Promise<Result<I, I>>}
+ * @access public
+ * @template I
+ * @description Executes a sequence of pipeline components in order, passing the evolving state from one component to the next and stopping immediately on the first failure.
+ * @intent Provides the deterministic execution engine behind createPipeline, ensuring consistent state propagation, predictable short‑circuit behavior, and a uniform Result contract across all components.
  */
 export async function runPipeline<I>(
 	initial: I,

@@ -1,10 +1,4 @@
 // src/core/createPipeline.ts
-/**
- * @intent Build a deterministic pipeline with explicit contracts.
- * @decision Pipelines should be observable, ordered, and replayable.
- * @future Add validation, typed pipeline metadata, or parallel branches.
- * @ai Generated to unify pipeline creation across the ecosystem.
- */
 // deno-lint-ignore-file require-await
 
 import type { BaseComponent } from "./BaseComponent.ts";
@@ -12,32 +6,55 @@ import type { PipelineComponent } from "./PipelineComponent.ts";
 import type { Result } from "./types.ts";
 import { runPipeline } from "./runPipeline.ts";
 
-/** */
 /**
- * TODO: Describe the createPipeline function.
- * @param components - {any[]}
- * @returns { components: any[]; observeWith(service: { observe: (c: BaseComponent) => void; }): void; run(input: I): Promise<Result<I, I>>; }
- *
- * @intent Build a deterministic, observable pipeline.
+ * @name createPipeline
+ * @function
+ * @param {Array<PipelineComponent<I, I> & BaseComponent>} components
+ * @returns {{ components: (import("c:/Users/John/source/repos/Nomencraft/src/core/PipelineComponent").PipelineComponent<I, I> & import("c:/Users/John/source/repos/Nomencraft/src/core/BaseComponent").BaseComponent)[]; observeWith(service: { observe: (c: import("c:/Users/John/source/repos/Nomencraft/src/core/BaseComponent").BaseComponent) => void; }): void; run(input: I): Promise<import("c:/Users/John/source/repos/Nomencraft/src/core/types").Result<I, I>>; }}
+ * @access public
+ * @template I
+ * @description Constructs a deterministic pipeline composed of ordered components, returning an object that can observe component events and execute the pipeline with a single run() call.
+ * @intent Provides a lightweight orchestration wrapper that binds components together into a predictable execution chain while exposing a minimal API for running and observing the pipeline.
+ * @see {@link runPipeline} — underlying execution engine
+ * @see {@link PipelineComponent} — component contract
+ * @see {@link BaseComponent} — lifecycle and event behavior
+ * @example
+ * ```typescript
+ * const pipeline = createPipeline(stepA, stepB, stepC);
+ * const result = await pipeline.run(initialInput);
+ * ```
  */
 export function createPipeline<I>(
 	...components: Array<PipelineComponent<I, I> & BaseComponent>
 ) {
 	return {
+		/**
+		 * @name components
+		 * @type Array<PipelineComponent<I, I> & BaseComponent>
+		 * @property
+		 * @description The ordered list of pipeline components provided to `createPipeline`.
+		 * @intent Preserves the exact execution order so the pipeline behaves deterministically.
+		 */
 		components,
 
 		/**
-		 * TODO: Describe the observeWith method.
-		 * @param service - {{ observe: (c: BaseComponent) => void; }}
+		 * @name observeWith
+		 * @method
+		 * @param service
+		 * @description Registers each component with an external service that exposes an observe() method.
+		 * @intent Allows services (e.g., loggers, monitors) to subscribe to component lifecycle events without modifying the pipeline itself.
 		 */
 		observeWith(service: { observe: (c: BaseComponent) => void }) {
 			for (const c of components) service.observe(c);
 		},
 
 		/**
-		 * TODO: Describe the run method.
-		 * @param input - {I}
+		 * @name run
+		 * @method
+		 * @param input
 		 * @returns Promise<Result<I, I>>
+		 * @description Executes the pipeline by delegating to runPipeline, passing the initial input and the ordered component list.
+		 * @intent Provides a simple, unified entry point for running the entire pipeline, abstracting away the internal execution mechanics.
 		 */
 		async run(input: I): Promise<Result<I, I>> {
 			return runPipeline(input, components);
