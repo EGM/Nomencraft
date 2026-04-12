@@ -6,7 +6,7 @@
 # This workflow will install Deno then run `deno lint` and `deno test`.
 # For more information see: https://github.com/denoland/setup-deno
 
-name: Deno
+name: Deno lint & test
 
 on:
   push:
@@ -18,25 +18,30 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  lint-and-test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Setup repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Deno
-        # uses: denoland/setup-deno@v1
-        uses: denoland/setup-deno@61fe2df320078202e33d7d5ad347e7dcfa0e8f31  # v1.1.2
+        uses: denoland/setup-deno@v1
         with:
-          deno-version: v1.x
+          deno-version: "v2.7.12"
 
-      # Uncomment this step to verify the use of 'deno fmt' on each commit.
-      # - name: Verify formatting
-      #   run: deno fmt --check
+      - name: Cache Deno dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/deno
+          key: deno-cache-${{ runner.os }}-${{ hashFiles('deno.json*', 'src/**/*.ts') }}
+          restore-keys: |
+            deno-cache-${{ runner.os }}-
+
+      - name: Verify formatting (optional)
+        run: deno fmt --check src/**/*.ts
 
       - name: Run linter
-        run: deno lint
+        run: deno lint src
 
       - name: Run tests
-        run: deno test -A
+        run: deno test -A src
