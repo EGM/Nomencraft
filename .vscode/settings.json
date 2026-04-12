@@ -39,6 +39,7 @@
     "WWTP"
   ],
   "cSpell.ignoreWords": [
+    "Futurenomicon",
     "Lumo",
     "Renamer",
     "bursty",
@@ -56,13 +57,13 @@
     "Hidden*"
   ],
   "annotation.behavior": {
-    "mode": "replace",
+    "mode": "replace" // keep until cleanup is done
   },
   "annotation.global": {
     "authorInfo": "John LaDuke",
     "versionInfo": "0.0.0-dev",
     "licenseInfo": "MIT",
-    "copyrightInfo": "(c) 2026 John LaDuke",
+    "copyrightInfo": "(c) 2026 John LaDuke"
   },
   "annotation.class.tags": {
     "classTag": true,
@@ -76,21 +77,66 @@
     "descriptionTag": true,
     "seeTag": true,
     "exampleTag": true,
-    "templateTag": true,
-  },
-  "annotation.method.tags": {
-    "aliasTag": false
-  },
-  "annotation.property.tags": {
-    "aliasTag": false
+    "templateTag": true
   },
   "annotation.interface.tags": {
-    "aliasTag": false
+    "interfaceTag": true,
+    "extendsTag": true,
+    "authorTag": true,
+    "versionTag": true,
+    "templateTag": true,
+    "aliasTag": false,
+    "nameTag": true,
+    "descriptionTag": true,
+    "seeTag": false,
+    "exampleTag": false
+  },
+  "annotation.method.tags": {
+    "asyncTag": true,
+    "functionTag": true,
+    "constructorTag": true,
+    "throwsTag": true,
+    "paramsTag": true,
+    "returnsTag": true,
+    "staticTag": true,
+    "accessTag": true,
+    "authorTag": false,
+    "aliasTag": false,
+    "versionTag": false,
+    "nameTag": true,
+    "descriptionTag": true,
+    "seeTag": false,
+    "exampleTag": false,
+    "templateTag": true
+  },
+  "annotation.property.tags": {
+    "propertyTag": true,
+    "typeTag": false, // TS already knows the type
+    "staticTag": true,
+    "defaultTag": false,
+    "aliasTag": false,
+    "nameTag": true,
+    "descriptionTag": true,
+    "seeTag": false,
+    "exampleTag": false,
+    "templateTag": false
   },
   "annotation.enum.tags": {
-    "aliasTag": false
+    "enumTag": true,
+    "aliasTag": false,
+    "nameTag": true,
+    "descriptionTag": true,
+    "seeTag": false,
+    "exampleTag": false
   },
   "annotation.typedef.tags": {
-    "aliasTag": false
+    "typedefTag": false, // kill typedef spam
+    "typeTag": false, // kill @type spam
+    "templateTag": false,
+    "aliasTag": false,
+    "nameTag": true,
+    "descriptionTag": true,
+    "seeTag": false,
+    "exampleTag": false
   }
 }
