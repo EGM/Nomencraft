@@ -1,46 +1,26 @@
-// src/components/ComponentTemplate.ts
-
 import { BaseComponent } from "../core/BaseComponent.ts";
 import type { Result } from "../core/types.ts";
 
 /**
- * @name ComponentTemplate
- * @class
- * @extends BaseComponent
- * @author John LaDuke
- * @version 0.0.0-dev
- * @description Implements a template component that validates input, performs a unit of work, and writes deterministic results back into the shared blackboard. Serves as a reference implementation for building new components that follow the BaseComponent lifecycle.
- * @intent Provides a minimal but complete demonstration of the expected lifecycle pattern (started → validate → work → mutate → finished) so new components can follow a consistent structure.
- * @see {@link BaseComponent} — lifecycle behavior
- * @see {@link Result} — structure returned by `process()`
+ * @description Template component demonstrating the expected lifecycle pattern for new components.
+ * @intent Serves as a reference implementation for building components that follow the BaseComponent lifecycle.
+ * @see {@link BaseComponent}
+ * @see {@link Result}
  * @example
- * ```typescript
  * const c = new ComponentTemplate();
  * const board = new Map([["exampleKey", "value"]]);
  * const result = await c.process(board);
- * ```
  */
 export class ComponentTemplate extends BaseComponent {
 	/**
-	 * @name constructor
-	 * @constructor
-	 * @access public
-	 * @description Initializes the component and registers its name with the BaseComponent lifecycle system.
-	 * @intent Ensures the component is identifiable in logs, lifecycle events, and error emissions.
+	 * @description Registers the component name with the BaseComponent lifecycle system.
 	 */
 	constructor() {
 		super("ComponentTemplate");
 	}
 
 	/**
-	 * @name process
-	 * @method
-	 * @async
-	 * @param {Map<string, unknown>} input
-	 * @returns {Promise<Result<Map<string, unknown>, Map<string, unknown>>>}
-	 * @access public
-	 * @description Validates required input, performs the component’s core work, updates the blackboard with results, and returns a structured Result indicating success or failure.
-	 * @intent Acts as the orchestrator for the component’s lifecycle: enforcing input requirements, delegating work, and ensuring deterministic blackboard mutation while preventing unhandled exceptions from escaping.
+	 * @description Validates input, performs work, mutates the blackboard, and returns a structured Result.
 	 */
 	async process(
 		input: Map<string, unknown>,
@@ -70,13 +50,7 @@ export class ComponentTemplate extends BaseComponent {
 	}
 
 	/**
-	 * @name doWork
-	 * @method
-	 * @param {unknown} example
-	 * @returns {unknown}
-	 * @access private
-	 * @description Executes the component’s internal operation and throws a controlled failure if the provided value is invalid.
-	 * @intent Encapsulates the component’s actual business logic so the process() method can remain focused on lifecycle flow and error handling.
+	 * @description Performs the component’s internal operation and throws on invalid input.
 	 */
 	private doWork(example: unknown): unknown {
 		if (example === "bad") {

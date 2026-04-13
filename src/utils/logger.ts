@@ -1,9 +1,7 @@
-// src/utils/logger.ts
-
 import { fileLogger, FileWriter } from "./fileLogger.ts";
 import Logger from "@iankulin/logger";
 
-/** Type for logger configuration options */
+/** @description Configuration options for the application logger. */
 export type LoggerOptions = {
 	json: boolean;
 	quiet: boolean;
@@ -15,10 +13,8 @@ let log: Logger;
 // Hold reference to file writer if file logging is enabled
 let writeFile: null | FileWriter;
 
-// Reusable function to configure logger
 /**
- * TODO: Describe this arrow function (<anonymous>).
- * @param { json, quiet, logFilename } - {LoggerOptions}
+ * @description Configures the global logger instance and optional file writer.
  */
 export const configureLogger = (
 	{ json, quiet, logFilename }: LoggerOptions,
@@ -27,19 +23,12 @@ export const configureLogger = (
 		level: quiet ? "error" : "debug", // <-- @TODO: Set to "info" when you're done debugging!
 		format: json ? "json" : "simple",
 	});
-	if (logFilename) {
-		writeFile = fileLogger(logFilename);
-	} else writeFile = null;
+
+	writeFile = logFilename ? fileLogger(logFilename) : null;
 };
 
-// Call this once at startup
 /**
- * Logs a message with the specified level.
- * @param level
- * @param message
- * @param component
- * @param details
- * @returns void
+ * @description Logs a message with the specified level, optionally writing to a file.
  * @example
  * appLog("info", "Application started", "Main");
  * appLog("error", "Failed to load config", "ConfigLoader", { filename: "config.yaml" });
@@ -55,7 +44,6 @@ export const appLog = (
 	// Helper to safely stringify complex values
 	const sanitize = (val: unknown): unknown => {
 		if (Array.isArray(val)) {
-			// If it's an array, stringify it so it prints as JSON, not [object Object]
 			try {
 				return JSON.stringify(val);
 			} catch {
@@ -86,7 +74,6 @@ export const appLog = (
 			? ", " + JSON.stringify(safeDetails)
 			: "";
 		writeFile(
-			//`[${new Date().toISOString().split("T")[1].split(".")[0]}]
 			`[${
 				String(level).toUpperCase()
 			}] [${component}] ${message}${detailsStr}`,

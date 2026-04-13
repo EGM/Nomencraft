@@ -24,34 +24,17 @@ import type { FilePair, ParsedData, Result, Sample } from "../core/types.ts";
  * @see {@link Result} — structure returned by 'process()'
  * @see {@link importSheet} — raw sheet import mechanism
  * @example
- * ```typescript
  * const p = new ParseExcelFiles();
  * const board = new Map([["filePairs", [{ excelPath: "/path/to/file.xlsx" }]]]);
  * const result = await p.process(board);
- * ```
  */
 export class ParseExcelFiles extends BaseComponent {
-	/**
-	 * @name constructor
-	 * @constructor
-	 * @access public
-	 * @description Initializes the component and registers its name with the BaseComponent lifecycle system.
-	 * @intent Ensures the component is identifiable in logs, lifecycle events, and error emissions.
-	 */
+	/** @description Registers the component name with the BaseComponent lifecycle. */
 	constructor() {
 		super("ParseExcelFiles");
 	}
 
-	/**
-	 * @name process
-	 * @method
-	 * @async
-	 * @param {Map<string, unknown>} input
-	 * @returns {Promise<Result<Map<string, unknown>, Map<string, unknown>>>}
-	 * @access public
-	 * @description Validates the `filePairs` input, parses each Excel file, collects all successfully parsed results, and writes the aggregated `parsedData` array back into the blackboard.
-	 * @intent Acts as the orchestrator for file‑level parsing, ensuring each file is processed independently while maintaining consistent lifecycle and error‑handling behavior.
-	 */
+	/** @description Validates filePairs, parses each Excel file, and writes parsedData to the blackboard. */
 	async process(
 		input: Map<string, unknown>,
 	): Promise<Result<Map<string, unknown>, Map<string, unknown>>> {
@@ -89,16 +72,7 @@ export class ParseExcelFiles extends BaseComponent {
 		}
 	}
 
-	/**
-	 * @name parseFile
-	 * @method
-	 * @async
-	 * @param {string} filePath
-	 * @returns {Promise<ParsedData | null>}
-	 * @access private
-	 * @description Reads an Excel file from disk, imports its sheet data, parses it into structured sample information, validates the result, and returns either a `ParsedData` object or null.
-	 * @intent Encapsulates the full workflow for handling a single Excel file, isolating file I/O, sheet parsing, and validation so `process()` remains focused on orchestration.
-	 */
+	/** @description Reads, imports, parses, and validates a single Excel file. */
 	private async parseFile(filePath: string): Promise<ParsedData | null> {
 		this.emitDebug(`Parsing Excel file: ${filePath}`);
 
@@ -140,41 +114,21 @@ export class ParseExcelFiles extends BaseComponent {
 		}
 	}
 
-	/**
-	 * @name getVal
-	 * @method
-	 * @param {Record<string, unknown>} row
-	 * @param {number} colIndex
-	 * @returns {string}
-	 * @access private
-	 * @description Extracts a cell value from a row using either normalized letter‑based keys or raw `__EMPTY_n` keys.
-	 * @intent Provides a unified access method that shields the rest of the parser from inconsistencies in sheet import formats.
-	 */
+	/** @description Extracts a cell value using normalized or raw Excel placeholder keys. */
 	private getVal(row: Record<string, unknown>, colIndex: number): string {
-		// Try letter-based keys first (after normalization)
-		const letterKey = String.fromCharCode(65 + colIndex); // 0=A, 1=B, 2=C
+		const letterKey = String.fromCharCode(65 + colIndex);
 		if (row[letterKey] !== undefined) {
 			return row[letterKey]?.toString() || "";
 		}
 
-		// Fall back to __EMPTY_N format (raw import)
 		const key = colIndex === 0 ? "__EMPTY" : `__EMPTY_${colIndex}`;
 		return row[key]?.toString() || "";
 	}
 
-	/**
-	 * @name parseSheet
-	 * @method
-	 * @param {Record<string, unknown>[]} rows
-	 * @returns {ParsedData | null}
-	 * @access private
-	 * @description Parses raw worksheet rows into structured sample metadata and measurement data, including sample IDs, sites, dates, and parameter values.
-	 * @intent Implements the sheet‑level parsing logic that transforms loosely structured Excel rows into strongly typed ParsedData, handling missing rows, malformed structures, and termination conditions.
-	 */
+	/** @description Parses worksheet rows into structured ParsedData. */
 	private parseSheet(
 		rows: Record<string, unknown>[],
 	): ParsedData | null {
-		// 1. Locate "Sample ID" row
 		const sampleIdRowIdx = rows.findIndex((r) =>
 			this.getVal(r, 0).toLowerCase() === "sample id"
 		);
@@ -186,7 +140,6 @@ export class ParseExcelFiles extends BaseComponent {
 
 		const sampleIdRow = rows[sampleIdRowIdx];
 
-		// 2. Determine number of samples
 		let maxCol = 0;
 		for (const key of Object.keys(sampleIdRow)) {
 			const match = key.match(/__EMPTY_(\d+)/);
@@ -206,18 +159,15 @@ export class ParseExcelFiles extends BaseComponent {
 			`Found ${numSamples} sample columns (indices 2 to ${maxCol})`,
 		);
 
-		// 3. Helper to find rows by label
 		const findRow = (label: string) =>
 			rows.findIndex((r) =>
 				this.getVal(r, 0).toLowerCase() === label.toLowerCase()
 			);
 
-		// 4. Extract metadata rows
 		const sampledByRow = rows[findRow("sampled by")] || {};
 		const dateRow = rows[findRow("sample collection date")] || {};
 		const jobRow = rows[findRow("laboratory order number")] || {};
 
-		// 5. Build sample objects
 		const samples: Sample[] = [];
 		for (let i = 0; i < numSamples; i++) {
 			const colIndex = i + 2;
@@ -231,7 +181,6 @@ export class ParseExcelFiles extends BaseComponent {
 			});
 		}
 
-		// 6. Parse parameters + measurements
 		const paramStartIdx = rows.findIndex((r) =>
 			this.getVal(r, 0).toLowerCase() === "parameter" &&
 			this.getVal(r, 1).toLowerCase() === "reporting units"
@@ -269,10 +218,8 @@ export class ParseExcelFiles extends BaseComponent {
 			}
 		}
 
-		// 7. Finalize
 		const firstSample = samples[0];
 		const jobId = firstSample.id;
-		// ? firstSample.id.substring(0, firstSample.id.lastIndexOf("-"))	: "";
 
 		return {
 			job_id: jobId,
@@ -282,24 +229,14 @@ export class ParseExcelFiles extends BaseComponent {
 		};
 	}
 
-	/**
-	 * @name validate
-	 * @method
-	 * @param {ParsedData} data
-	 * @returns {string | null}
-	 * @access private
-	 * @description Applies validation rules to a parsed dataset, ensuring each sample has measurements and that no duplicate measurement tuples exist.
-	 * @intent Prevents downstream components from receiving incomplete or contradictory data by enforcing structural integrity at the parsing stage.
-	 */
+	/** @description Validates parsed data for required measurements and duplicate entries. */
 	private validate(data: ParsedData): string | null {
-		// 1. Every sample must have at least one measurement
 		for (const sample of data.samples) {
 			if (sample.measurements.length === 0) {
 				return `Ragnarok Failure: Sample '${sample.id}' (${sample.site}) has no measurements.`;
 			}
 		}
 
-		// 2. No duplicate [labId, parameter] tuples
 		const seen = new Set<string>();
 		for (const sample of data.samples) {
 			for (const m of sample.measurements) {

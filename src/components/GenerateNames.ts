@@ -4,160 +4,69 @@ import type { FilePair, NamedFile, ParsedData, Result } from "../core/types.ts";
 import { parse as parseYaml } from "@std/yaml";
 
 /**
- * @interface
- * @name PatternConfig
- * @description Defines the structure of a naming pattern used to generate standardized file names based on job metadata.
- * @intent Provides a strict contract for YAML‑loaded pattern definitions so downstream logic can rely on consistent fields.
+ * @description Structure of a naming pattern loaded from YAML.
  */
 interface PatternConfig {
-	/**
-	 * @property
-	 * @type {string}
-	 * @name name
-	 * @description The human‑readable name of the pattern.
-	 */
+	/** Human‑readable name of the pattern. */
 	name: string;
-	/**
-	 * @property
-	 * @type {string}
-	 * @name code
-	 * @description A short code representing the pattern, used in generated filenames.
-	 */
+
+	/** Short code used in generated filenames. */
 	code: string;
-	/**
-	 * @property
-	 * @type {string}
-	 * @name type_word
-	 * @description A descriptive label used when constructing PDF filenames.
-	 */
+
+	/** Descriptive label used in PDF filenames. */
 	type_word: string;
-	/**
-	 * @property
-	 * @type {Array<{ parameter: string; sites: string[]; }>}
-	 * @name triggers
-	 * @description A list of trigger rules that determine whether this pattern applies to a given job.
-	 * @intent Allows pattern selection to be driven by measurement parameters and sampling sites.
-	 */
+
+	/** Trigger rules determining when the pattern applies. */
 	triggers: Array<{ parameter: string; sites: string[] }>;
-	/**
-	 * @property
-	 * @type {"day_of_week" | "fixed" | "quarter"}
-	 * @name date_format
-	 * @description Specifies how the date should be interpreted when generating names.
-	 */
+
+	/** How dates should be interpreted when generating names. */
 	date_format: "day_of_week" | "fixed" | "quarter";
 }
 
 /**
- * findByJobId
- *
- * Overloaded helper for retrieving an item by jobId from:
- * - FilePair[]
- * - ParsedData[]
- * - NamedFile[]
- *
- * IMPORTANT:
- * This is a pure utility. It does NOT assume ordering.
- * Use it as a fallback when array index invariants are uncertain.
+ * @description Retrieves an item matching the given jobId from arrays with differing identifier shapes.
  */
-
-// 1) FilePair[]
 export function findByJobId(
 	jobId: string,
 	items: Array<{ jobId: string }>,
 ): { jobId: string } | null;
-
-// 2) ParsedData[]
 export function findByJobId(
 	jobId: string,
 	items: Array<{ job_id: string }>,
 ): { job_id: string } | null;
-
-// 3) NamedFile[]
 export function findByJobId(
 	jobId: string,
 	items: Array<{ pdfNewName?: string }>,
 ): { pdfNewName?: string } | null;
-
-// Implementation
-/**
- * @name findByJobId
- * @function
- * @param {string} jobId
- * @param {T[]} items
- * @returns {T | null}
- * @access public
- * @template T
- * @description Retrieves an item matching the given jobId from arrays with differing job identifier shapes.
- * @intent Provides a unified fallback mechanism when array ordering cannot be trusted or invariants are broken.
- */
 export function findByJobId<T extends { jobId: string }>(
 	jobId: string,
 	items: T[],
 ): T | null {
 	for (const item of items) {
-		// FilePair case
-		if ("jobId" in item && item.jobId === jobId) {
-			return item;
-		}
+		if ("jobId" in item && item.jobId === jobId) return item;
+		if ("job_id" in item && item.job_id === jobId) return item;
 
-		// ParsedData case
-		if ("job_id" in item && item.job_id === jobId) {
-			return item;
-		}
-
-		// NamedFile case (match via suffix)
 		if ("pdfNewName" in item) {
 			const suffix = jobId.split("-").slice(1).join("-");
-			if (String(item.pdfNewName).includes(`J${suffix}`)) {
-				return item;
-			}
+			if (String(item.pdfNewName).includes(`J${suffix}`)) return item;
 		}
 	}
-
 	return null;
 }
 
 /**
- * @name GenerateNames
- * @class
- * @extends BaseComponent
- * @author John LaDuke
- * @version 0.0.0-dev
- * @description Processes parsed job data, applies naming patterns, and generates standardized filenames for Excel and PDF outputs.
- * @intent Acts as the naming engine for the pipeline, ensuring consistent, predictable file naming across all jobs.
- * @see {@link BaseComponent} — lifecycle behavior
- * @see {@link Result} — structure returned by process()
- * @example
- * const g = new GenerateNames();
- * const board = new Map([
- *   ["parsedData", parsedList],
- *   ["patternPath", "./patterns.yaml"],
- *   ["filePairs", filePairs]
- * ]);
- * const result = await g.process(board);
+ * @description Applies naming patterns to parsed job data and generates standardized filenames.
+ * @see BaseComponent
+ * @see Result
  */
 export class GenerateNames extends BaseComponent {
-	/**
-	 * @name constructor
-	 * @constructor
-	 * @access public
-	 * @description Initializes the component and registers its name with the BaseComponent lifecycle system.
-	 * @intent Ensures the component is identifiable in logs, lifecycle events, and error emissions.
-	 */
+	/** @description Registers the component name with the BaseComponent lifecycle. */
 	constructor() {
 		super("GenerateNames");
 	}
 
 	/**
-	 * @name process
-	 * @method
-	 * @async
-	 * @param {Map<string, unknown>} input
-	 * @returns {Promise<Result<Map<string, unknown>, Map<string, unknown>>>}
-	 * @access public
-	 * @description Validates required inputs, loads naming patterns, processes each job, generates filenames, and writes the results back into the blackboard.
-	 * @intent Coordinates the entire naming workflow, enforcing invariants and ensuring that each job receives a correctly matched pattern and resulting filenames.
+	 * @description Validates inputs, loads patterns, processes each job, and writes generated filenames to the blackboard.
 	 */
 	async process(
 		input: Map<string, unknown>,
@@ -165,9 +74,6 @@ export class GenerateNames extends BaseComponent {
 		this.started();
 
 		try {
-			// ------------------------------------------------------------
-			// 1. Validate input
-			// ------------------------------------------------------------
 			const parsedList = input.get("parsedData") as
 				| ParsedData[]
 				| undefined;
@@ -210,9 +116,6 @@ export class GenerateNames extends BaseComponent {
 				} filePairs`,
 			);
 
-			// ------------------------------------------------------------
-			// 2. Load patterns
-			// ------------------------------------------------------------
 			const patterns = await this.loadPatterns(patternPath!);
 			if (patterns.length === 0) {
 				this.failed("No patterns loaded. Check pattern path.");
@@ -220,9 +123,6 @@ export class GenerateNames extends BaseComponent {
 
 			this.emitDebug(`Loaded ${patterns.length} patterns`);
 
-			// ------------------------------------------------------------
-			// 3. Process each job (index-first)
-			// ------------------------------------------------------------
 			const allNamedFiles: NamedFile[] = [];
 
 			for (let i = 0; i < parsedList!.length; i++) {
@@ -231,7 +131,6 @@ export class GenerateNames extends BaseComponent {
 
 				this.emitDebug(`Processing job ${job.job_id}`);
 
-				// Invariant check: jobId must match
 				if (filePair.jobId !== job.job_id) {
 					this.emitWarning(
 						`Index mismatch at [${i}]: filePair.jobId=${filePair.jobId}, parsed.job_id=${job.job_id}. Falling back to findByJobId().`,
@@ -247,7 +146,6 @@ export class GenerateNames extends BaseComponent {
 					filePair = fallback as FilePair;
 				}
 
-				// Pattern matching
 				const matched = this.findMatchedPattern(job, patterns);
 
 				const pattern = matched ?? {
@@ -272,9 +170,6 @@ export class GenerateNames extends BaseComponent {
 				allNamedFiles.push(...names);
 			}
 
-			// ------------------------------------------------------------
-			// 4. Mutate blackboard
-			// ------------------------------------------------------------
 			input.set("namedFiles", allNamedFiles);
 
 			this.finished();
@@ -285,19 +180,8 @@ export class GenerateNames extends BaseComponent {
 		}
 	}
 
-	// ------------------------------------------------------------
-	// Internal helpers
-	// ------------------------------------------------------------
-
 	/**
-	 * @name loadPatterns
-	 * @method
-	 * @async
-	 * @param {string} patternPath
-	 * @returns {Promise<PatternConfig[]>}
-	 * @access private
-	 * @description Loads and parses the YAML pattern file from disk, validating its structure before returning the pattern list.
-	 * @intent Centralizes pattern loading so the rest of the component can assume valid, well‑formed pattern data.
+	 * @description Loads and parses the YAML pattern file.
 	 */
 	private async loadPatterns(patternPath: string): Promise<PatternConfig[]> {
 		try {
@@ -324,14 +208,7 @@ export class GenerateNames extends BaseComponent {
 	}
 
 	/**
-	 * @name findMatchedPattern
-	 * @method
-	 * @param {ParsedData} job
-	 * @param {PatternConfig[]} patterns
-	 * @returns {PatternConfig | null}
-	 * @access private
-	 * @description Attempts to find a pattern whose triggers match the job’s measurement parameters and sampling sites.
-	 * @intent Implements the rule‑based logic that determines which naming pattern applies to a given job.
+	 * @description Finds a pattern whose triggers match the job’s parameters and sites.
 	 */
 	private findMatchedPattern(
 		job: ParsedData,
@@ -358,15 +235,7 @@ export class GenerateNames extends BaseComponent {
 	}
 
 	/**
-	 * @name generateNames
-	 * @method
-	 * @param {ParsedData} job
-	 * @param {PatternConfig} pattern
-	 * @param {FilePair} filePair
-	 * @returns {NamedFile[]}
-	 * @access private
-	 * @description Constructs Excel and PDF filenames for a job based on its metadata, the matched pattern, and the associated file pair.
-	 * @intent Encapsulates the naming rules so that filename generation remains deterministic, consistent, and isolated from the rest of the workflow.
+	 * @description Generates Excel and PDF filenames for a job based on metadata and the matched pattern.
 	 */
 	private generateNames(
 		job: ParsedData,
@@ -377,8 +246,7 @@ export class GenerateNames extends BaseComponent {
 		const results: NamedFile[] = [];
 
 		const dateObj = new Date(job.sample_date);
-		const dateStr = dateObj.toISOString().split("T")[0]; //job.sample_date.split(" ")[0];
-
+		const dateStr = dateObj.toISOString().split("T")[0];
 		const dayOfWeek = dateObj.toLocaleDateString("en-US", {
 			weekday: "short",
 		});

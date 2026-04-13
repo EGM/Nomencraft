@@ -1,13 +1,9 @@
-// src/utils/configDir.ts
 import { dir } from "@cross/dir";
 import { ensureDir } from "@std/fs/ensure-dir";
 import { join } from "@std/path";
 
 /**
- * TODO: Describe the ensure function.
- * @param value - {T}
- * @param msg - {string}
- * @returns T
+ * @description Ensures a value is not null or undefined, throwing with the given message otherwise.
  */
 function ensure<T>(value: T | null | undefined, msg: string): T {
 	if (value == null) throw new Error(msg);
@@ -15,10 +11,18 @@ function ensure<T>(value: T | null | undefined, msg: string): T {
 }
 
 /**
- * TODO: Describe the ConfigDir class.
+ * @description Manages the application's configuration and pattern directories.
+ * @intent Provides a centralized, OS-safe location for storing configuration and pattern files.
+ * @see {@link createConfigDir}
+ * @example
+ * await configDir.init();
+ * console.log(configDir.config);
  */
 class ConfigDir {
+	/** Absolute path to the config directory after initialization. */
 	private _configDir: string | null = null;
+
+	/** Absolute path to the patterns directory after initialization. */
 	private _patternDir: string | null = null;
 
 	get config(): string {
@@ -27,6 +31,7 @@ class ConfigDir {
 			"Config directory is not set. You must run `await configDir.init()`",
 		);
 	}
+
 	get patterns(): string {
 		return ensure(
 			this._patternDir,
@@ -35,10 +40,10 @@ class ConfigDir {
 	}
 
 	/**
-	 * TODO: Describe the init method.
+	 * @description Initializes the config and pattern directories, creating them if necessary.
 	 */
 	async init(): Promise<void> {
-		const home = await dir("config"); // Returns OS-safe config base, e.g. ~/.config
+		const home = await dir("config");
 		this._configDir = join(home, "batch-rename");
 		this._patternDir = join(this._configDir, "patterns");
 
@@ -50,10 +55,8 @@ class ConfigDir {
 // The real singleton used by the CLI
 export const configDir = new ConfigDir();
 
-// A factory for tests (or advanced users)
 /**
- * TODO: Describe the createConfigDir function.
- * @returns ConfigDir
+ * @description Creates a new isolated ConfigDir instance, primarily for testing.
  */
 export function createConfigDir(): ConfigDir {
 	return new ConfigDir();

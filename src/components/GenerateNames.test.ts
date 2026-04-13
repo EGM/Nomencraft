@@ -1,4 +1,3 @@
-// src/components/GenerateNames.test.ts
 import { assert, assertEquals } from "@std/assert";
 import { GenerateNames } from "./GenerateNames.ts";
 import { NamedFile, ParsedData } from "../core/types.ts";
@@ -6,11 +5,7 @@ import { NamedFile, ParsedData } from "../core/types.ts";
 // --- Helpers -------------------------------------------------------------
 
 /**
- * @name makeFilePair
- * @function
- * @returns {{ jobId: string; excelPath: string; pdfPath: string; }[]}
- * @access public
- * @description Creates a mock file pair for testing purposes.
+ * @description Creates a mock file pair for testing.
  */
 function makeFilePair() {
 	return [{
@@ -21,12 +16,7 @@ function makeFilePair() {
 }
 
 /**
- * @name makeParsedData
- * @function
- * @param {Partial<ParsedData>} overrides
- * @returns {{ job_id: string; sample_date: string; type_code?: string; samples: { site: string; id: string; date: string; sampledBy: string; measurements: { parameter: string; unit: string; value: string; site: string; labId: string; }[]; }[]; }[]}
- * @access public
- * @description Creates a mock parsed data object for testing purposes. Allows overriding specific fields to test different scenarios.
+ * @description Creates mock ParsedData for testing, allowing field overrides.
  */
 function makeParsedData(overrides: Partial<ParsedData> = {}) {
 	return [{
@@ -67,9 +57,9 @@ const mockPatterns = [
 ];
 
 // Monkey‑patch loadPatterns
-// @ts-ignore – we know this is a test and we want to override the method
+// @ts-ignore – intentional override for testing
 GenerateNames.prototype.loadPatterns = async function () {
-	await Promise.resolve(); // simulate async delay
+	await Promise.resolve();
 	return mockPatterns;
 };
 
@@ -101,7 +91,6 @@ Deno.test("GenerateNames: fails when patternPath is missing", async () => {
 	const result = await component.process(input);
 
 	assert(!result.success);
-
 	assert(result.error.includes("Missing or invalid 'patternPath'"));
 });
 
@@ -131,7 +120,7 @@ Deno.test("GenerateNames: falls back to Unknown when no pattern matches", async 
 	const component = new GenerateNames();
 
 	// Override mock to return no matching triggers
-	// @ts-ignore – we know this is a test and we want to override the method
+	// @ts-ignore – intentional override for testing
 	GenerateNames.prototype.loadPatterns = async function () {
 		await Promise.resolve();
 		return [

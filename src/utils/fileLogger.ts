@@ -1,10 +1,8 @@
-// src/utils/fileLogger.ts
 import * as path from "@std/path";
 import { ensureDirSync, existsSync } from "@std/fs";
 
 /**
- * Resolve a versioned log filename based on the user's input.
- * Implements the increment-last-version scheme.
+ * @description Resolves a versioned log filename using an incrementing scheme.
  */
 function resolveLogFilename(logFilename: string): string {
 	const { dir, name, ext } = path.parse(logFilename);
@@ -59,9 +57,8 @@ function resolveLogFilename(logFilename: string): string {
 }
 
 /**
- * Creates a file logger that writes messages to a versioned log file.
- * @param logFilename - The user-provided filename or path.
- * @returns A function that logs messages to the resolved file.
+ * @description Creates a logger that writes messages to a versioned log file.
+ * @see resolveLogFilename
  */
 export function fileLogger(logFilename: string) {
 	const resolved = resolveLogFilename(logFilename);
@@ -71,7 +68,8 @@ export function fileLogger(logFilename: string) {
 	};
 }
 
-/** Type for the file logger factory @see fileLogger */
+/** @description Type alias for the file logger factory. */
 type FileLogger = typeof fileLogger;
-/** Type for the file logger function  @see fileLogger */
+
+/** @description Type alias for the logger function returned by fileLogger. */
 export type FileWriter = ReturnType<FileLogger>;

@@ -1,5 +1,6 @@
-// src/utils/compare.ts
-/** Simple utility to check if two objects have the same keys and values */
+/**
+ * @description Performs a shallow equality check between two objects.
+ */
 export function shallowEqual(
 	a: Record<string, unknown>,
 	b: Record<string, unknown>,

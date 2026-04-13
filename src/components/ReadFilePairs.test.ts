@@ -7,14 +7,12 @@ import { FilePair } from "../core/types.ts";
 Deno.test("ReadFilePairs: pairs Excel and PDF files", async () => {
 	const temp = Deno.makeTempDirSync({ prefix: "BRF_", suffix: "_tests" });
 
-	// Create mock files
 	const excel1 = path.join(temp, "123-4567-8_FLPivot.xlsx");
 	const excel2 = path.join(temp, "555-9999-1_FLPivot.xlsx");
 
 	const pdf1 = path.join(temp, "J4567-8 UDS Level 2 Report.pdf");
 	const pdf2 = path.join(temp, "J9999-1 UDS Level 2 Report.pdf");
 
-	// Write empty files
 	for (const f of [excel1, excel2, pdf1, pdf2]) {
 		Deno.writeTextFileSync(f, "");
 	}
@@ -30,7 +28,6 @@ Deno.test("ReadFilePairs: pairs Excel and PDF files", async () => {
 	assert(Array.isArray(pairs));
 	assertEquals(pairs.length, 2);
 
-	// Validate job IDs and matching
 	const jobIds = pairs.map((p: FilePair) => p.jobId).sort();
 	assertEquals(jobIds, ["123-4567-8", "555-9999-1"]);
 });
@@ -56,14 +53,11 @@ Deno.test("ReadFilePairs: missing PDF produces undefined pdfPath", async () => {
 
 Deno.test("ReadFilePairs: fails when dirPath missing", async () => {
 	const component = new ReadFilePairs();
-	const input = new Map<string, unknown>(); // no dirPath
+	const input = new Map<string, unknown>();
 
 	const result = await component.process(input);
 
-	// Component should not succeed
 	assert(!result.success);
-
-	// Error message should clearly mention dirPath
 	assert(result.error.includes("dirPath"));
 });
 
@@ -73,7 +67,6 @@ Deno.test("ReadFilePairs: fails when directory does not exist", async () => {
 
 	const result = await component.process(input);
 
-	// Component should not succeed
 	assert(!result.success);
 	assert(result.error.includes("Directory not found"));
 });

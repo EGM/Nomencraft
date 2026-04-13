@@ -7,31 +7,25 @@ import { ParsedData } from "../core/types.ts";
 
 // --- Mocks -------------------------------------------------------------
 
-// Mock Deno.readFile to avoid filesystem access
 // @ts-ignore - override global Deno for testing
 Deno.readFile = async (_path: string) => {
-	await Promise.resolve(); // simulate async delay
-	return new Uint8Array([1, 2, 3, 4]); //as unknown as Uint8Array;
+	await Promise.resolve();
+	return new Uint8Array([1, 2, 3, 4]);
 };
 
-// Mock importSheet from @psych/sheet
 const mockImportSheet = async <T>(
 	_buf: ArrayBuffer,
 	_type: string,
 ): Promise<T[]> => {
-	await Promise.resolve(); // simulate async delay
+	await Promise.resolve();
 	return __MOCK_ROWS__ as T[];
 };
 __setImportSheetMock(mockImportSheet);
+
 // --- Helpers -------------------------------------------------------------
+
 /**
- * @name normalizeSheet
- * @function
- * @param {Record<string, unknown>[]} raw
- * @returns {Record<string, unknown>[]}
- * @access public
- * @description Normalizes raw worksheet rows by converting Excel-style placeholder keys (`__EMPTY`, `__EMPTY_n`) into sequential column letters (`A`, `B`, `C`, …).
- * @intent Provides a consistent, human-readable column structure so tests can operate on predictable keys instead of Excel’s sparse placeholder fields.
+ * @description Normalizes placeholder Excel keys into sequential column letters.
  */
 function normalizeSheet(
 	raw: Record<string, unknown>[],
@@ -44,7 +38,7 @@ function normalizeSheet(
 				normalized["A"] = value;
 			} else if (key.startsWith("__EMPTY_")) {
 				const index = Number(key.replace("__EMPTY_", ""));
-				normalized[String.fromCharCode(65 + index)] = value; // 65 = 'A'
+				normalized[String.fromCharCode(65 + index)] = value;
 			} else {
 				normalized[key] = value;
 			}
@@ -55,20 +49,7 @@ function normalizeSheet(
 }
 
 /**
- * @name makeRows
- * @function
- * @param {{
- *   samples?: number;
- *   parameters?: {
- *     name: string;
- *     unit: string;
- *     values: string[]
- *   }[];
- * }}
- * @returns {Record<string, unknown>[]}
- * @access public
- * @description Generates a synthetic worksheet structure containing sample IDs, sampling metadata, parameter definitions, and a terminating notes row.
- * @intent Creates flexible, parameterized mock sheet data for testing different parsing scenarios in ParseExcelFiles, including varying sample counts and measurement sets.
+ * @description Generates synthetic worksheet rows for testing various parsing scenarios.
  */
 function makeRows({
 	samples = 2,
@@ -79,21 +60,18 @@ function makeRows({
 }) {
 	const rows: Record<string, unknown>[] = [];
 
-	// Sample ID row
 	const sampleIdRow: Record<string, unknown> = { "__EMPTY": "Sample ID" };
 	for (let i = 0; i < samples; i++) {
 		sampleIdRow[`__EMPTY_${i + 2}`] = `SITE-${i + 1}`;
 	}
 	rows.push(sampleIdRow);
 
-	// Sampled By
 	const sampledByRow: Record<string, unknown> = { "__EMPTY": "Sampled By" };
 	for (let i = 0; i < samples; i++) {
 		sampledByRow[`__EMPTY_${i + 2}`] = `Tech ${i + 1}`;
 	}
 	rows.push(sampledByRow);
 
-	// Sample Collection Date
 	const dateRow: Record<string, unknown> = {
 		"__EMPTY": "Sample Collection Date",
 	};
@@ -102,7 +80,6 @@ function makeRows({
 	}
 	rows.push(dateRow);
 
-	// Laboratory Order Number
 	const jobRow: Record<string, unknown> = {
 		"__EMPTY": "Laboratory Order Number",
 	};
@@ -111,13 +88,11 @@ function makeRows({
 	}
 	rows.push(jobRow);
 
-	// Parameter header
 	rows.push({
 		"__EMPTY": "Parameter",
 		"__EMPTY_1": "Reporting Units",
 	});
 
-	// Parameter rows
 	for (const param of parameters) {
 		const row: Record<string, unknown> = {
 			"__EMPTY": param.name,
@@ -129,10 +104,8 @@ function makeRows({
 		rows.push(row);
 	}
 
-	// Add Notes row to stop parameter parsing
 	rows.push({ "__EMPTY": "Notes:" });
 
-	//console.log("Mock rows created:", rows);
 	return rows;
 }
 
@@ -141,7 +114,6 @@ function makeRows({
 Deno.test("ParseExcelFiles: succeeds with valid sheet", async () => {
 	__MOCK_ROWS__ = makeRows({});
 
-	// 🔍 Add this line right here
 	console.log("MOCK ROWS:", __MOCK_ROWS__);
 
 	const component = new ParseExcelFiles();
@@ -150,15 +122,7 @@ Deno.test("ParseExcelFiles: succeeds with valid sheet", async () => {
 	]);
 
 	const result = await component.process(input);
-	/*
-	console.log(
-		`Result is '${
-			result.success
-				? `success', with value -> ${result.value}`
-				: `failure', with error -> ${result.error}`
-		}`,
-	);
-  */
+
 	assert(result.success);
 	const parsed = result.value.get("parsedData") as ParsedData[];
 
@@ -209,7 +173,7 @@ Deno.test("ParseExcelFiles: fails when missing Sample ID row", async () => {
 
 Deno.test("ParseExcelFiles: fails validation when sample has no measurements", async () => {
 	__MOCK_ROWS__ = makeRows({
-		parameters: [], // no parameters → no measurements
+		parameters: [],
 	});
 
 	const component = new ParseExcelFiles();

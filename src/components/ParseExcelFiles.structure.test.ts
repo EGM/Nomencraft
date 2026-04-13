@@ -26,12 +26,7 @@ __setImportSheetMock(mockImportSheet);
 // --- Helper to build a realistic sheet ----------------------------------
 
 /**
- * @name buildSheet
- * @function
- * @returns {({ __EMPTY: string; __EMPTY_2: string; __EMPTY_3: string; __EMPTY_1?: undefined; } | { __EMPTY: string; __EMPTY_1: string; __EMPTY_2?: undefined; __EMPTY_3?: undefined; } | { __EMPTY: string; __EMPTY_1: string; __EMPTY_2: string; __EMPTY_3: string; } | { __EMPTY: string; __EMPTY_2?: undefined; __EMPTY_3?: undefined; __EMPTY_1?: undefined; })[]}
- * @access public
- * @description Constructs a mock worksheet structure that simulates the layout of a real Excel import, including header rows, parameter rows, and a terminating notes row.
- * @intent Provides a predictable, realistic dataset for testing the ParseExcelFiles component’s ability to extract job metadata, sample information, and measurement rows.
+ * @description Builds a mock worksheet structure simulating a real Excel import.
  */
 function buildSheet() {
 	return [
