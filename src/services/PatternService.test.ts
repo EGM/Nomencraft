@@ -7,7 +7,9 @@ import { join } from "@std/path";
 import { writeFileSync } from "node:fs";
 import { PatternServiceOptions } from "./PatternService.ts";
 
-// Helper to write files easily
+/**
+ * @description Writes a file synchronously for test setup.
+ */
 function write(file: string, content: string) {
 	writeFileSync(file, content);
 }
@@ -59,7 +61,7 @@ Deno.test("PatternService: list, info, validate, add", async (t) => {
 	// 5. list()
 	// ------------------------------------------------------------
 	await t.step("list() returns deduplicated pattern names", async () => {
-		const svc = makeService({ action: "list" });
+		const svc = makeService({ action: "list", force: false });
 		const result = await svc.run();
 
 		assert(result.success);
@@ -70,7 +72,11 @@ Deno.test("PatternService: list, info, validate, add", async (t) => {
 	// 6. info() fails when duplicates exist
 	// ------------------------------------------------------------
 	await t.step("info() fails when multiple pattern files exist", async () => {
-		const svc = makeService({ action: "info", name: "invoice" });
+		const svc = makeService({
+			action: "info",
+			name: "invoice",
+			force: false,
+		});
 		const result = await svc.run();
 
 		assert(!result.success);
@@ -86,7 +92,11 @@ Deno.test("PatternService: list, info, validate, add", async (t) => {
 	await t.step(
 		"validate() fails when multiple pattern files exist",
 		async () => {
-			const svc = makeService({ action: "validate", name: "invoice" });
+			const svc = makeService({
+				action: "validate",
+				name: "invoice",
+				force: false,
+			});
 			const result = await svc.run();
 
 			assert(!result.success);
@@ -104,7 +114,11 @@ Deno.test("PatternService: list, info, validate, add", async (t) => {
 			const tempFile = join(tempRoot, "newPattern.yaml");
 			write(tempFile, `name: newPattern\nversion: 1`);
 
-			const svc = makeService({ action: "add", file: tempFile });
+			const svc = makeService({
+				action: "add",
+				file: tempFile,
+				force: false,
+			});
 			const result = await svc.run();
 
 			assert(result.success);

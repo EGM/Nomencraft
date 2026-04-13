@@ -1,4 +1,3 @@
-// src/services/PatternService.ts
 import { basename, join } from "@std/path";
 import { BaseService } from "../core/BaseService.ts";
 import type { Result } from "../core/types.ts";
@@ -6,23 +5,43 @@ import { configDir } from "../utils/configDir.ts";
 import * as YAML from "@std/yaml";
 import { exists } from "@std/fs";
 
+/**
+ * Options for configuring PatternService actions.
+ */
 export interface PatternServiceOptions {
+	/** The action to perform on patterns. */
 	action: "list" | "info" | "validate" | "add" | null;
-	name?: string; // pattern name (no extension)
-	file?: string; // source file for add()
-	force: boolean; // for add(): overwrite existing pattern if true
+
+	/** The logical pattern name (without extension). */
+	name?: string;
+
+	/** Source file path when adding a new pattern. */
+	file?: string;
+
+	/** Whether to overwrite an existing pattern when adding. */
+	force: boolean;
 }
 
 /**
- * TODO: Describe the PatternService class.
+ * @description Service for listing, inspecting, validating, and adding pattern files.
+ * @intent Provides a service-layer abstraction for pattern operations, keeping file logic out of controllers and components.
+ * @see {@link BaseService}
+ * @example
+ * const svc = new PatternService({ action: "list", force: false });
+ * const result = await svc.run();
+ * if (result.success) console.log(result.value);
  */
 export class PatternService extends BaseService {
+	/** Absolute path to the patterns directory. */
 	private patternsDir!: string;
 
 	constructor(private options: PatternServiceOptions) {
 		super("PatternService");
 	}
 
+	/**
+	 * Executes the selected pattern action.
+	 */
 	protected override async execute(): Promise<Result<void, unknown>> {
 		this.patternsDir = configDir.patterns;
 
@@ -49,14 +68,8 @@ export class PatternService extends BaseService {
 		}
 	}
 
-	// ------------------------------------------------------------
-	// Pattern directory utilities
-	// ------------------------------------------------------------
-
 	/**
-	 * TODO: Describe the fileExists method.
-	 * @param path - {string}
-	 * @returns Promise<boolean>
+	 * Checks whether a file exists at the given path.
 	 */
 	private async fileExists(path: string): Promise<boolean> {
 		try {
@@ -68,8 +81,7 @@ export class PatternService extends BaseService {
 	}
 
 	/**
-	 * Returns ALL matching files for a given pattern name.
-	 * Example: ["invoice.yaml", "invoice.yml", "invoice.json"]
+	 * Finds all pattern files matching the given logical name.
 	 */
 	private async findAllPatternFiles(name: string): Promise<string[]> {
 		const candidates = [
@@ -91,8 +103,7 @@ export class PatternService extends BaseService {
 	}
 
 	/**
-	 * TODO: Describe the listPatterns method.
-	 * @returns Promise<Result<void, string[]>>
+	 * Returns all unique logical pattern names in the patterns directory.
 	 */
 	private async listPatterns(): Promise<Result<void, string[]>> {
 		try {
@@ -129,9 +140,7 @@ export class PatternService extends BaseService {
 	}
 
 	/**
-	 * TODO: Describe the getPatternInfo method.
-	 * @param name - {string}
-	 * @returns Promise<Result<void, unknown>>
+	 * Loads and parses a pattern file, returning its contents.
 	 */
 	private async getPatternInfo(name: string): Promise<Result<void, unknown>> {
 		const matches = await this.findAllPatternFiles(name);
@@ -169,9 +178,7 @@ export class PatternService extends BaseService {
 	}
 
 	/**
-	 * TODO: Describe the validatePattern method.
-	 * @param name - {string}
-	 * @returns Promise<Result<void, string>>
+	 * Validates that a pattern file exists and contains valid YAML or JSON.
 	 */
 	private async validatePattern(name: string): Promise<Result<void, string>> {
 		const matches = await this.findAllPatternFiles(name);
@@ -214,10 +221,7 @@ export class PatternService extends BaseService {
 	}
 
 	/**
-	 * TODO: Describe the addPattern method.
-	 * @param file - {string}
-	 * @param force - {boolean}
-	 * @returns Promise<Result<void, string>>
+	 * Copies a pattern file into the patterns directory, optionally overwriting.
 	 */
 	private async addPattern(
 		file: string,
@@ -227,7 +231,6 @@ export class PatternService extends BaseService {
 			const base = basename(file);
 			const dest = join(this.patternsDir, base);
 
-			// Check if destination exists
 			const isFile = await exists(dest);
 
 			if (!force && isFile) {
@@ -236,10 +239,11 @@ export class PatternService extends BaseService {
 					`Pattern '${base}' already exists. Use --force to overwrite.`,
 				);
 			}
-			// If exists + force, remove it first (clean overwrite)
+
 			if (force && isFile) {
 				await Deno.remove(dest);
 			}
+
 			await Deno.copyFile(file, dest);
 
 			return this.ok(

@@ -1,4 +1,3 @@
-// src/services/ControllerService.ts
 import { join } from "@std/path";
 import { GenerateNames } from "../components/GenerateNames.ts";
 import { GenerateUndoFile } from "../components/GenerateUndoFile.ts";
@@ -7,24 +6,42 @@ import { ReadFilePairs } from "../components/ReadFilePairs.ts";
 import { BaseComponent } from "../core/BaseComponent.ts";
 import { BaseService } from "../core/BaseService.ts";
 import { createPipeline } from "../core/createPipeline.ts";
-import { Result } from "../core/types.ts";
+import { ControllerOptions, Result } from "../core/types.ts";
 import { configDir } from "../utils/configDir.ts";
 
 /**
- * TODO: Describe the ControllerService class.
+ * @name ControllerService
+ * @class
+ * @description Coordinates the full end‑to‑end processing workflow by constructing
+ * the blackboard, assembling the pipeline, wiring component observers, and
+ * executing the pipeline to completion.
+ * @intent Acts as the top‑level orchestration layer for the system, ensuring that
+ * components run in deterministic order, emit structured events, and produce a
+ * unified Result for callers.
+ * @see {@link createPipeline}
+ * @example
+ * ```ts
+ * const svc = new ControllerService(options, "/path/to/dir");
+ * const result = await svc.run();
+ * ```
  */
 export class ControllerService extends BaseService {
-	constructor(private options, private path: string) {
+	constructor(private options: ControllerOptions, private path: string) {
 		super("ControllerService");
 		configDir.init();
-		//console.log("ControllerService initialized with options:", options);
 	}
 
 	/**
-	 * TODO: Describe the observe method.
-	 * @param component - {BaseComponent}
+	 * @name observeComponent
+	 * @method
+	 * @param {BaseComponent} component
+	 * @access public
+	 * @description Subscribes to all lifecycle and diagnostic events emitted by a
+	 * pipeline component and forwards them to the service’s logging system.
+	 * @intent Provides centralized, consistent logging for every component in the
+	 * pipeline, enabling traceability, debugging, and structured diagnostics.
 	 */
-	observe(component: BaseComponent) {
+	observeComponent(component: BaseComponent) {
 		component.addEventListener("debug", (e: Event) => {
 			const detail = (e as CustomEvent).detail;
 			this.log("debug", JSON.stringify(detail));
@@ -55,14 +72,19 @@ export class ControllerService extends BaseService {
 	}
 
 	/**
-	 * TODO: Describe the execute method.
-	 * @returns Promise<Result<void>>
+	 * @name execute
+	 * @method
+	 * @returns {Promise<Result<void>>}
+	 * @access protected
+	 * @description Builds the blackboard, constructs the pipeline, attaches
+	 * observers, executes the pipeline, and interprets the final Result.
+	 * @intent Serves as the service’s main execution entry point, ensuring that
+	 * pipeline results are normalized into the standard Result type and that
+	 * failures propagate cleanly to callers.
 	 */
-	protected async execute(): Promise<Result<void>> {
-		// 1. Build blackboard
+	protected async execute(): Promise<Result<void, void>> {
 		const board = new Map<string, unknown>();
 		board.set("dirPath", this.path);
-		//board.set("patternPath", this.options.pattern);
 		board.set("mode", this.options.mode);
 		board.set("outputDir", this.options.outputDir);
 		board.set(
@@ -70,7 +92,6 @@ export class ControllerService extends BaseService {
 			join(configDir.config, "patterns", `${this.options.pattern}.yaml`),
 		);
 
-		// 2. Build pipeline
 		const pipeline = createPipeline(
 			new ReadFilePairs(),
 			new ParseExcelFiles(),
@@ -78,22 +99,15 @@ export class ControllerService extends BaseService {
 			new GenerateUndoFile(),
 		);
 
-		// 3. Observe components
 		pipeline.observeWith(this);
 
-		// 4. Run pipeline
 		const result = await pipeline.run(board);
-		const obj = Object.fromEntries(result.value.entries());
-		console.log(
-			//obj.parsedData[0],
-			obj.namedFiles[0],
-			obj.filePairs[0],
-		);
 
-		// 5. Interpret result
 		if (!result.success) {
 			return this.fail(undefined, result.error);
 		}
+
+		const obj = Object.fromEntries(result.value.entries());
 
 		return this.ok(undefined, undefined);
 	}
