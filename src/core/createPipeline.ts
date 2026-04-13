@@ -10,7 +10,6 @@ import { runPipeline } from "./runPipeline.ts";
  * @name createPipeline
  * @function
  * @param {Array<PipelineComponent<I, I> & BaseComponent>} components
- * @returns {{ components: (import("c:/Users/John/source/repos/Nomencraft/src/core/PipelineComponent").PipelineComponent<I, I> & import("c:/Users/John/source/repos/Nomencraft/src/core/BaseComponent").BaseComponent)[]; observeWith(service: { observe: (c: import("c:/Users/John/source/repos/Nomencraft/src/core/BaseComponent").BaseComponent) => void; }): void; run(input: I): Promise<import("c:/Users/John/source/repos/Nomencraft/src/core/types").Result<I, I>>; }}
  * @access public
  * @template I
  * @description Constructs a deterministic pipeline composed of ordered components, returning an object that can observe component events and execute the pipeline with a single run() call.
@@ -41,11 +40,11 @@ export function createPipeline<I>(
 		 * @name observeWith
 		 * @method
 		 * @param service
-		 * @description Registers each component with an external service that exposes an observe() method.
+		 * @description Registers each component with an external service that exposes an observeComponent() method.
 		 * @intent Allows services (e.g., loggers, monitors) to subscribe to component lifecycle events without modifying the pipeline itself.
 		 */
-		observeWith(service: { observe: (c: BaseComponent) => void }) {
-			for (const c of components) service.observe(c);
+		observeWith(service: { observeComponent: (c: BaseComponent) => void }) {
+			for (const c of components) service.observeComponent(c);
 		},
 
 		/**
