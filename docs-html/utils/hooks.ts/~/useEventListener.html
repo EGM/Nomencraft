@@ -166,7 +166,8 @@
 </svg>
 </a>
 <span class="font-bold">useEventListener</span><span class="font-medium"><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span><a href="https://deno.land/api@v2.7.11?s=EventTarget" class="link td-ref">EventTarget</a></span></span><span>, </span><span><span class="td-tp">K</span><span><span class="td-kw"> extends </span><span class="td-kw">string</span></span></span>&gt;</span>(<div class="ml-4"><div><span>target<span>: <span class="td-ref">T</span></span></span>,</div><div><span>type<span>: <span class="td-ref">K</span></span></span>,</div><div><span>handler<span>: (<span><span>event<span>: <a href="https://deno.land/api@v2.7.11?s=Event" class="link td-ref">Event</a></span></span></span>) =&gt; <span class="td-kw">void</span></span></span>,</div><div><span>options<span class="td-op">?</span><span>: <span><span class="td-kw">boolean</span><span class="td-op"> | </span><a href="https://deno.land/api@v2.7.11?s=AddEventListenerOptions" class="link td-ref">AddEventListenerOptions</a></span></span></span></div></div>) </span>
-      </code><div class="space-y-7" id=""><section class="section"  id="examples"><div>
+      </code><div class="space-y-7" id=""><div class="markdown"><p>Attaches an event listener and returns a function to remove it.</p>
+</div><section class="section"  id="examples"><div>
       <h2 class="anchorable mb-1"><a href="#examples" class="anchor" aria-label="Anchor" tabIndex="-1"><svg
   width="16"
   height="16"
@@ -211,23 +212,10 @@ Examples</h2></div><div class="space-y-8"><div class="anchorable"><a href="#exam
   </defs>
 </svg>
 </a>
-<h3 class="example-header"><div class="markdown"><p>const stop = useEventListener(globalThis, &quot;unload&quot;, () =&gt; console.log(&quot;Exiting...&quot;));
-// Later: stop();</p>
+<h3 class="example-header"><div class="markdown"><p>Example 1</p>
 </div></h3>
-  <div><div class="markdown"><p>// Listen for process unload (works on all OSes)
-const stopUnload = useEventListener(globalThis, &quot;unload&quot;, () =&gt; {
-console.log(&quot;Cleaning up before exit...&quot;);
-});</p>
-<p>// Listen for unhandled promise rejections
-const stopRejection = useEventListener(globalThis, &quot;unhandledrejection&quot;, (event) =&gt; {
-console.error(&quot;Unhandled rejection:&quot;, event.reason);
-});</p>
-<p>// Stop listening after 5 seconds
-setTimeout(() =&gt; {
-stopUnload();
-stopRejection();
-console.log(&quot;Stopped listeners&quot;);
-}, 5000);</p>
+  <div><div class="markdown"><p>const stop = useEventListener(globalThis, &quot;unload&quot;, () =&gt; console.log(&quot;Exiting...&quot;));
+stop();</p>
 </div></div>
 </div>
 </div></section>
@@ -436,8 +424,7 @@ Parameters</h2></div><div class="space-y-8"><div class="anchorable docEntry" id=
   />
 </svg>
 </a>
-</div><div class="max-w-[75ch]"><div class="markdown"><p>The object to listen on.</p>
-</div></div></div>
+</div></div>
 <div class="anchorable docEntry" id="function_useeventlistener_0_parameter_type">
 
   <div class="docEntryHeader">
@@ -490,8 +477,7 @@ Parameters</h2></div><div class="space-y-8"><div class="anchorable docEntry" id=
   />
 </svg>
 </a>
-</div><div class="max-w-[75ch]"><div class="markdown"><p>The event type to listen for.</p>
-</div></div></div>
+</div></div>
 <div class="anchorable docEntry" id="function_useeventlistener_0_parameter_handler">
 
   <div class="docEntryHeader">
@@ -544,8 +530,7 @@ Parameters</h2></div><div class="space-y-8"><div class="anchorable docEntry" id=
   />
 </svg>
 </a>
-</div><div class="max-w-[75ch]"><div class="markdown"><p>The callback to run when the event fires.</p>
-</div></div></div>
+</div></div>
 <div class="anchorable docEntry" id="function_useeventlistener_0_parameter_options">
 
   <div class="docEntryHeader">
@@ -599,8 +584,7 @@ Parameters</h2></div><div class="space-y-8"><div class="anchorable docEntry" id=
   />
 </svg>
 </a>
-</div><div class="max-w-[75ch]"><div class="markdown"><p>Optional listener options.</p>
-</div></div></div>
+</div></div>
 </div></section>
 <section class="section"  id="return-type"><div>
       <h2 class="anchorable mb-1"><a href="#return-type" class="anchor" aria-label="Anchor" tabIndex="-1"><svg
@@ -666,7 +650,7 @@ Return Type</h2></div><div class="space-y-8"></div></section>
 </svg>
 </button><code></code></pre>
 </div></div><nav class="documentNavigation">
-          <h3>Document Navigation</h3><ul><li><a href="#examples" title="Examples">Examples</a></li><li><ul><li><a href="#example_0" title="const stop = useEventListener(globalThis, &quot;unload&quot;, () =&gt; console.log(&quot;Exiting...&quot;)); // Later: stop();">const stop = useEventListener(globalThis, "unload", () => console.log("Exiting...")); // Later: stop();</a></li></ul></li><li><a href="#type-parameters" title="Type Parameters">Type Parameters</a></li><li><ul><li><a href="#type_param_t" title="T">T</a></li><li><a href="#type_param_k" title="K">K</a></li></ul></li><li><a href="#parameters" title="Parameters">Parameters</a></li><li><ul><li><a href="#function_useeventlistener_0_parameter_target" title="target">target</a></li><li><a href="#function_useeventlistener_0_parameter_type" title="type">type</a></li><li><a href="#function_useeventlistener_0_parameter_handler" title="handler">handler</a></li><li><a href="#function_useeventlistener_0_parameter_options" title="options">options</a></li></ul></li><li><a href="#return-type" title="Return Type">Return Type</a></li></ul></nav></div>
+          <h3>Document Navigation</h3><ul><li><a href="#examples" title="Examples">Examples</a></li><li><ul><li><a href="#example_0" title="Example 1">Example 1</a></li></ul></li><li><a href="#type-parameters" title="Type Parameters">Type Parameters</a></li><li><ul><li><a href="#type_param_t" title="T">T</a></li><li><a href="#type_param_k" title="K">K</a></li></ul></li><li><a href="#parameters" title="Parameters">Parameters</a></li><li><ul><li><a href="#function_useeventlistener_0_parameter_target" title="target">target</a></li><li><a href="#function_useeventlistener_0_parameter_type" title="type">type</a></li><li><a href="#function_useeventlistener_0_parameter_handler" title="handler">handler</a></li><li><a href="#function_useeventlistener_0_parameter_options" title="options">options</a></li></ul></li><li><a href="#return-type" title="Return Type">Return Type</a></li></ul></nav></div>
   </div></div>
 </div>
 </div>

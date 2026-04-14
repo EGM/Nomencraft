@@ -98,8 +98,7 @@
 </nav>
 <div id="searchResults"></div><div id="content">
     <main><section>
-  <div class="space-y-2 flex-1"><div class="space-y-7" id="module_doc"><div class="markdown"><p>Deno + TypeScript Hooks &amp; Listeners</p>
-<p>Framework-agnostic, reusable utilities</p>
+  <div class="space-y-2 flex-1"><div class="space-y-7" id="module_doc"><div class="markdown"><p>Framework‑agnostic hooks for state, intervals, file watching, events, and timing utilities.</p>
 </div><section class="section"  id="utils\hooks_ts_functions"><div>
       <h2 class="anchorable mb-1"><a href="#utils\hooks_ts_functions" class="anchor" aria-label="Anchor" tabIndex="-1"><svg
   width="16"
@@ -126,27 +125,33 @@
 Functions</h2></div><div class="namespaceSection"><div id="namespace_usedebounce" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href="..&#x2F;.&#x2F;utils\hooks.ts&#x2F;~&#x2F;useDebounce.html" title="useDebounce">
-			    <span>useDebounce</span><span><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span>(<span><span><span>...args</span><span>: <span class="td-kw">unknown</span>[]</span></span></span>) =&gt; <span class="td-kw">void</span></span></span>&gt;</span>(<div class="ml-4"><div><span>callback<span>: <span class="td-ref">T</span></span></span>,</div><div><span>delay<span>: <span class="td-kw">number</span></span></span></div></div>)</span></a></div>
+			    <span>useDebounce</span><span><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span>(<span><span><span>...args</span><span>: <span class="td-kw">unknown</span>[]</span></span></span>) =&gt; <span class="td-kw">void</span></span></span>&gt;</span>(<div class="ml-4"><div><span>callback<span>: <span class="td-ref">T</span></span></span>,</div><div><span>delay<span>: <span class="td-kw">number</span></span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Creates a debounced function that delays execution until calls stop.</p>
+</div></div></div>
     </div><div id="namespace_useeventlistener" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href="..&#x2F;.&#x2F;utils\hooks.ts&#x2F;~&#x2F;useEventListener.html" title="useEventListener">
-			    <span>useEventListener</span><span><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span><span class="td-ref">EventTarget</span></span></span><span>, </span><span><span class="td-tp">K</span><span><span class="td-kw"> extends </span><span class="td-kw">string</span></span></span>&gt;</span>(<div class="ml-4"><div><span>target<span>: <span class="td-ref">T</span></span></span>,</div><div><span>type<span>: <span class="td-ref">K</span></span></span>,</div><div><span>handler<span>: (<span><span>event<span>: <span class="td-ref">Event</span></span></span></span>) =&gt; <span class="td-kw">void</span></span></span>,</div><div><span>options<span class="td-op">?</span><span>: <span><span class="td-kw">boolean</span><span class="td-op"> | </span><span class="td-ref">AddEventListenerOptions</span></span></span></span></div></div>)</span></a></div>
+			    <span>useEventListener</span><span><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span><span class="td-ref">EventTarget</span></span></span><span>, </span><span><span class="td-tp">K</span><span><span class="td-kw"> extends </span><span class="td-kw">string</span></span></span>&gt;</span>(<div class="ml-4"><div><span>target<span>: <span class="td-ref">T</span></span></span>,</div><div><span>type<span>: <span class="td-ref">K</span></span></span>,</div><div><span>handler<span>: (<span><span>event<span>: <span class="td-ref">Event</span></span></span></span>) =&gt; <span class="td-kw">void</span></span></span>,</div><div><span>options<span class="td-op">?</span><span>: <span><span class="td-kw">boolean</span><span class="td-op"> | </span><span class="td-ref">AddEventListenerOptions</span></span></span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Attaches an event listener and returns a function to remove it.</p>
+</div></div></div>
     </div><div id="namespace_usefilewatcher" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href="..&#x2F;.&#x2F;utils\hooks.ts&#x2F;~&#x2F;useFileWatcher.html" title="useFileWatcher">
-			    <span>useFileWatcher</span><span>(<div class="ml-4"><div><span>path<span>: <span class="td-kw">string</span></span></span>,</div><div><span>onChange<span>: (<span><span>event<span>: <span class="td-ref">Deno.FsEvent</span></span></span></span>) =&gt; <span class="td-kw">void</span></span></span></div></div>)</span></a></div>
+			    <span>useFileWatcher</span><span>(<div class="ml-4"><div><span>path<span>: <span class="td-kw">string</span></span></span>,</div><div><span>onChange<span>: (<span><span>event<span>: <span class="td-ref">Deno.FsEvent</span></span></span></span>) =&gt; <span class="td-kw">void</span></span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Watches a file or directory and invokes a callback on changes.</p>
+</div></div></div>
     </div><div id="namespace_useinterval" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href="..&#x2F;.&#x2F;utils\hooks.ts&#x2F;~&#x2F;useInterval.html" title="useInterval">
-			    <span>useInterval</span><span>(<div class="ml-4"><div><span>callback<span>: () =&gt; <span class="td-kw">void</span></span></span>,</div><div><span>delay<span>: <span class="td-kw">number</span></span></span></div></div>)</span></a></div>
+			    <span>useInterval</span><span>(<div class="ml-4"><div><span>callback<span>: () =&gt; <span class="td-kw">void</span></span></span>,</div><div><span>delay<span>: <span class="td-kw">number</span></span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Provides a controllable interval with start and stop methods.</p>
+</div></div></div>
     </div><div id="namespace_usestate" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href="..&#x2F;.&#x2F;utils\hooks.ts&#x2F;~&#x2F;useState.html" title="useState">
-			    <span>useState</span><span><span>&lt;<span><span class="td-tp">T</span></span>&gt;</span>(<span><span>initialValue<span>: <span class="td-ref">T</span></span></span></span>)<span>: <span>[() =&gt; <span class="td-ref">T</span>, (<span><span>newValue<span>: <span class="td-ref">T</span></span></span></span>) =&gt; <span class="td-kw">void</span>]</span></span></span></a></div>
+			    <span>useState</span><span><span>&lt;<span><span class="td-tp">T</span></span>&gt;</span>(<span><span>initialValue<span>: <span class="td-ref">T</span></span></span></span>)<span>: <span>[() =&gt; <span class="td-ref">T</span>, (<span><span>newValue<span>: <span class="td-ref">T</span></span></span></span>) =&gt; <span class="td-kw">void</span>]</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Creates a simple state container with getter and setter functions.</p>
+</div></div></div>
     </div><div id="namespace_usethrottle" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href="..&#x2F;.&#x2F;utils\hooks.ts&#x2F;~&#x2F;useThrottle.html" title="useThrottle">
-			    <span>useThrottle</span><span><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span>(<span><span><span>...args</span><span>: <span class="td-kw">unknown</span>[]</span></span></span>) =&gt; <span class="td-kw">void</span></span></span>&gt;</span>(<div class="ml-4"><div><span>callback<span>: <span class="td-ref">T</span></span></span>,</div><div><span>delay<span>: <span class="td-kw">number</span></span></span></div></div>)</span></a></div>
+			    <span>useThrottle</span><span><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span>(<span><span><span>...args</span><span>: <span class="td-kw">unknown</span>[]</span></span></span>) =&gt; <span class="td-kw">void</span></span></span>&gt;</span>(<div class="ml-4"><div><span>callback<span>: <span class="td-ref">T</span></span></span>,</div><div><span>delay<span>: <span class="td-kw">number</span></span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Creates a throttled function that runs at most once per delay period.</p>
+</div></div></div>
     </div></div>
 </section>
 </div>
@@ -154,8 +159,8 @@ Functions</h2></div><div class="namespaceSection"><div id="namespace_usedebounce
 </section>
 </main><div class="toc">
     <div><div class="usageContent">
-    <h3>Usage</h3><div class="markdown"><pre class="highlight"><code class="language-typescript">import * as utils_hooks_ from &quot;utils\hooks.ts&quot;;
-</code><button class="copyButton" data-copy="import * as utils_hooks_ from &quot;utils\hooks.ts&quot;;
+    <h3>Usage</h3><div class="markdown"><pre class="highlight"><code class="language-typescript">import * as utils_hooks from &quot;utils\hooks.ts&quot;;
+</code><button class="copyButton" data-copy="import * as utils_hooks from &quot;utils\hooks.ts&quot;;
 "><svg
   class="copy"
   width="15"

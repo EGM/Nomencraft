@@ -166,16 +166,7 @@
 </svg>
 </a>
 <span class="font-bold">findByJobId</span><span class="font-medium">(<div class="ml-4"><div><span>jobId<span>: <span class="td-kw">string</span></span></span>,</div><div><span>items<span>: <span class="td-ref">Array</span>&lt;{ jobId<span>: <span class="td-kw">string</span></span>;  }&gt;</span></span></div></div>)<span>: <span>{ jobId<span>: <span class="td-kw">string</span></span>;  }<span class="td-op"> | </span><span class="td-kw">null</span></span></span> </span>
-      </code><div class="space-y-7" id=""><div class="markdown"><p>findByJobId</p>
-<p>Overloaded helper for retrieving an item by jobId from:</p>
-<ul>
-<li>FilePair[]</li>
-<li>ParsedData[]</li>
-<li>NamedFile[]</li>
-</ul>
-<p>IMPORTANT:
-This is a pure utility. It does NOT assume ordering.
-Use it as a fallback when array index invariants are uncertain.</p>
+      </code><div class="space-y-7" id=""><div class="markdown"><p>Retrieves an item matching the given jobId from arrays with differing identifier shapes.</p>
 </div><section class="section"  id="parameters"><div>
       <h2 class="anchorable mb-1"><a href="#parameters" class="anchor" aria-label="Anchor" tabIndex="-1"><svg
   width="16"

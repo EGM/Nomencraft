@@ -128,13 +128,13 @@
 Classes</h2></div><div class="namespaceSection"><div id="namespace_componenttemplate" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Class bg-Class/15 dark:text-ClassDark dark:bg-ClassDark/15" title="Class">c</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;components\ComponentTemplate.ts&#x2F;~&#x2F;ComponentTemplate.html" title="ComponentTemplate">
-			    <span>ComponentTemplate</span><span>()</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Implements a template component that validates input, performs a unit of work, and writes deterministic results back into the shared blackboard. Serves as a reference implementation for building new components that follow the BaseComponent lifecycle.</p>
+			    <span>ComponentTemplate</span><span>()</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Template component demonstrating the expected lifecycle pattern for new components.</p>
 </div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;components\ComponentTemplate.ts&#x2F;~&#x2F;ComponentTemplate.html#method_dowork_0">
-                  <span>doWork</span><span>(<span><span>example<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">unknown</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Executes the component’s internal operation and throws a controlled failure if the provided value is invalid.</p>
+                  <span>doWork</span><span>(<span><span>example<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">unknown</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Performs the component’s internal operation and throws on invalid input.</p>
 </div></div></li><li>
                 <a href=".&#x2F;.&#x2F;components\ComponentTemplate.ts&#x2F;~&#x2F;ComponentTemplate.html#method_process_0">
-                  <span>process</span><span>(<span><span>input<span>: <span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;<span>, </span><span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Validates required input, performs the component’s core work, updates the blackboard with results, and returns a structured Result indicating success or failure.</p>
+                  <span>process</span><span>(<span><span>input<span>: <span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;<span>, </span><span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Validates input, performs work, mutates the blackboard, and returns a structured Result.</p>
 </div></div></li></ul></div>
     </div></div>
 </section>
@@ -182,19 +182,19 @@ Classes</h2></div><div class="namespaceSection"><div id="namespace_componenttemp
 Classes</h2></div><div class="namespaceSection"><div id="namespace_generatenames" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Class bg-Class/15 dark:text-ClassDark dark:bg-ClassDark/15" title="Class">c</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;components\GenerateNames.ts&#x2F;~&#x2F;GenerateNames.html" title="GenerateNames">
-			    <span>GenerateNames</span><span>()</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Processes parsed job data, applies naming patterns, and generates standardized filenames for Excel and PDF outputs.</p>
+			    <span>GenerateNames</span><span>()</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Applies naming patterns to parsed job data and generates standardized filenames.</p>
 </div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;components\GenerateNames.ts&#x2F;~&#x2F;GenerateNames.html#method_findmatchedpattern_0">
-                  <span>findMatchedPattern</span><span>(<div class="ml-4"><div><span>job<span>: <span class="td-ref">ParsedData</span></span></span>,</div><div><span>patterns<span>: <span class="td-ref">PatternConfig</span>[]</span></span></div></div>)<span>: <span><span class="td-ref">PatternConfig</span><span class="td-op"> | </span><span class="td-kw">null</span></span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Attempts to find a pattern whose triggers match the job’s measurement parameters and sampling sites.</p>
+                  <span>findMatchedPattern</span><span>(<div class="ml-4"><div><span>job<span>: <span class="td-ref">ParsedData</span></span></span>,</div><div><span>patterns<span>: <span class="td-ref">PatternConfig</span>[]</span></span></div></div>)<span>: <span><span class="td-ref">PatternConfig</span><span class="td-op"> | </span><span class="td-kw">null</span></span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Finds a pattern whose triggers match the job’s parameters and sites.</p>
 </div></div></li><li>
                 <a href=".&#x2F;.&#x2F;components\GenerateNames.ts&#x2F;~&#x2F;GenerateNames.html#method_generatenames_0">
-                  <span>generateNames</span><span>(<div class="ml-4"><div><span>job<span>: <span class="td-ref">ParsedData</span></span></span>,</div><div><span>pattern<span>: <span class="td-ref">PatternConfig</span></span></span>,</div><div><span>filePair<span>: <span class="td-ref">FilePair</span></span></span></div></div>)<span>: <span class="td-ref">NamedFile</span>[]</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Constructs Excel and PDF filenames for a job based on its metadata, the matched pattern, and the associated file pair.</p>
+                  <span>generateNames</span><span>(<div class="ml-4"><div><span>job<span>: <span class="td-ref">ParsedData</span></span></span>,</div><div><span>pattern<span>: <span class="td-ref">PatternConfig</span></span></span>,</div><div><span>filePair<span>: <span class="td-ref">FilePair</span></span></span></div></div>)<span>: <span class="td-ref">NamedFile</span>[]</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Generates Excel and PDF filenames for a job based on metadata and the matched pattern.</p>
 </div></div></li><li>
                 <a href=".&#x2F;.&#x2F;components\GenerateNames.ts&#x2F;~&#x2F;GenerateNames.html#method_loadpatterns_0">
-                  <span>loadPatterns</span><span>(<span><span>patternPath<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">PatternConfig</span>[]&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Loads and parses the YAML pattern file from disk, validating its structure before returning the pattern list.</p>
+                  <span>loadPatterns</span><span>(<span><span>patternPath<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">PatternConfig</span>[]&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Loads and parses the YAML pattern file.</p>
 </div></div></li><li>
                 <a href=".&#x2F;.&#x2F;components\GenerateNames.ts&#x2F;~&#x2F;GenerateNames.html#method_process_0">
-                  <span>process</span><span>(<span><span>input<span>: <span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;<span>, </span><span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Validates required inputs, loads naming patterns, processes each job, generates filenames, and writes the results back into the blackboard.</p>
+                  <span>process</span><span>(<span><span>input<span>: <span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;<span>, </span><span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Validates inputs, loads patterns, processes each job, and writes generated filenames to the blackboard.</p>
 </div></div></li></ul></div>
     </div></div>
 </section>
@@ -224,7 +224,7 @@ Classes</h2></div><div class="namespaceSection"><div id="namespace_generatenames
 Functions</h2></div><div class="namespaceSection"><div id="namespace_findbyjobid" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;components\GenerateNames.ts&#x2F;~&#x2F;findByJobId.html" title="findByJobId">
-			    <span>findByJobId</span><span><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span>{ jobId<span>: <span class="td-kw">string</span></span>;  }</span></span>&gt;</span>(<div class="ml-4"><div><span>jobId<span>: <span class="td-kw">string</span></span></span>,</div><div><span>items<span>: <span class="td-ref">T</span>[]</span></span></div></div>)<span>: <span><span class="td-ref">T</span><span class="td-op"> | </span><span class="td-kw">null</span></span></span></span><div class="namespaceItemContentTypeInfo">3 overloads</div></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>findByJobId</p>
+			    <span>findByJobId</span><span><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span>{ jobId<span>: <span class="td-kw">string</span></span>;  }</span></span>&gt;</span>(<div class="ml-4"><div><span>jobId<span>: <span class="td-kw">string</span></span></span>,</div><div><span>items<span>: <span class="td-ref">T</span>[]</span></span></div></div>)<span>: <span><span class="td-ref">T</span><span class="td-op"> | </span><span class="td-kw">null</span></span></span></span><div class="namespaceItemContentTypeInfo">3 overloads</div></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Retrieves an item matching the given jobId from arrays with differing identifier shapes.</p>
 </div></div></div>
     </div></div>
 </section>
@@ -272,13 +272,13 @@ Functions</h2></div><div class="namespaceSection"><div id="namespace_findbyjobid
 Classes</h2></div><div class="namespaceSection"><div id="namespace_generateundofile" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Class bg-Class/15 dark:text-ClassDark dark:bg-ClassDark/15" title="Class">c</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;components\GenerateUndoFile.ts&#x2F;~&#x2F;GenerateUndoFile.html" title="GenerateUndoFile">
-			    <span>GenerateUndoFile</span><span>()</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Generates a CSV file containing the original and new filenames for all renamed files, enabling the rename operation to be undone later.</p>
+			    <span>GenerateUndoFile</span><span>()</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Generates a CSV listing original and new filenames so rename operations can be undone.</p>
 </div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;components\GenerateUndoFile.ts&#x2F;~&#x2F;GenerateUndoFile.html#method_buildundocsv_0">
-                  <span>buildUndoCsv</span><span>(<span><span>namedFiles<span>: <span class="td-ref">NamedFile</span>[]</span></span></span>)<span>: <span class="td-kw">string</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Constructs the CSV content representing original and new filenames, optionally including PDF rename information when present.</p>
+                  <span>buildUndoCsv</span><span>(<span><span>namedFiles<span>: <span class="td-ref">NamedFile</span>[]</span></span></span>)<span>: <span class="td-kw">string</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Builds CSV content for undo operations, including PDF info when present.</p>
 </div></div></li><li>
                 <a href=".&#x2F;.&#x2F;components\GenerateUndoFile.ts&#x2F;~&#x2F;GenerateUndoFile.html#method_process_0">
-                  <span>process</span><span>(<span><span>input<span>: <span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;<span>, </span><span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Validates the presence of generated file metadata, builds the undo CSV content, writes it to the config directory, and stores the resulting file path in the blackboard.</p>
+                  <span>process</span><span>(<span><span>input<span>: <span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;<span>, </span><span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Validates input, builds the undo CSV, writes it to the config directory, and stores the output path.</p>
 </div></div></li></ul></div>
     </div></div>
 </section>
@@ -338,19 +338,19 @@ Classes</h2></div><div class="namespaceSection"><div id="namespace_parseexcelfil
 			    <span>ParseExcelFiles</span><span>()</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Parses all Excel files listed in <code>filePairs</code> and extract structured laboratory sample data (samples, measurements, metadata).</p>
 </div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;components\ParseExcelFiles.ts&#x2F;~&#x2F;ParseExcelFiles.html#method_getval_0">
-                  <span>getVal</span><span>(<div class="ml-4"><div><span>row<span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span>,</div><div><span>colIndex<span>: <span class="td-kw">number</span></span></span></div></div>)<span>: <span class="td-kw">string</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Extracts a cell value from a row using either normalized letter‑based keys or raw <code>__EMPTY_n</code> keys.</p>
+                  <span>getVal</span><span>(<div class="ml-4"><div><span>row<span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span>,</div><div><span>colIndex<span>: <span class="td-kw">number</span></span></span></div></div>)<span>: <span class="td-kw">string</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Extracts a cell value using normalized or raw Excel placeholder keys.</p>
 </div></div></li><li>
                 <a href=".&#x2F;.&#x2F;components\ParseExcelFiles.ts&#x2F;~&#x2F;ParseExcelFiles.html#method_parsefile_0">
-                  <span>parseFile</span><span>(<span><span>filePath<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span><span class="td-ref">ParsedData</span><span class="td-op"> | </span><span class="td-kw">null</span></span>&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Reads an Excel file from disk, imports its sheet data, parses it into structured sample information, validates the result, and returns either a <code>ParsedData</code> object or null.</p>
+                  <span>parseFile</span><span>(<span><span>filePath<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span><span class="td-ref">ParsedData</span><span class="td-op"> | </span><span class="td-kw">null</span></span>&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Reads, imports, parses, and validates a single Excel file.</p>
 </div></div></li><li>
                 <a href=".&#x2F;.&#x2F;components\ParseExcelFiles.ts&#x2F;~&#x2F;ParseExcelFiles.html#method_parsesheet_0">
-                  <span>parseSheet</span><span>(<span><span>rows<span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;[]</span></span></span>)<span>: <span><span class="td-ref">ParsedData</span><span class="td-op"> | </span><span class="td-kw">null</span></span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Parses raw worksheet rows into structured sample metadata and measurement data, including sample IDs, sites, dates, and parameter values.</p>
+                  <span>parseSheet</span><span>(<span><span>rows<span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;[]</span></span></span>)<span>: <span><span class="td-ref">ParsedData</span><span class="td-op"> | </span><span class="td-kw">null</span></span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Parses worksheet rows into structured ParsedData.</p>
 </div></div></li><li>
                 <a href=".&#x2F;.&#x2F;components\ParseExcelFiles.ts&#x2F;~&#x2F;ParseExcelFiles.html#method_process_0">
-                  <span>process</span><span>(<span><span>input<span>: <span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;<span>, </span><span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Validates the <code>filePairs</code> input, parses each Excel file, collects all successfully parsed results, and writes the aggregated <code>parsedData</code> array back into the blackboard.</p>
+                  <span>process</span><span>(<span><span>input<span>: <span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;<span>, </span><span class="td-ref">Map</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Validates filePairs, parses each Excel file, and writes parsedData to the blackboard.</p>
 </div></div></li><li>
                 <a href=".&#x2F;.&#x2F;components\ParseExcelFiles.ts&#x2F;~&#x2F;ParseExcelFiles.html#method_validate_0">
-                  <span>validate</span><span>(<span><span>data<span>: <span class="td-ref">ParsedData</span></span></span></span>)<span>: <span><span class="td-kw">string</span><span class="td-op"> | </span><span class="td-kw">null</span></span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Applies validation rules to a parsed dataset, ensuring each sample has measurements and that no duplicate measurement tuples exist.</p>
+                  <span>validate</span><span>(<span><span>data<span>: <span class="td-ref">ParsedData</span></span></span></span>)<span>: <span><span class="td-kw">string</span><span class="td-op"> | </span><span class="td-kw">null</span></span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Validates parsed data for required measurements and duplicate entries.</p>
 </div></div></li></ul></div>
     </div></div>
 </section>
@@ -449,21 +449,29 @@ Classes</h2></div><div class="namespaceSection"><div id="namespace_readfilepairs
 Classes</h2></div><div class="namespaceSection"><div id="namespace_basecomponent" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Class bg-Class/15 dark:text-ClassDark dark:bg-ClassDark/15" title="Class">c</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html" title="BaseComponent">
-			    <span>BaseComponent</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>BaseComponent</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Abstract lifecycle base class providing standardized event‑driven debugging, warnings, errors, and failure handling for all pipeline components.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html#method_emitdebug_0">
-                  <span>emitDebug</span><span>(<span><span>detail<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a></li><li>
+                  <span>emitDebug</span><span>(<span><span>detail<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Emits a <code>&quot;debug&quot;</code> event with the provided detail payload.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html#method_emiterror_0">
-                  <span>emitError</span><span>(<span><span>detail<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a></li><li>
+                  <span>emitError</span><span>(<span><span>detail<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Emits an <code>&quot;error&quot;</code> event with the provided detail payload.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html#method_emitwarning_0">
-                  <span>emitWarning</span><span>(<span><span>detail<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a></li><li>
+                  <span>emitWarning</span><span>(<span><span>detail<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Emits a <code>&quot;warning&quot;</code> event with the provided detail payload.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html#method_failed_0">
-                  <span>failed</span><span>(<span><span>error<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">never</span></span></span></a></li><li>
+                  <span>failed</span><span>(<span><span>error<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">never</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Emits an error event and throws a new Error constructed from the provided value.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html#method_finished_0">
-                  <span>finished</span><span>()<span>: <span class="td-kw">void</span></span></span></a></li><li>
+                  <span>finished</span><span>()<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Emits a debug event indicating that the component has completed processing.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html#property_name">
-                  <span>name</span><span>: <span class="td-kw">string</span></span></a></li><li>
+                  <span>name</span><span>: <span class="td-kw">string</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>The registered name of the component, used in lifecycle events and error reporting.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html#method_started_0">
-                  <span>started</span><span>()<span>: <span class="td-kw">void</span></span></span></a></li></ul></div>
+                  <span>started</span><span>()<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Emits a debug event indicating that the component has begun processing.</p>
+</div></div></li></ul></div>
     </div></div>
 </section>
 </div>
@@ -501,27 +509,38 @@ Classes</h2></div><div class="namespaceSection"><div id="namespace_basecomponent
 Classes</h2></div><div class="namespaceSection"><div id="namespace_baseservice" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Class bg-Class/15 dark:text-ClassDark dark:bg-ClassDark/15" title="Class">c</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\BaseService.ts&#x2F;~&#x2F;BaseService.html" title="BaseService">
-			    <span>BaseService</span><span>(<span><span>componentName<span>: <span class="td-kw">string</span></span></span></span>)</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>BaseService</span><span>(<span><span>componentName<span>: <span class="td-kw">string</span></span></span></span>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Abstract service base class providing structured logging, lifecycle hooks, and standardized success/failure result helpers for long‑running or multi‑step service operations.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;core\BaseService.ts&#x2F;~&#x2F;BaseService.html#property_componentname">
-                  <span>componentName</span><span>: <span class="td-kw">string</span></span></a></li><li>
+                  <span>componentName</span><span>: <span class="td-kw">string</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>The name of the service, included in all log entries for identification.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;core\BaseService.ts&#x2F;~&#x2F;BaseService.html#method_execute_0">
-                  <span>execute</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;</span></span></a></li><li>
+                  <span>execute</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Abstract method representing the core operation of the service.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;core\BaseService.ts&#x2F;~&#x2F;BaseService.html#method_fail_0">
-                  <span>fail</span><span><span>&lt;<span><span class="td-tp">I</span></span>&gt;</span>(<div class="ml-4"><div><span>input<span>: <span class="td-ref">I</span></span></span>,</div><div><span>error<span>: <span><span class="td-kw">string</span><span class="td-op"> | </span><span class="td-ref">Error</span></span></span></span></div></div>)<span>: <span class="td-ref">Result</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-kw">never</span>&gt;</span></span></a></li><li>
+                  <span>fail</span><span><span>&lt;<span><span class="td-tp">I</span></span>&gt;</span>(<div class="ml-4"><div><span>input<span>: <span class="td-ref">I</span></span></span>,</div><div><span>error<span>: <span><span class="td-kw">string</span><span class="td-op"> | </span><span class="td-ref">Error</span></span></span></span></div></div>)<span>: <span class="td-ref">Result</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-kw">never</span>&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Wraps a failure result in a standardized `Result`` object without throwing.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;core\BaseService.ts&#x2F;~&#x2F;BaseService.html#method_log_0">
-                  <span>log</span><span>(<div class="ml-4"><div><span>level<span>: <span><span class="td-str">"debug"</span><span class="td-op"> | </span><span class="td-str">"info"</span><span class="td-op"> | </span><span class="td-str">"warn"</span><span class="td-op"> | </span><span class="td-str">"error"</span></span></span></span>,</div><div><span>message<span>: <span class="td-kw">string</span></span></span>,</div><div><span>details<span class="td-op">?</span><span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span></div></div>)<span>: <span class="td-kw">void</span></span></span></a></li><li>
+                  <span>log</span><span>(<div class="ml-4"><div><span>level<span>: <span><span class="td-str">"debug"</span><span class="td-op"> | </span><span class="td-str">"info"</span><span class="td-op"> | </span><span class="td-str">"warn"</span><span class="td-op"> | </span><span class="td-str">"error"</span></span></span></span>,</div><div><span>message<span>: <span class="td-kw">string</span></span></span>,</div><div><span>details<span class="td-op">?</span><span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span></div></div>)<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Creates a structured log entry, stores it locally, and forwards it to the global logger.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;core\BaseService.ts&#x2F;~&#x2F;BaseService.html#property_logs">
-                  <span>logs</span><span>: <span class="td-ref">LogEntry</span>[]</span></a></li><li>
+                  <span>logs</span><span>: <span class="td-ref">LogEntry</span>[]</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Local in‑memory buffer of log entries accumulated during the service’s execution.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;core\BaseService.ts&#x2F;~&#x2F;BaseService.html#method_observe_0">
-                  <span>observe</span><span>(<span><span>event<span>: { level<span>: <span><span class="td-str">"debug"</span><span class="td-op"> | </span><span class="td-str">"info"</span><span class="td-op"> | </span><span class="td-str">"warn"</span><span class="td-op"> | </span><span class="td-str">"error"</span></span></span>; message<span>: <span class="td-kw">string</span></span>; details<span class="td-op">?</span><span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span>;  }</span></span></span>)<span>: <span class="td-kw">void</span></span></span></a></li><li>
+                  <span>observe</span><span>(<span><span>event<span>: { level<span>: <span><span class="td-str">"debug"</span><span class="td-op"> | </span><span class="td-str">"info"</span><span class="td-op"> | </span><span class="td-str">"warn"</span><span class="td-op"> | </span><span class="td-str">"error"</span></span></span>; message<span>: <span class="td-kw">string</span></span>; details<span class="td-op">?</span><span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span>;  }</span></span></span>)<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Receives an event object and forwards it to the internal logging system.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;core\BaseService.ts&#x2F;~&#x2F;BaseService.html#method_ok_0">
-                  <span>ok</span><span><span>&lt;<span><span class="td-tp">I</span></span><span>, </span><span><span class="td-tp">O</span></span>&gt;</span>(<div class="ml-4"><div><span>input<span>: <span class="td-ref">I</span></span></span>,</div><div><span>value<span>: <span class="td-ref">O</span></span></span></div></div>)<span>: <span class="td-ref">Result</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-ref">O</span>&gt;</span></span></a></li><li>
+                  <span>ok</span><span><span>&lt;<span><span class="td-tp">I</span></span><span>, </span><span><span class="td-tp">O</span></span>&gt;</span>(<div class="ml-4"><div><span>input<span>: <span class="td-ref">I</span></span></span>,</div><div><span>value<span>: <span class="td-ref">O</span></span></span></div></div>)<span>: <span class="td-ref">Result</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-ref">O</span>&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Wraps a successful operation result in a standardized <code>Result</code> object.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;core\BaseService.ts&#x2F;~&#x2F;BaseService.html#method_oncleanup_0">
-                  <span>onCleanup</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-kw">void</span>&gt;</span></span></a></li><li>
+                  <span>onCleanup</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-kw">void</span>&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Optional lifecycle hook invoked after service execution completes, clearing the local log buffer by default.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;core\BaseService.ts&#x2F;~&#x2F;BaseService.html#method_oninit_0">
-                  <span>onInit</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-kw">void</span>&gt;</span></span></a></li><li>
+                  <span>onInit</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-kw">void</span>&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Optional lifecycle hook invoked before service execution begins.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;core\BaseService.ts&#x2F;~&#x2F;BaseService.html#method_run_0">
-                  <span>run</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;</span></span></a></li></ul></div>
+                  <span>run</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Executes the full service lifecycle: initialization, execution, cleanup, and structured error handling.</p>
+</div></div></li></ul></div>
     </div></div>
 </section>
 </div>
@@ -559,15 +578,19 @@ Classes</h2></div><div class="namespaceSection"><div id="namespace_baseservice" 
 Interfaces</h2></div><div class="namespaceSection"><div id="namespace_pipelinecomponent" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Interface bg-Interface/15 dark:text-InterfaceDark dark:bg-InterfaceDark/15" title="Interface">I</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\PipelineComponent.ts&#x2F;~&#x2F;PipelineComponent.html" title="PipelineComponent">
-			    <span>PipelineComponent</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>PipelineComponent</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Defines the minimal contract for a pipeline component: a single asynchronous <code>process()</code> method that accepts input of type <code>I</code> and returns a standardized <code>Result&lt;I, O&gt;</code>.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;core\PipelineComponent.ts&#x2F;~&#x2F;PipelineComponent.html#method_process_0">
-                  <span>process</span><span>(<span><span>input<span>: <span class="td-ref">I</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-ref">O</span>&gt;&gt;</span></span></a></li></ul></div>
+                  <span>process</span><span>(<span><span>input<span>: <span class="td-ref">I</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-ref">O</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Processes the given input and returns a Result describing either a successful transformation or a failure.</p>
+</div></div></li></ul></div>
     </div><div id="namespace_validatablecomponent" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Interface bg-Interface/15 dark:text-InterfaceDark dark:bg-InterfaceDark/15" title="Interface">I</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\PipelineComponent.ts&#x2F;~&#x2F;ValidatableComponent.html" title="ValidatableComponent">
-			    <span>ValidatableComponent</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>ValidatableComponent</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Extends <code>PipelineComponent</code> by adding a synchronous <code>validate()</code> method for pre‑execution input checks.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;core\PipelineComponent.ts&#x2F;~&#x2F;ValidatableComponent.html#method_validate_0">
-                  <span>validate</span><span>(<span><span>input<span>: <span class="td-ref">I</span></span></span></span>)<span>: <span class="td-kw">boolean</span></span></span></a></li></ul></div>
+                  <span>validate</span><span>(<span><span>input<span>: <span class="td-ref">I</span></span></span></span>)<span>: <span class="td-kw">boolean</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Performs a synchronous validation check on the input and returns <code>true</code> if the component can safely process it.</p>
+</div></div></li></ul></div>
     </div></div>
 </section>
 </div>
@@ -605,7 +628,7 @@ Interfaces</h2></div><div class="namespaceSection"><div id="namespace_pipelineco
 Functions</h2></div><div class="namespaceSection"><div id="namespace_createcomponent" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\createComponent.ts&#x2F;~&#x2F;createComponent.html" title="createComponent">
-			    <span>createComponent</span><span><span>&lt;<span><span class="td-tp">I</span></span><span>, </span><span><span class="td-tp">O</span></span>&gt;</span>(<div class="ml-4"><div><span>name<span>: <span class="td-kw">string</span></span></span>,</div><div><span>fn<span>: (<span><span>input<span>: <span class="td-ref">I</span></span></span></span>) =&gt; <span><span class="td-ref">Promise</span>&lt;<span class="td-ref">O</span>&gt;<span class="td-op"> | </span><span class="td-ref">O</span></span></span></span></div></div>)<span>: <span><span class="td-ref">PipelineComponent</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-ref">O</span>&gt;<span class="td-op"> & </span><span class="td-ref">BaseComponent</span></span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Creates a pipeline component from a pure function.</p>
+			    <span>createComponent</span><span><span>&lt;<span><span class="td-tp">I</span></span><span>, </span><span><span class="td-tp">O</span></span>&gt;</span>(<div class="ml-4"><div><span>name<span>: <span class="td-kw">string</span></span></span>,</div><div><span>fn<span>: (<span><span>input<span>: <span class="td-ref">I</span></span></span></span>) =&gt; <span><span class="td-ref">Promise</span>&lt;<span class="td-ref">O</span>&gt;<span class="td-op"> | </span><span class="td-ref">O</span></span></span></span></div></div>)<span>: <span><span class="td-ref">PipelineComponent</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-ref">O</span>&gt;<span class="td-op"> & </span><span class="td-ref">BaseComponent</span></span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Creates a pipeline‑compatible component from a pure function, wrapping it in a lightweight <code>BaseComponent</code> subclass that provides lifecycle signaling and standardized result handling.</p>
 </div></div></div>
     </div></div>
 </section>
@@ -653,7 +676,8 @@ Functions</h2></div><div class="namespaceSection"><div id="namespace_createcompo
 Functions</h2></div><div class="namespaceSection"><div id="namespace_createpipeline" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\createPipeline.ts&#x2F;~&#x2F;createPipeline.html" title="createPipeline">
-			    <span>createPipeline</span><span><span>&lt;<span><span class="td-tp">I</span></span>&gt;</span>(<span><span><span>...components</span><span>: <span class="td-ref">Array</span>&lt;<span><span class="td-ref">PipelineComponent</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-ref">I</span>&gt;<span class="td-op"> & </span><span class="td-ref">BaseComponent</span></span>&gt;</span></span></span>)</span></a></div>
+			    <span>createPipeline</span><span><span>&lt;<span><span class="td-tp">I</span></span>&gt;</span>(<span><span><span>...components</span><span>: <span class="td-ref">Array</span>&lt;<span><span class="td-ref">PipelineComponent</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-ref">I</span>&gt;<span class="td-op"> & </span><span class="td-ref">BaseComponent</span></span>&gt;</span></span></span>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Constructs a deterministic pipeline composed of ordered components, returning an object that can observe component events and execute the pipeline with a single run() call.</p>
+</div></div></div>
     </div></div>
 </section>
 </div>
@@ -691,7 +715,8 @@ Functions</h2></div><div class="namespaceSection"><div id="namespace_createpipel
 Functions</h2></div><div class="namespaceSection"><div id="namespace_runpipeline" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\runPipeline.ts&#x2F;~&#x2F;runPipeline.html" title="runPipeline">
-			    <span>runPipeline</span><span><span>&lt;<span><span class="td-tp">I</span></span>&gt;</span>(<div class="ml-4"><div><span>initial<span>: <span class="td-ref">I</span></span></span>,</div><div><span>components<span>: <span class="td-ref">Array</span>&lt;<span class="td-ref">PipelineComponent</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-ref">I</span>&gt;&gt;</span></span></div></div>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-ref">I</span>&gt;&gt;</span></span></a></div>
+			    <span>runPipeline</span><span><span>&lt;<span><span class="td-tp">I</span></span>&gt;</span>(<div class="ml-4"><div><span>initial<span>: <span class="td-ref">I</span></span></span>,</div><div><span>components<span>: <span class="td-ref">Array</span>&lt;<span class="td-ref">PipelineComponent</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-ref">I</span>&gt;&gt;</span></span></div></div>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-ref">I</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Executes a sequence of pipeline components in order, passing the evolving state from one component to the next and stopping immediately on the first failure.</p>
+</div></div></div>
     </div></div>
 </section>
 </div>
@@ -729,7 +754,8 @@ Functions</h2></div><div class="namespaceSection"><div id="namespace_runpipeline
 Interfaces</h2></div><div class="namespaceSection"><div id="namespace_filepair" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Interface bg-Interface/15 dark:text-InterfaceDark dark:bg-InterfaceDark/15" title="Interface">I</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;FilePair.html" title="FilePair">
-			    <span>FilePair</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>FilePair</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Represents a matched pair of files belonging to the same job: an Excel file and an optional PDF report.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;FilePair.html#property_excelpath">
                   <span>excelPath</span><span>: <span class="td-kw">string</span></span></a></li><li>
                 <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;FilePair.html#property_jobid">
@@ -739,7 +765,9 @@ Interfaces</h2></div><div class="namespaceSection"><div id="namespace_filepair" 
     </div><div id="namespace_measurement" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Interface bg-Interface/15 dark:text-InterfaceDark dark:bg-InterfaceDark/15" title="Interface">I</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;Measurement.html" title="Measurement">
-			    <span>Measurement</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>Measurement</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Represents a single analytical measurement for a sample, including lab ID, site, parameter name,
+reporting unit, and raw value.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;Measurement.html#property_labid">
                   <span>labId</span><span>: <span class="td-kw">string</span></span></a></li><li>
                 <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;Measurement.html#property_parameter">
@@ -753,7 +781,9 @@ Interfaces</h2></div><div class="namespaceSection"><div id="namespace_filepair" 
     </div><div id="namespace_namedfile" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Interface bg-Interface/15 dark:text-InterfaceDark dark:bg-InterfaceDark/15" title="Interface">I</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;NamedFile.html" title="NamedFile">
-			    <span>NamedFile</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>NamedFile</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Represents a file that has been assigned a new name and classification, including its original path,
+new path, type metadata, and optional PDF associations.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;NamedFile.html#property_newpath">
                   <span>newPath</span><span>: <span class="td-kw">string</span></span></a></li><li>
                 <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;NamedFile.html#property_originalpath">
@@ -771,7 +801,9 @@ Interfaces</h2></div><div class="namespaceSection"><div id="namespace_filepair" 
     </div><div id="namespace_parseddata" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Interface bg-Interface/15 dark:text-InterfaceDark dark:bg-InterfaceDark/15" title="Interface">I</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;ParsedData.html" title="ParsedData">
-			    <span>ParsedData</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>ParsedData</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Represents the fully parsed contents of a laboratory job, including job metadata and the list of
+all samples associated with that job.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;ParsedData.html#property_job_id">
                   <span>job_id</span><span>: <span class="td-kw">string</span></span></a></li><li>
                 <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;ParsedData.html#property_sample_date">
@@ -783,7 +815,9 @@ Interfaces</h2></div><div class="namespaceSection"><div id="namespace_filepair" 
     </div><div id="namespace_sample" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Interface bg-Interface/15 dark:text-InterfaceDark dark:bg-InterfaceDark/15" title="Interface">I</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;Sample.html" title="Sample">
-			    <span>Sample</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>Sample</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Represents a single collected sample (bottle), including metadata such as ID, site, date, sampler,
+and its associated measurements.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;Sample.html#property_date">
                   <span>date</span><span>: <span class="td-kw">string</span></span></a></li><li>
                 <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;Sample.html#property_id">
@@ -822,11 +856,15 @@ Interfaces</h2></div><div class="namespaceSection"><div id="namespace_filepair" 
 Type Aliases</h2></div><div class="namespaceSection"><div id="namespace_controllermode" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-TypeAlias bg-TypeAlias/15 dark:text-TypeAliasDark dark:bg-TypeAliasDark/15" title="Type Alias">T</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;ControllerMode.html" title="ControllerMode">
-			    <span>ControllerMode</span><span> = <span><span class="td-str">"dry-run"</span><span class="td-op"> | </span><span class="td-str">"rename"</span><span class="td-op"> | </span><span class="td-str">"move"</span></span></span></a></div>
+			    <span>ControllerMode</span><span> = <span><span class="td-str">"dry-run"</span><span class="td-op"> | </span><span class="td-str">"rename"</span><span class="td-op"> | </span><span class="td-str">"move"</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Enumerates the operational modes available to controllers: <code>&quot;dry-run&quot;</code> for simulation,
+<code>&quot;rename&quot;</code> for renaming operations, and <code>&quot;move&quot;</code> for file relocation.</p>
+</div></div></div>
     </div><div id="namespace_controlleroptions" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-TypeAlias bg-TypeAlias/15 dark:text-TypeAliasDark dark:bg-TypeAliasDark/15" title="Type Alias">T</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;ControllerOptions.html" title="ControllerOptions">
-			    <span>ControllerOptions</span><span> = { mode<span>: <span class="td-ref">ControllerMode</span></span>; outputDir<span class="td-op">?</span><span>: <span class="td-kw">string</span></span>; logFilename<span class="td-op">?</span><span>: <span class="td-kw">string</span></span>; pattern<span class="td-op">?</span><span>: <span class="td-kw">string</span></span>;  }</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>ControllerOptions</span><span> = { mode<span>: <span class="td-ref">ControllerMode</span></span>; outputDir<span class="td-op">?</span><span>: <span class="td-kw">string</span></span>; logFilename<span class="td-op">?</span><span>: <span class="td-kw">string</span></span>; pattern<span class="td-op">?</span><span>: <span class="td-kw">string</span></span>;  }</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Configuration object describing how a controller should operate, including mode selection and
+optional output, logging, and pattern‑matching settings.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;ControllerOptions.html#property_logfilename">
                   <span>logFilename</span><span>: <span class="td-kw">string</span></span></a></li><li>
                 <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;ControllerOptions.html#property_mode">
@@ -838,7 +876,9 @@ Type Aliases</h2></div><div class="namespaceSection"><div id="namespace_controll
     </div><div id="namespace_logentry" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-TypeAlias bg-TypeAlias/15 dark:text-TypeAliasDark dark:bg-TypeAliasDark/15" title="Type Alias">T</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;LogEntry.html" title="LogEntry">
-			    <span>LogEntry</span><span> = { level<span>: <span><span class="td-str">"debug"</span><span class="td-op"> | </span><span class="td-str">"info"</span><span class="td-op"> | </span><span class="td-str">"warn"</span><span class="td-op"> | </span><span class="td-str">"error"</span></span></span>; message<span>: <span class="td-kw">string</span></span>; timestamp<span>: <span class="td-kw">string</span></span>; component<span>: <span class="td-kw">string</span></span>; details<span class="td-op">?</span><span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span>;  }</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>LogEntry</span><span> = { level<span>: <span><span class="td-str">"debug"</span><span class="td-op"> | </span><span class="td-str">"info"</span><span class="td-op"> | </span><span class="td-str">"warn"</span><span class="td-op"> | </span><span class="td-str">"error"</span></span></span>; message<span>: <span class="td-kw">string</span></span>; timestamp<span>: <span class="td-kw">string</span></span>; component<span>: <span class="td-kw">string</span></span>; details<span class="td-op">?</span><span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span>;  }</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Structured log record emitted by services and components, capturing severity, message text,
+timestamp, component name, and optional diagnostic details.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;LogEntry.html#property_component">
                   <span>component</span><span>: <span class="td-kw">string</span></span></a></li><li>
                 <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;LogEntry.html#property_details">
@@ -852,7 +892,9 @@ Type Aliases</h2></div><div class="namespaceSection"><div id="namespace_controll
     </div><div id="namespace_result" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-TypeAlias bg-TypeAlias/15 dark:text-TypeAliasDark dark:bg-TypeAliasDark/15" title="Type Alias">T</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;core\types.ts&#x2F;~&#x2F;Result.html" title="Result">
-			    <span>Result</span><span><span>&lt;<span><span class="td-tp">I</span></span><span>, </span><span><span class="td-tp">O</span></span>&gt;</span> = <div class="ml-indent"><span>{ success<span>: <span class="td-lit">true</span></span>; value<span>: <span class="td-ref">O</span></span>;  }</span><br /><span><span class="td-op"> | </span>{ success<span>: <span class="td-lit">false</span></span>; input<span>: <span class="td-ref">I</span></span>; error<span>: <span class="td-kw">string</span></span>;  }</span></div></span></a></div>
+			    <span>Result</span><span><span>&lt;<span><span class="td-tp">I</span></span><span>, </span><span><span class="td-tp">O</span></span>&gt;</span> = <div class="ml-indent"><span>{ success<span>: <span class="td-lit">true</span></span>; value<span>: <span class="td-ref">O</span></span>;  }</span><br /><span><span class="td-op"> | </span>{ success<span>: <span class="td-lit">false</span></span>; input<span>: <span class="td-ref">I</span></span>; error<span>: <span class="td-kw">string</span></span>;  }</span></div></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Represents the standardized success/failure wrapper used throughout the pipeline.
+A successful result contains only a <code>value</code>, while a failure contains the original <code>input</code> and an error message.</p>
+</div></div></div>
     </div></div>
 </section>
 </div>
@@ -899,13 +941,17 @@ Type Aliases</h2></div><div class="namespaceSection"><div id="namespace_controll
 Classes</h2></div><div class="namespaceSection"><div id="namespace_controllerservice" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Class bg-Class/15 dark:text-ClassDark dark:bg-ClassDark/15" title="Class">c</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;services\ControllerService.ts&#x2F;~&#x2F;ControllerService.html" title="ControllerService">
-			    <span>ControllerService</span><span>(<div class="ml-4"><div><span>options</span>,</div><div><span>path<span>: <span class="td-kw">string</span></span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the ControllerService class.</p>
+			    <span>ControllerService</span><span>(<div class="ml-4"><div><span>options<span>: <span class="td-ref">ControllerOptions</span></span></span>,</div><div><span>path<span>: <span class="td-kw">string</span></span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Coordinates the full end‑to‑end processing workflow by constructing
+the blackboard, assembling the pipeline, wiring component observers, and
+executing the pipeline to completion.</p>
 </div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;services\ControllerService.ts&#x2F;~&#x2F;ControllerService.html#method_execute_0">
-                  <span>execute</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the execute method.</p>
+                  <span>execute</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">void</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Builds the blackboard, constructs the pipeline, attaches
+observers, executes the pipeline, and interprets the final Result.</p>
 </div></div></li><li>
-                <a href=".&#x2F;.&#x2F;services\ControllerService.ts&#x2F;~&#x2F;ControllerService.html#method_observe_0">
-                  <span>observe</span><span>(<span><span>component<span>: <span class="td-ref">BaseComponent</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the observe method.</p>
+                <a href=".&#x2F;.&#x2F;services\ControllerService.ts&#x2F;~&#x2F;ControllerService.html#method_observecomponent_0">
+                  <span>observeComponent</span><span>(<span><span>component<span>: <span class="td-ref">BaseComponent</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Subscribes to all lifecycle and diagnostic events emitted by a
+pipeline component and forwards them to the service’s logging system.</p>
 </div></div></li></ul></div>
     </div></div>
 </section>
@@ -953,30 +999,31 @@ Classes</h2></div><div class="namespaceSection"><div id="namespace_controllerser
 Classes</h2></div><div class="namespaceSection"><div id="namespace_patternservice" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Class bg-Class/15 dark:text-ClassDark dark:bg-ClassDark/15" title="Class">c</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html" title="PatternService">
-			    <span>PatternService</span><span>(<span><span>options<span>: <span class="td-ref">PatternServiceOptions</span></span></span></span>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the PatternService class.</p>
+			    <span>PatternService</span><span>(<span><span>options<span>: <span class="td-ref">PatternServiceOptions</span></span></span></span>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Service for listing, inspecting, validating, and adding pattern files.</p>
 </div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#method_addpattern_0">
-                  <span>addPattern</span><span>(<div class="ml-4"><div><span>file<span>: <span class="td-kw">string</span></span></span>,</div><div><span>force<span>: <span class="td-kw">boolean</span></span></span></div></div>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">string</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the addPattern method.</p>
+                  <span>addPattern</span><span>(<div class="ml-4"><div><span>file<span>: <span class="td-kw">string</span></span></span>,</div><div><span>force<span>: <span class="td-kw">boolean</span></span></span></div></div>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">string</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Copies a pattern file into the patterns directory, optionally overwriting.</p>
 </div></div></li><li>
                 <a href=".&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#method_execute_0">
-                  <span>execute</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;</span></span></a></li><li>
+                  <span>execute</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Executes the selected pattern action.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#method_fileexists_0">
-                  <span>fileExists</span><span>(<span><span>path<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-kw">boolean</span>&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the fileExists method.</p>
+                  <span>fileExists</span><span>(<span><span>path<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-kw">boolean</span>&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Checks whether a file exists at the given path.</p>
 </div></div></li><li>
                 <a href=".&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#method_findallpatternfiles_0">
-                  <span>findAllPatternFiles</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-kw">string</span>[]&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Returns ALL matching files for a given pattern name.
-Example: [&quot;invoice.yaml&quot;, &quot;invoice.yml&quot;, &quot;invoice.json&quot;]</p>
+                  <span>findAllPatternFiles</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-kw">string</span>[]&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Finds all pattern files matching the given logical name.</p>
 </div></div></li><li>
                 <a href=".&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#method_getpatterninfo_0">
-                  <span>getPatternInfo</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the getPatternInfo method.</p>
+                  <span>getPatternInfo</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Loads and parses a pattern file, returning its contents.</p>
 </div></div></li><li>
                 <a href=".&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#method_listpatterns_0">
-                  <span>listPatterns</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">string</span>[]&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the listPatterns method.</p>
+                  <span>listPatterns</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">string</span>[]&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Returns all unique logical pattern names in the patterns directory.</p>
 </div></div></li><li>
                 <a href=".&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#property_patternsdir">
-                  <span>patternsDir</span><span>: <span class="td-kw">string</span></span></a></li><li>
+                  <span>patternsDir</span><span>: <span class="td-kw">string</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Absolute path to the patterns directory.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#method_validatepattern_0">
-                  <span>validatePattern</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">string</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the validatePattern method.</p>
+                  <span>validatePattern</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">string</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Validates that a pattern file exists and contains valid YAML or JSON.</p>
 </div></div></li></ul></div>
     </div></div>
 </section>
@@ -1006,15 +1053,20 @@ Example: [&quot;invoice.yaml&quot;, &quot;invoice.yml&quot;, &quot;invoice.json&
 Interfaces</h2></div><div class="namespaceSection"><div id="namespace_patternserviceoptions" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Interface bg-Interface/15 dark:text-InterfaceDark dark:bg-InterfaceDark/15" title="Interface">I</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternServiceOptions.html" title="PatternServiceOptions">
-			    <span>PatternServiceOptions</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>PatternServiceOptions</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Options for configuring PatternService actions.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternServiceOptions.html#property_action">
-                  <span>action</span><span>: <span><span class="td-str">"list"</span><span class="td-op"> | </span><span class="td-str">"info"</span><span class="td-op"> | </span><span class="td-str">"validate"</span><span class="td-op"> | </span><span class="td-str">"add"</span><span class="td-op"> | </span><span class="td-kw">null</span></span></span></a></li><li>
+                  <span>action</span><span>: <span><span class="td-str">"list"</span><span class="td-op"> | </span><span class="td-str">"info"</span><span class="td-op"> | </span><span class="td-str">"validate"</span><span class="td-op"> | </span><span class="td-str">"add"</span><span class="td-op"> | </span><span class="td-kw">null</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>The action to perform on patterns.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternServiceOptions.html#property_file">
-                  <span>file</span><span>: <span class="td-kw">string</span></span></a></li><li>
+                  <span>file</span><span>: <span class="td-kw">string</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Source file path when adding a new pattern.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternServiceOptions.html#property_force">
-                  <span>force</span><span>: <span class="td-kw">boolean</span></span></a></li><li>
+                  <span>force</span><span>: <span class="td-kw">boolean</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Whether to overwrite an existing pattern when adding.</p>
+</div></div></li><li>
                 <a href=".&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternServiceOptions.html#property_name">
-                  <span>name</span><span>: <span class="td-kw">string</span></span></a></li></ul></div>
+                  <span>name</span><span>: <span class="td-kw">string</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>The logical pattern name (without extension).</p>
+</div></div></li></ul></div>
     </div></div>
 </section>
 </div>
@@ -1166,7 +1218,7 @@ Variables</h2></div><div class="namespaceSection"><div id="namespace_cli" class=
 Functions</h2></div><div class="namespaceSection"><div id="namespace_shallowequal" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\compare.ts&#x2F;~&#x2F;shallowEqual.html" title="shallowEqual">
-			    <span>shallowEqual</span><span>(<div class="ml-4"><div><span>a<span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span>,</div><div><span>b<span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span></div></div>)<span>: <span class="td-kw">boolean</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Simple utility to check if two objects have the same keys and values</p>
+			    <span>shallowEqual</span><span>(<div class="ml-4"><div><span>a<span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span>,</div><div><span>b<span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span></div></div>)<span>: <span class="td-kw">boolean</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Performs a shallow equality check between two objects.</p>
 </div></div></div>
     </div></div>
 </section>
@@ -1239,7 +1291,7 @@ Classes</h2></div><div class="namespaceSection"></div>
 Functions</h2></div><div class="namespaceSection"><div id="namespace_createconfigdir" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\configDir.ts&#x2F;~&#x2F;createConfigDir.html" title="createConfigDir">
-			    <span>createConfigDir</span><span>()<span>: <span class="td-ref">ConfigDir</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the createConfigDir function.</p>
+			    <span>createConfigDir</span><span>()<span>: <span class="td-ref">ConfigDir</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Creates a new isolated ConfigDir instance, primarily for testing.</p>
 </div></div></div>
     </div></div>
 </section>
@@ -1316,7 +1368,7 @@ Variables</h2></div><div class="namespaceSection"><div id="namespace_configdir" 
 Functions</h2></div><div class="namespaceSection"><div id="namespace_filelogger" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\fileLogger.ts&#x2F;~&#x2F;fileLogger.html" title="fileLogger">
-			    <span>fileLogger</span><span>(<span><span>logFilename<span>: <span class="td-kw">string</span></span></span></span>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Creates a file logger that writes messages to a versioned log file.</p>
+			    <span>fileLogger</span><span>(<span><span>logFilename<span>: <span class="td-kw">string</span></span></span></span>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Creates a logger that writes messages to a versioned log file.</p>
 </div></div></div>
     </div></div>
 </section>
@@ -1346,7 +1398,7 @@ Functions</h2></div><div class="namespaceSection"><div id="namespace_filelogger"
 Type Aliases</h2></div><div class="namespaceSection"><div id="namespace_filewriter" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-TypeAlias bg-TypeAlias/15 dark:text-TypeAliasDark dark:bg-TypeAliasDark/15" title="Type Alias">T</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\fileLogger.ts&#x2F;~&#x2F;FileWriter.html" title="FileWriter">
-			    <span>FileWriter</span><span> = <span class="td-ref">ReturnType</span>&lt;<span class="td-ref">FileLogger</span>&gt;</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Type for the file logger function  @see fileLogger</p>
+			    <span>FileWriter</span><span> = <span class="td-ref">ReturnType</span>&lt;<span class="td-ref">FileLogger</span>&gt;</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Type alias for the logger function returned by fileLogger.</p>
 </div></div></div>
     </div></div>
 </section>
@@ -1368,7 +1420,7 @@ Type Aliases</h2></div><div class="namespaceSection"><div id="namespace_filewrit
       <a href=".&#x2F;.&#x2F;utils\hooks.ts&#x2F;index.html" class="link text-xl font-bold">utils\hooks.ts</a>
 
       <div class="ml-4 mt-2"><section>
-  <div class="space-y-2 flex-1"><div class="space-y-7" id="module_doc-31"><div class="markdown_summary"><p>Deno + TypeScript Hooks &amp; Listeners</p>
+  <div class="space-y-2 flex-1"><div class="space-y-7" id="module_doc-31"><div class="markdown_summary"><p>Framework‑agnostic hooks for state, intervals, file watching, events, and timing utilities.</p>
 </div><section class="section"  id="utils\hooks_ts_functions"><div>
       <h2 class="anchorable mb-1"><a href="#utils\hooks_ts_functions" class="anchor" aria-label="Anchor" tabIndex="-1"><svg
   width="16"
@@ -1395,27 +1447,33 @@ Type Aliases</h2></div><div class="namespaceSection"><div id="namespace_filewrit
 Functions</h2></div><div class="namespaceSection"><div id="namespace_usedebounce" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\hooks.ts&#x2F;~&#x2F;useDebounce.html" title="useDebounce">
-			    <span>useDebounce</span><span><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span>(<span><span><span>...args</span><span>: <span class="td-kw">unknown</span>[]</span></span></span>) =&gt; <span class="td-kw">void</span></span></span>&gt;</span>(<div class="ml-4"><div><span>callback<span>: <span class="td-ref">T</span></span></span>,</div><div><span>delay<span>: <span class="td-kw">number</span></span></span></div></div>)</span></a></div>
+			    <span>useDebounce</span><span><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span>(<span><span><span>...args</span><span>: <span class="td-kw">unknown</span>[]</span></span></span>) =&gt; <span class="td-kw">void</span></span></span>&gt;</span>(<div class="ml-4"><div><span>callback<span>: <span class="td-ref">T</span></span></span>,</div><div><span>delay<span>: <span class="td-kw">number</span></span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Creates a debounced function that delays execution until calls stop.</p>
+</div></div></div>
     </div><div id="namespace_useeventlistener" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\hooks.ts&#x2F;~&#x2F;useEventListener.html" title="useEventListener">
-			    <span>useEventListener</span><span><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span><span class="td-ref">EventTarget</span></span></span><span>, </span><span><span class="td-tp">K</span><span><span class="td-kw"> extends </span><span class="td-kw">string</span></span></span>&gt;</span>(<div class="ml-4"><div><span>target<span>: <span class="td-ref">T</span></span></span>,</div><div><span>type<span>: <span class="td-ref">K</span></span></span>,</div><div><span>handler<span>: (<span><span>event<span>: <span class="td-ref">Event</span></span></span></span>) =&gt; <span class="td-kw">void</span></span></span>,</div><div><span>options<span class="td-op">?</span><span>: <span><span class="td-kw">boolean</span><span class="td-op"> | </span><span class="td-ref">AddEventListenerOptions</span></span></span></span></div></div>)</span></a></div>
+			    <span>useEventListener</span><span><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span><span class="td-ref">EventTarget</span></span></span><span>, </span><span><span class="td-tp">K</span><span><span class="td-kw"> extends </span><span class="td-kw">string</span></span></span>&gt;</span>(<div class="ml-4"><div><span>target<span>: <span class="td-ref">T</span></span></span>,</div><div><span>type<span>: <span class="td-ref">K</span></span></span>,</div><div><span>handler<span>: (<span><span>event<span>: <span class="td-ref">Event</span></span></span></span>) =&gt; <span class="td-kw">void</span></span></span>,</div><div><span>options<span class="td-op">?</span><span>: <span><span class="td-kw">boolean</span><span class="td-op"> | </span><span class="td-ref">AddEventListenerOptions</span></span></span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Attaches an event listener and returns a function to remove it.</p>
+</div></div></div>
     </div><div id="namespace_usefilewatcher" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\hooks.ts&#x2F;~&#x2F;useFileWatcher.html" title="useFileWatcher">
-			    <span>useFileWatcher</span><span>(<div class="ml-4"><div><span>path<span>: <span class="td-kw">string</span></span></span>,</div><div><span>onChange<span>: (<span><span>event<span>: <span class="td-ref">Deno.FsEvent</span></span></span></span>) =&gt; <span class="td-kw">void</span></span></span></div></div>)</span></a></div>
+			    <span>useFileWatcher</span><span>(<div class="ml-4"><div><span>path<span>: <span class="td-kw">string</span></span></span>,</div><div><span>onChange<span>: (<span><span>event<span>: <span class="td-ref">Deno.FsEvent</span></span></span></span>) =&gt; <span class="td-kw">void</span></span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Watches a file or directory and invokes a callback on changes.</p>
+</div></div></div>
     </div><div id="namespace_useinterval" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\hooks.ts&#x2F;~&#x2F;useInterval.html" title="useInterval">
-			    <span>useInterval</span><span>(<div class="ml-4"><div><span>callback<span>: () =&gt; <span class="td-kw">void</span></span></span>,</div><div><span>delay<span>: <span class="td-kw">number</span></span></span></div></div>)</span></a></div>
+			    <span>useInterval</span><span>(<div class="ml-4"><div><span>callback<span>: () =&gt; <span class="td-kw">void</span></span></span>,</div><div><span>delay<span>: <span class="td-kw">number</span></span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Provides a controllable interval with start and stop methods.</p>
+</div></div></div>
     </div><div id="namespace_usestate" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\hooks.ts&#x2F;~&#x2F;useState.html" title="useState">
-			    <span>useState</span><span><span>&lt;<span><span class="td-tp">T</span></span>&gt;</span>(<span><span>initialValue<span>: <span class="td-ref">T</span></span></span></span>)<span>: <span>[() =&gt; <span class="td-ref">T</span>, (<span><span>newValue<span>: <span class="td-ref">T</span></span></span></span>) =&gt; <span class="td-kw">void</span>]</span></span></span></a></div>
+			    <span>useState</span><span><span>&lt;<span><span class="td-tp">T</span></span>&gt;</span>(<span><span>initialValue<span>: <span class="td-ref">T</span></span></span></span>)<span>: <span>[() =&gt; <span class="td-ref">T</span>, (<span><span>newValue<span>: <span class="td-ref">T</span></span></span></span>) =&gt; <span class="td-kw">void</span>]</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Creates a simple state container with getter and setter functions.</p>
+</div></div></div>
     </div><div id="namespace_usethrottle" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\hooks.ts&#x2F;~&#x2F;useThrottle.html" title="useThrottle">
-			    <span>useThrottle</span><span><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span>(<span><span><span>...args</span><span>: <span class="td-kw">unknown</span>[]</span></span></span>) =&gt; <span class="td-kw">void</span></span></span>&gt;</span>(<div class="ml-4"><div><span>callback<span>: <span class="td-ref">T</span></span></span>,</div><div><span>delay<span>: <span class="td-kw">number</span></span></span></div></div>)</span></a></div>
+			    <span>useThrottle</span><span><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span>(<span><span><span>...args</span><span>: <span class="td-kw">unknown</span>[]</span></span></span>) =&gt; <span class="td-kw">void</span></span></span>&gt;</span>(<div class="ml-4"><div><span>callback<span>: <span class="td-ref">T</span></span></span>,</div><div><span>delay<span>: <span class="td-kw">number</span></span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Creates a throttled function that runs at most once per delay period.</p>
+</div></div></div>
     </div></div>
 </section>
 </div>
@@ -1453,7 +1511,7 @@ Functions</h2></div><div class="namespaceSection"><div id="namespace_usedebounce
 Functions</h2></div><div class="namespaceSection"><div id="namespace_applog" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\logger.mock.ts&#x2F;~&#x2F;appLog.html" title="appLog">
-			    <span>appLog</span><span>(<span><span><span>...args</span><span>: <span class="td-kw">unknown</span>[]</span></span></span>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe this arrow function (&lt;anonymous&gt;).</p>
+			    <span>appLog</span><span>(<span><span><span>...args</span><span>: <span class="td-kw">unknown</span>[]</span></span></span>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Test mock for appLog that captures all log calls.</p>
 </div></div></div>
     </div></div>
 </section>
@@ -1492,12 +1550,12 @@ Functions</h2></div><div class="namespaceSection"><div id="namespace_applog" cla
 Functions</h2></div><div class="namespaceSection"><div id="namespace_applog-1" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\logger.ts&#x2F;~&#x2F;appLog.html" title="appLog">
-			    <span>appLog</span><span>(<div class="ml-4"><div><span>level<span>: <span><span class="td-str">"debug"</span><span class="td-op"> | </span><span class="td-str">"info"</span><span class="td-op"> | </span><span class="td-str">"warn"</span><span class="td-op"> | </span><span class="td-str">"error"</span></span></span></span>,</div><div><span>message<span>: <span class="td-kw">string</span></span></span>,</div><div><span>component<span>: <span class="td-kw">string</span></span></span>,</div><div><span>details<span class="td-op">?</span><span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Logs a message with the specified level.</p>
+			    <span>appLog</span><span>(<div class="ml-4"><div><span>level<span>: <span><span class="td-str">"debug"</span><span class="td-op"> | </span><span class="td-str">"info"</span><span class="td-op"> | </span><span class="td-str">"warn"</span><span class="td-op"> | </span><span class="td-str">"error"</span></span></span></span>,</div><div><span>message<span>: <span class="td-kw">string</span></span></span>,</div><div><span>component<span>: <span class="td-kw">string</span></span></span>,</div><div><span>details<span class="td-op">?</span><span>: <span class="td-ref">Record</span>&lt;<span class="td-kw">string</span><span>, </span><span class="td-kw">unknown</span>&gt;</span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Logs a message with the specified level, optionally writing to a file.</p>
 </div></div></div>
     </div><div id="namespace_configurelogger" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\logger.ts&#x2F;~&#x2F;configureLogger.html" title="configureLogger">
-			    <span>configureLogger</span><span>(<span><span><span class="italic">unnamed 0</span><span>: <span class="td-ref">LoggerOptions</span></span></span></span>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe this arrow function (&lt;anonymous&gt;).</p>
+			    <span>configureLogger</span><span>(<span><span><span class="italic">unnamed 0</span><span>: <span class="td-ref">LoggerOptions</span></span></span></span>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Configures the global logger instance and optional file writer.</p>
 </div></div></div>
     </div></div>
 </section>
@@ -1527,7 +1585,7 @@ Functions</h2></div><div class="namespaceSection"><div id="namespace_applog-1" c
 Type Aliases</h2></div><div class="namespaceSection"><div id="namespace_loggeroptions" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-TypeAlias bg-TypeAlias/15 dark:text-TypeAliasDark dark:bg-TypeAliasDark/15" title="Type Alias">T</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\logger.ts&#x2F;~&#x2F;LoggerOptions.html" title="LoggerOptions">
-			    <span>LoggerOptions</span><span> = { json<span>: <span class="td-kw">boolean</span></span>; quiet<span>: <span class="td-kw">boolean</span></span>; logFilename<span class="td-op">?</span><span>: <span class="td-kw">string</span></span>;  }</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Type for logger configuration options</p>
+			    <span>LoggerOptions</span><span> = { json<span>: <span class="td-kw">boolean</span></span>; quiet<span>: <span class="td-kw">boolean</span></span>; logFilename<span class="td-op">?</span><span>: <span class="td-kw">string</span></span>;  }</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Configuration options for the application logger.</p>
 </div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;utils\logger.ts&#x2F;~&#x2F;LoggerOptions.html#property_json">
                   <span>json</span><span>: <span class="td-kw">boolean</span></span></a></li><li>
@@ -1602,7 +1660,7 @@ Enums</h2></div><div class="namespaceSection"><div id="namespace_importtypes" cl
 Functions</h2></div><div class="namespaceSection"><div id="namespace___setimportsheetmock" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\sheet.ts&#x2F;~&#x2F;__setImportSheetMock.html" title="__setImportSheetMock">
-			    <span>__setImportSheetMock</span><span>(<span><span>fn<span>: <span class="td-ref">realImportSheet</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the __setImportSheetMock function.</p>
+			    <span>__setImportSheetMock</span><span>(<span><span>fn<span>: <span class="td-ref">realImportSheet</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Replaces the sheet‑import function for testing.</p>
 </div></div></div>
     </div></div>
 </section>
@@ -1670,7 +1728,7 @@ Variables</h2></div><div class="namespaceSection"><div id="namespace_importsheet
 Functions</h2></div><div class="namespaceSection"><div id="namespace_validatepatternfile" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Function bg-Function/15 dark:text-FunctionDark dark:bg-FunctionDark/15" title="Function">f</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\validPattern.ts&#x2F;~&#x2F;validatePatternFile.html" title="validatePatternFile">
-			    <span>validatePatternFile</span><span>(<span><span>filePath<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">PatternValidationResult</span>&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the validatePatternFile function.</p>
+			    <span>validatePatternFile</span><span>(<span><span>filePath<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">PatternValidationResult</span>&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Validates the structure and required fields of a YAML pattern file.</p>
 </div></div></div>
     </div></div>
 </section>
@@ -1700,18 +1758,57 @@ Functions</h2></div><div class="namespaceSection"><div id="namespace_validatepat
 Interfaces</h2></div><div class="namespaceSection"><div id="namespace_patternvalidationresult" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Interface bg-Interface/15 dark:text-InterfaceDark dark:bg-InterfaceDark/15" title="Interface">I</div></div>
 <div class="namespaceItemContent">
 		    <a href=".&#x2F;.&#x2F;utils\validPattern.ts&#x2F;~&#x2F;PatternValidationResult.html" title="PatternValidationResult">
-			    <span>PatternValidationResult</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Validates the structure and content of a pattern YAML file.
-Ensures required fields are present and that the pattern entries are well-formed.</p>
+			    <span>PatternValidationResult</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Result of validating a pattern file.</p>
 </div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href=".&#x2F;.&#x2F;utils\validPattern.ts&#x2F;~&#x2F;PatternValidationResult.html#property_error">
-                  <span>error</span><span>: <span class="td-kw">string</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>If validation fails, contains a descriptive error message.</p>
+                  <span>error</span><span>: <span class="td-kw">string</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Error message if validation failed.</p>
 </div></div></li><li>
                 <a href=".&#x2F;.&#x2F;utils\validPattern.ts&#x2F;~&#x2F;PatternValidationResult.html#property_ok">
-                  <span>ok</span><span>: <span class="td-kw">boolean</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Indicates whether the pattern file is valid.</p>
+                  <span>ok</span><span>: <span class="td-kw">boolean</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Whether the pattern file is valid.</p>
 </div></div></li></ul></div>
     </div></div>
 </section>
 </div>
+</div>
+</section>
+</div>
+    </div>
+    <div>
+      <a href=".&#x2F;.&#x2F;components\README.md&#x2F;index.html" class="link text-xl font-bold">components\README.md</a>
+
+      <div class="ml-4 mt-2"><section>
+  <div class="space-y-2 flex-1"><div class="space-y-7" id="module_doc-36"><div class="markdown_summary"><p>Components perform a single deterministic task and run in sequence as part of the ControllerService pipeline.</p>
+</div></div>
+</div>
+</section>
+</div>
+    </div>
+    <div>
+      <a href=".&#x2F;.&#x2F;core\README.md&#x2F;index.html" class="link text-xl font-bold">core\README.md</a>
+
+      <div class="ml-4 mt-2"><section>
+  <div class="space-y-2 flex-1"><div class="space-y-7" id="module_doc-37"><div class="markdown_summary"><p>Core objects define the foundational contracts and lifecycle behaviors used by every other part of the system.</p>
+</div></div>
+</div>
+</section>
+</div>
+    </div>
+    <div>
+      <a href=".&#x2F;.&#x2F;services\README.md&#x2F;index.html" class="link text-xl font-bold">services\README.md</a>
+
+      <div class="ml-4 mt-2"><section>
+  <div class="space-y-2 flex-1"><div class="space-y-7" id="module_doc-38"><div class="markdown_summary"><h1>Service Architecture Overview</h1>
+</div></div>
+</div>
+</section>
+</div>
+    </div>
+    <div>
+      <a href=".&#x2F;.&#x2F;utils\README.md&#x2F;index.html" class="link text-xl font-bold">utils\README.md</a>
+
+      <div class="ml-4 mt-2"><section>
+  <div class="space-y-2 flex-1"><div class="space-y-7" id="module_doc-39"><div class="markdown_summary"><p>Utility modules provide standalone helper functions used across services, components, and core logic without owning any workflow.</p>
+</div></div>
 </div>
 </section>
 </div>

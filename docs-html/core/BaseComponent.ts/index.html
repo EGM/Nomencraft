@@ -124,21 +124,29 @@
 Classes</h2></div><div class="namespaceSection"><div id="namespace_basecomponent" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Class bg-Class/15 dark:text-ClassDark dark:bg-ClassDark/15" title="Class">c</div></div>
 <div class="namespaceItemContent">
 		    <a href="..&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html" title="BaseComponent">
-			    <span>BaseComponent</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>BaseComponent</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Abstract lifecycle base class providing standardized event‑driven debugging, warnings, errors, and failure handling for all pipeline components.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href="..&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html#method_emitdebug_0">
-                  <span>emitDebug</span><span>(<span><span>detail<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a></li><li>
+                  <span>emitDebug</span><span>(<span><span>detail<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Emits a <code>&quot;debug&quot;</code> event with the provided detail payload.</p>
+</div></div></li><li>
                 <a href="..&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html#method_emiterror_0">
-                  <span>emitError</span><span>(<span><span>detail<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a></li><li>
+                  <span>emitError</span><span>(<span><span>detail<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Emits an <code>&quot;error&quot;</code> event with the provided detail payload.</p>
+</div></div></li><li>
                 <a href="..&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html#method_emitwarning_0">
-                  <span>emitWarning</span><span>(<span><span>detail<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a></li><li>
+                  <span>emitWarning</span><span>(<span><span>detail<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Emits a <code>&quot;warning&quot;</code> event with the provided detail payload.</p>
+</div></div></li><li>
                 <a href="..&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html#method_failed_0">
-                  <span>failed</span><span>(<span><span>error<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">never</span></span></span></a></li><li>
+                  <span>failed</span><span>(<span><span>error<span>: <span class="td-kw">unknown</span></span></span></span>)<span>: <span class="td-kw">never</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Emits an error event and throws a new Error constructed from the provided value.</p>
+</div></div></li><li>
                 <a href="..&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html#method_finished_0">
-                  <span>finished</span><span>()<span>: <span class="td-kw">void</span></span></span></a></li><li>
+                  <span>finished</span><span>()<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Emits a debug event indicating that the component has completed processing.</p>
+</div></div></li><li>
                 <a href="..&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html#property_name">
-                  <span>name</span><span>: <span class="td-kw">string</span></span></a></li><li>
+                  <span>name</span><span>: <span class="td-kw">string</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>The registered name of the component, used in lifecycle events and error reporting.</p>
+</div></div></li><li>
                 <a href="..&#x2F;.&#x2F;core\BaseComponent.ts&#x2F;~&#x2F;BaseComponent.html#method_started_0">
-                  <span>started</span><span>()<span>: <span class="td-kw">void</span></span></span></a></li></ul></div>
+                  <span>started</span><span>()<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Emits a debug event indicating that the component has begun processing.</p>
+</div></div></li></ul></div>
     </div></div>
 </section>
 </div>

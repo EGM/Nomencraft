@@ -166,7 +166,8 @@
 </svg>
 </a>
 <span class="font-bold">useThrottle</span><span class="font-medium"><span>&lt;<span><span class="td-tp">T</span><span><span class="td-kw"> extends </span>(<span><span><span>...args</span><span>: <span class="td-kw">unknown</span>[]</span></span></span>) =&gt; <span class="td-kw">void</span></span></span>&gt;</span>(<div class="ml-4"><div><span>callback<span>: <span class="td-ref">T</span></span></span>,</div><div><span>delay<span>: <span class="td-kw">number</span></span></span></div></div>) </span>
-      </code><div class="space-y-7" id=""><section class="section"  id="examples"><div>
+      </code><div class="space-y-7" id=""><div class="markdown"><p>Creates a throttled function that runs at most once per delay period.</p>
+</div><section class="section"  id="examples"><div>
       <h2 class="anchorable mb-1"><a href="#examples" class="anchor" aria-label="Anchor" tabIndex="-1"><svg
   width="16"
   height="16"
@@ -215,7 +216,7 @@ Examples</h2></div><div class="space-y-8"><div class="anchorable"><a href="#exam
 </div></h3>
   <div><div class="markdown"><p>const log = useThrottle((msg: string) =&gt; console.log(msg), 1000);
 log(&quot;A&quot;);
-log(&quot;B&quot;); // &quot;B&quot; will be ignored if within 1 second of &quot;A&quot;</p>
+log(&quot;B&quot;);</p>
 </div></div>
 </div>
 </div></section>
@@ -371,8 +372,7 @@ Parameters</h2></div><div class="space-y-8"><div class="anchorable docEntry" id=
   />
 </svg>
 </a>
-</div><div class="max-w-[75ch]"><div class="markdown"><p>Function to throttle.</p>
-</div></div></div>
+</div></div>
 <div class="anchorable docEntry" id="function_usethrottle_0_parameter_delay">
 
   <div class="docEntryHeader">
@@ -425,8 +425,7 @@ Parameters</h2></div><div class="space-y-8"><div class="anchorable docEntry" id=
   />
 </svg>
 </a>
-</div><div class="max-w-[75ch]"><div class="markdown"><p>Delay in milliseconds.</p>
-</div></div></div>
+</div></div>
 </div></section>
 <section class="section"  id="return-type"><div>
       <h2 class="anchorable mb-1"><a href="#return-type" class="anchor" aria-label="Anchor" tabIndex="-1"><svg

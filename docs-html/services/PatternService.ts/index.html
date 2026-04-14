@@ -124,30 +124,31 @@
 Classes</h2></div><div class="namespaceSection"><div id="namespace_patternservice" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Class bg-Class/15 dark:text-ClassDark dark:bg-ClassDark/15" title="Class">c</div></div>
 <div class="namespaceItemContent">
 		    <a href="..&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html" title="PatternService">
-			    <span>PatternService</span><span>(<span><span>options<span>: <span class="td-ref">PatternServiceOptions</span></span></span></span>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the PatternService class.</p>
+			    <span>PatternService</span><span>(<span><span>options<span>: <span class="td-ref">PatternServiceOptions</span></span></span></span>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Service for listing, inspecting, validating, and adding pattern files.</p>
 </div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href="..&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#method_addpattern_0">
-                  <span>addPattern</span><span>(<div class="ml-4"><div><span>file<span>: <span class="td-kw">string</span></span></span>,</div><div><span>force<span>: <span class="td-kw">boolean</span></span></span></div></div>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">string</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the addPattern method.</p>
+                  <span>addPattern</span><span>(<div class="ml-4"><div><span>file<span>: <span class="td-kw">string</span></span></span>,</div><div><span>force<span>: <span class="td-kw">boolean</span></span></span></div></div>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">string</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Copies a pattern file into the patterns directory, optionally overwriting.</p>
 </div></div></li><li>
                 <a href="..&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#method_execute_0">
-                  <span>execute</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;</span></span></a></li><li>
+                  <span>execute</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Executes the selected pattern action.</p>
+</div></div></li><li>
                 <a href="..&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#method_fileexists_0">
-                  <span>fileExists</span><span>(<span><span>path<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-kw">boolean</span>&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the fileExists method.</p>
+                  <span>fileExists</span><span>(<span><span>path<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-kw">boolean</span>&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Checks whether a file exists at the given path.</p>
 </div></div></li><li>
                 <a href="..&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#method_findallpatternfiles_0">
-                  <span>findAllPatternFiles</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-kw">string</span>[]&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Returns ALL matching files for a given pattern name.
-Example: [&quot;invoice.yaml&quot;, &quot;invoice.yml&quot;, &quot;invoice.json&quot;]</p>
+                  <span>findAllPatternFiles</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-kw">string</span>[]&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Finds all pattern files matching the given logical name.</p>
 </div></div></li><li>
                 <a href="..&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#method_getpatterninfo_0">
-                  <span>getPatternInfo</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the getPatternInfo method.</p>
+                  <span>getPatternInfo</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">unknown</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Loads and parses a pattern file, returning its contents.</p>
 </div></div></li><li>
                 <a href="..&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#method_listpatterns_0">
-                  <span>listPatterns</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">string</span>[]&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the listPatterns method.</p>
+                  <span>listPatterns</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">string</span>[]&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Returns all unique logical pattern names in the patterns directory.</p>
 </div></div></li><li>
                 <a href="..&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#property_patternsdir">
-                  <span>patternsDir</span><span>: <span class="td-kw">string</span></span></a></li><li>
+                  <span>patternsDir</span><span>: <span class="td-kw">string</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Absolute path to the patterns directory.</p>
+</div></div></li><li>
                 <a href="..&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternService.html#method_validatepattern_0">
-                  <span>validatePattern</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">string</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the validatePattern method.</p>
+                  <span>validatePattern</span><span>(<span><span>name<span>: <span class="td-kw">string</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">string</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Validates that a pattern file exists and contains valid YAML or JSON.</p>
 </div></div></li></ul></div>
     </div></div>
 </section>
@@ -177,15 +178,20 @@ Example: [&quot;invoice.yaml&quot;, &quot;invoice.yml&quot;, &quot;invoice.json&
 Interfaces</h2></div><div class="namespaceSection"><div id="namespace_patternserviceoptions" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Interface bg-Interface/15 dark:text-InterfaceDark dark:bg-InterfaceDark/15" title="Interface">I</div></div>
 <div class="namespaceItemContent">
 		    <a href="..&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternServiceOptions.html" title="PatternServiceOptions">
-			    <span>PatternServiceOptions</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>PatternServiceOptions</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Options for configuring PatternService actions.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href="..&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternServiceOptions.html#property_action">
-                  <span>action</span><span>: <span><span class="td-str">"list"</span><span class="td-op"> | </span><span class="td-str">"info"</span><span class="td-op"> | </span><span class="td-str">"validate"</span><span class="td-op"> | </span><span class="td-str">"add"</span><span class="td-op"> | </span><span class="td-kw">null</span></span></span></a></li><li>
+                  <span>action</span><span>: <span><span class="td-str">"list"</span><span class="td-op"> | </span><span class="td-str">"info"</span><span class="td-op"> | </span><span class="td-str">"validate"</span><span class="td-op"> | </span><span class="td-str">"add"</span><span class="td-op"> | </span><span class="td-kw">null</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>The action to perform on patterns.</p>
+</div></div></li><li>
                 <a href="..&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternServiceOptions.html#property_file">
-                  <span>file</span><span>: <span class="td-kw">string</span></span></a></li><li>
+                  <span>file</span><span>: <span class="td-kw">string</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Source file path when adding a new pattern.</p>
+</div></div></li><li>
                 <a href="..&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternServiceOptions.html#property_force">
-                  <span>force</span><span>: <span class="td-kw">boolean</span></span></a></li><li>
+                  <span>force</span><span>: <span class="td-kw">boolean</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Whether to overwrite an existing pattern when adding.</p>
+</div></div></li><li>
                 <a href="..&#x2F;.&#x2F;services\PatternService.ts&#x2F;~&#x2F;PatternServiceOptions.html#property_name">
-                  <span>name</span><span>: <span class="td-kw">string</span></span></a></li></ul></div>
+                  <span>name</span><span>: <span class="td-kw">string</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>The logical pattern name (without extension).</p>
+</div></div></li></ul></div>
     </div></div>
 </section>
 </div>

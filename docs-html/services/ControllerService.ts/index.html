@@ -124,13 +124,17 @@
 Classes</h2></div><div class="namespaceSection"><div id="namespace_controllerservice" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Class bg-Class/15 dark:text-ClassDark dark:bg-ClassDark/15" title="Class">c</div></div>
 <div class="namespaceItemContent">
 		    <a href="..&#x2F;.&#x2F;services\ControllerService.ts&#x2F;~&#x2F;ControllerService.html" title="ControllerService">
-			    <span>ControllerService</span><span>(<div class="ml-4"><div><span>options</span>,</div><div><span>path<span>: <span class="td-kw">string</span></span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the ControllerService class.</p>
+			    <span>ControllerService</span><span>(<div class="ml-4"><div><span>options<span>: <span class="td-ref">ControllerOptions</span></span></span>,</div><div><span>path<span>: <span class="td-kw">string</span></span></span></div></div>)</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Coordinates the full end‑to‑end processing workflow by constructing
+the blackboard, assembling the pipeline, wiring component observers, and
+executing the pipeline to completion.</p>
 </div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href="..&#x2F;.&#x2F;services\ControllerService.ts&#x2F;~&#x2F;ControllerService.html#method_execute_0">
-                  <span>execute</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the execute method.</p>
+                  <span>execute</span><span>()<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-kw">void</span><span>, </span><span class="td-kw">void</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Builds the blackboard, constructs the pipeline, attaches
+observers, executes the pipeline, and interprets the final Result.</p>
 </div></div></li><li>
-                <a href="..&#x2F;.&#x2F;services\ControllerService.ts&#x2F;~&#x2F;ControllerService.html#method_observe_0">
-                  <span>observe</span><span>(<span><span>component<span>: <span class="td-ref">BaseComponent</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>TODO: Describe the observe method.</p>
+                <a href="..&#x2F;.&#x2F;services\ControllerService.ts&#x2F;~&#x2F;ControllerService.html#method_observecomponent_0">
+                  <span>observeComponent</span><span>(<span><span>component<span>: <span class="td-ref">BaseComponent</span></span></span></span>)<span>: <span class="td-kw">void</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Subscribes to all lifecycle and diagnostic events emitted by a
+pipeline component and forwards them to the service’s logging system.</p>
 </div></div></li></ul></div>
     </div></div>
 </section>

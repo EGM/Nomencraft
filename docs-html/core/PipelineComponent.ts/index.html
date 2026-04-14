@@ -124,15 +124,19 @@
 Interfaces</h2></div><div class="namespaceSection"><div id="namespace_pipelinecomponent" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Interface bg-Interface/15 dark:text-InterfaceDark dark:bg-InterfaceDark/15" title="Interface">I</div></div>
 <div class="namespaceItemContent">
 		    <a href="..&#x2F;.&#x2F;core\PipelineComponent.ts&#x2F;~&#x2F;PipelineComponent.html" title="PipelineComponent">
-			    <span>PipelineComponent</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>PipelineComponent</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Defines the minimal contract for a pipeline component: a single asynchronous <code>process()</code> method that accepts input of type <code>I</code> and returns a standardized <code>Result&lt;I, O&gt;</code>.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href="..&#x2F;.&#x2F;core\PipelineComponent.ts&#x2F;~&#x2F;PipelineComponent.html#method_process_0">
-                  <span>process</span><span>(<span><span>input<span>: <span class="td-ref">I</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-ref">O</span>&gt;&gt;</span></span></a></li></ul></div>
+                  <span>process</span><span>(<span><span>input<span>: <span class="td-ref">I</span></span></span></span>)<span>: <span class="td-ref">Promise</span>&lt;<span class="td-ref">Result</span>&lt;<span class="td-ref">I</span><span>, </span><span class="td-ref">O</span>&gt;&gt;</span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Processes the given input and returns a Result describing either a successful transformation or a failure.</p>
+</div></div></li></ul></div>
     </div><div id="namespace_validatablecomponent" class="namespaceItem" ><div class="docNodeKindIcon"><div class="text-Interface bg-Interface/15 dark:text-InterfaceDark dark:bg-InterfaceDark/15" title="Interface">I</div></div>
 <div class="namespaceItemContent">
 		    <a href="..&#x2F;.&#x2F;core\PipelineComponent.ts&#x2F;~&#x2F;ValidatableComponent.html" title="ValidatableComponent">
-			    <span>ValidatableComponent</span></a><ul class="namespaceItemContentSubItems"><li>
+			    <span>ValidatableComponent</span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Extends <code>PipelineComponent</code> by adding a synchronous <code>validate()</code> method for pre‑execution input checks.</p>
+</div></div><ul class="namespaceItemContentSubItems"><li>
                 <a href="..&#x2F;.&#x2F;core\PipelineComponent.ts&#x2F;~&#x2F;ValidatableComponent.html#method_validate_0">
-                  <span>validate</span><span>(<span><span>input<span>: <span class="td-ref">I</span></span></span></span>)<span>: <span class="td-kw">boolean</span></span></span></a></li></ul></div>
+                  <span>validate</span><span>(<span><span>input<span>: <span class="td-ref">I</span></span></span></span>)<span>: <span class="td-kw">boolean</span></span></span></a><div class="namespaceItemContentDoc"><div class="markdown_summary"><p>Performs a synchronous validation check on the input and returns <code>true</code> if the component can safely process it.</p>
+</div></div></li></ul></div>
     </div></div>
 </section>
 </div>
