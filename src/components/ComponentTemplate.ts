@@ -50,7 +50,7 @@ export class ComponentTemplate extends BaseComponent {
 	}
 
 	/**
-	 * @description Performs the component’s internal operation and throws on invalid input.
+	 * @description Performs the component's internal operation and throws on invalid input.
 	 */
 	private doWork(example: unknown): unknown {
 		if (example === "bad") {
