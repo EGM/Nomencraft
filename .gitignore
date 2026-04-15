@@ -3,3 +3,5 @@
 *.lnk
 logs/
 *.log
+# Ignore generated markdown documentation, for now.
+docs-md/

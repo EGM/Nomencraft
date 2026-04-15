@@ -6,5 +6,5 @@
 MD013: false
 # MD033/no-inline-html : Inline HTML : https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md033.md
 MD033:
-  allowed_elements: []
+  allowed_elements: [a]
 MD042: false
