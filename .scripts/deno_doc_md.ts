@@ -181,6 +181,9 @@ async function main() {
 	console.log(
 		`📂 File paths: ${allFilePaths(doc).map(shortenPath).join(", ")}`,
 	);
+	console.log(`Symbols: ${allSymbols(doc).map((s) => s.name).join(", ")}`);
+	console.log(`✅ BaseComponent found: ${allSymbols(doc).some((s) => s.name === "BaseComponent")}`);
+	console.log(`✅ BaseComponent declarations: ${JSON.stringify(allSymbols(doc).filter((s) => s.name === "BaseComponent").flatMap((s) => s.declarations ?? []))}`);
 }
 
 await main().catch((e) => {

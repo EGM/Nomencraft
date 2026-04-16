@@ -98,7 +98,7 @@
       "description": "Runs pattern command with option to set logger to json format"
     },
     "check": {
-      "command": "deno fmt && deno lint && deno test -P=test",
+      "command": "deno fmt src && deno lint src && deno test -P=test src",
       "description": "Runs fmt, lint, and tests with the correct permissions set"
     },
     "dlint": "deno doc --lint src/ ",
