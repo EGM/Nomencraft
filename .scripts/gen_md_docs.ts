@@ -8,27 +8,17 @@ import type {
   DenoDocV2Output,
   DocItem,
   IndexEntry,
-  DocTag, 
-  Signature, 
-  Param, 
-  TypeNode 
-} from "./doc_types.ts";
-import { normalizeData, renderType, extractTags,renderSignature,renderTags,trim } from "./gen_md_docs_helpers.ts";
+} from "./gen_md_docs_types.ts";
+import { normalizeData, renderType, extractTags,renderSignature,renderTags,trim, mdHeader, codeBlock, makeSafeFilename, shortenPath, getKind } from "./gen_md_docs_helpers.ts";
 
-// -----------------------------------------------------------------------------
 // CLI Arguments
-// -----------------------------------------------------------------------------
-
 const [srcDir, outDir] = Deno.args;
 if (!srcDir || !outDir) {
   console.error("Usage: deno run --allow-read --allow-write --allow-run gen_md_docs.ts <srcDir> <outDir>");
   Deno.exit(1);
 }
 
-// -----------------------------------------------------------------------------
 // Deno Doc Execution
-// -----------------------------------------------------------------------------
-
 const cmd = new Deno.Command("deno", {
   args: ["doc", "--json", srcDir],
   stdin: "null",
@@ -55,35 +45,22 @@ try {
   Deno.exit(1);
 }
 
-// -----------------------------------------------------------------------------
-// Normalize Data Structure
-// -----------------------------------------------------------------------------
-
-const data = normalizeData(rawData);
+// Normalize Data Structure - 
+const data: DocItem[] = normalizeData(rawData);
 
 if (data.length === 0) {
   console.error("❌ No documentation items found.");
   Deno.exit(1);
 }
 
-// -----------------------------------------------------------------------------
 // Output Directory Setup
-// -----------------------------------------------------------------------------
-
-// const ensureDir = async (path: string) => {
-//  try { await Deno.mkdir(path, { recursive: true }); } catch {}
-// };
 await ensureDir(outDir);
 
-// -----------------------------------------------------------------------------
-// Utility Functions
-// -----------------------------------------------------------------------------
+// A list to build the index of modules
+export const indexEntries: IndexEntry[] = [];
 
-const mdHeader = (level: number, text: string) => `${"#".repeat(level)} ${text}\n\n`;
-const codeBlock = (lang: string, content: string) => `\`\`\`${lang}\n${content}\n\`\`\`\n\n`;
-
-const indexEntries: IndexEntry[] = [];
-const byModule = new Map<string, DocItem[]>();
+// A map of module/file path to its DocItems
+export const byModule = new Map<string, DocItem[]>();
 
 // Group items by file
 for (const item of data) {
@@ -103,21 +80,10 @@ for (const item of data) {
   byModule.get(filename)!.push(item);
 }
 
-function shortenPath(path: string): string {
-  const parts = path.split("/");
-  const srcIndex = parts.findIndex(p => p === "src");
-  if (srcIndex >= 0) {
-    return parts.slice(srcIndex).join("/");
-  }
-  return path;
-}
+console.log(`✅ Grouped items into ${byModule.size} modules/files.`);
 
 
-function makeSafeFilename(name: string): string {
-  return name.replace(/[:\/\\]/g, "_").replace(/^_+/, "")
-}
-
-// Process each module
+// Process each module, filename is the key, items is the array of DocItems for that module
 for (const [filename, items] of byModule) {
   const safeName = makeSafeFilename(shortenPath(filename));
   const moduleOut = join(outDir, `${safeName}.md`);
@@ -132,7 +98,7 @@ for (const [filename, items] of byModule) {
   out += mdHeader(1, `Module: ${filename}`);
 
   // Module description
-  const modDoc = items.find(i => i.kind === "module");
+  const modDoc = items.find(i => getKind(i) === "module");
   if (modDoc && modDoc.docs) {
     out += `${trim(modDoc.docs)}\n\n`;
   }
@@ -141,24 +107,24 @@ for (const [filename, items] of byModule) {
   if (items.length > 0) {
     out += "**Contents:**\n\n";
     for (const e of items) {
-      const anchor = `${e.name ?? "anonymous"}-${e.kind ?? "item"}`;
-      out += `- [${e.name ?? "(anonymous)"}](#${encodeURIComponent(anchor)}) — ${e.kind ?? "unknown"}\n`;
+      const anchor = `${e.name ?? "anonymous"}-${getKind(e)}`;
+      out += `- [${e.name ?? "(anonymous)"}](#${encodeURIComponent(anchor)}) — ${getKind(e)}\n`;
     }
     out += `\n`;
   }
 
   // Render each item
   for (const item of items) {
-    const anchor = `${item.name ?? "anonymous"}-${item.kind ?? "item"}`;
+    const anchor = `${item.name ?? "anonymous"}-${getKind(item)}`;
     out += `<a id="${anchor}"></a>\n\n`;
-    out += mdHeader(2, `${item.name ?? "(anonymous)"} — ${item.kind ?? "item"}`);
+    out += mdHeader(2, `${item.name ?? "(anonymous)"} — ${getKind(item)}`);
 
     // 1. Documentation
     if (item.docs) {
       out += `${trim(item.docs)}\n\n`;
     } else {
       // Fallback: Check if it's a class with members but no direct docs
-      if (item.kind === "class" && item.members && item.members.length > 0) {
+      if (getKind(item) === "class" && item.members && item.members.length > 0) {
         out += `*(No module-level documentation)*\n\n`;
       }
     }

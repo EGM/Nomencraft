@@ -2,10 +2,16 @@
 export interface DenoDocV2Output {
   version: number;
   nodes: Record<string, {
-    imports?: unknown[];
+    imports?: Import[];
     symbols?: DocItem[];
     [key: string]: unknown;
   }>;
+}
+
+interface Import {
+  importedName: string;
+  originalName: string;
+  src: string;
 }
 
 export interface IndexEntry {

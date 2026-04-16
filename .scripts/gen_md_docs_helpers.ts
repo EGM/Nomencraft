@@ -1,12 +1,35 @@
-import type { DenoDocV2Output, Param, Signature, DocItem, DocTag, TypeNode} from "./gen_md_docs_types.ts";
+// gen_md_docs.ts
+// Usage: deno run --allow-read --allow-write --allow-run gen_md_docs.ts <srcDir> <outDir>
+// Deno 2.7+ compatible. Produces index.md and one .md per module. Renders @context and @agent tags.
+import { join } from "@std/path";
+import { byModule, indexEntries } from "./gen_md_docs.ts";
+import type { DenoDocV2Output, Param, Signature, DocItem, DocTag, TypeNode, IndexEntry} from "./gen_md_docs_types.ts";
 
 export const trim = (s = "") => String(s ?? "").trim();
+export const mdHeader = (level: number, text: string) => `${"#".repeat(level)} ${text}\n\n`;
+export const codeBlock = (lang: string, content: string) => `\`\`\`${lang}\n${content}\n\`\`\`\n\n`;
+
+export const getKind = (item: DocItem): string =>  item.declarations?.[0]?.kind ?? item.kind ?? "unknown" ;
 
 export function extractTags(tags: DocTag[] = [], names: string[]): DocTag[] {
   if (!Array.isArray(tags)) return [];
   return tags.filter((t) => names.includes(t.name));
 }
  
+export function shortenPath(path: string): string {
+  const parts = path.split("/");
+  const srcIndex = parts.findIndex(p => p === "src");
+  if (srcIndex >= 0) {
+    return parts.slice(srcIndex).join("/");
+  }
+  return path;
+}
+
+export function makeSafeFilename(name: string): string {
+  return name.replace(/[:\/\\]/g, "_").replace(/^_+/, "")
+}
+
+// Helper functions to normalize and flatten the DenoDoc output into a more consistent structure for rendering
 export function normalizeData(raw: DenoDocV2Output): DocItem[] {
   const allItems: DocItem[] = [];
 
@@ -47,10 +70,12 @@ export function renderSignature(sig: Signature): string {
   const name = sig.name ?? "";
   return `function ${name}(${params}): ${ret}`;
 }
+
 export function renderTags(tags: DocTag[] = []): string {
   if (!Array.isArray(tags) || tags.length === 0) return "";
   return tags.map(t => `- **@${t.name}** ${trim(t.text)}`).join("\n") + "\n\n";
 }
+
 export function renderType(t: TypeNode | undefined | null): string {
   if (!t) return "unknown";
   if (typeof t === "string") return t;

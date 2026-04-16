@@ -33,7 +33,8 @@
   },
   "lint": {
     "include": [
-      "src/"
+      "src/",
+      ".scripts/"
     ],
     "exclude": [],
     "rules": {
