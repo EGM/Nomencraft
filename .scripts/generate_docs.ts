@@ -2,7 +2,7 @@
 // Usage: deno run --allow-read --allow-write --allow-run generate_docs.ts <srcDir> <outDir>
 // Deno 2.7+ compatible. Produces index.md and one .md per module. Renders @context and @agent tags.
 
-import { dirname, join, basename } from "@std/path";
+import {  join, basename } from "@std/path";
 
 const [srcDir, outDir] = Deno.args;
 if (!srcDir || !outDir) {

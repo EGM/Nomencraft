@@ -1,5 +1,4 @@
 // deno-lint-ignore-file no-explicit-any
-import { normalize } from "@std/path";
 import type {
 	DocDeclaration,
 	DocFileMap,
@@ -7,12 +6,6 @@ import type {
 	JsDoc,
 	JsDocTag,
 } from "./types.ts";
-
-export const trim = (s = "") => String(s ?? "").trim();
-export const mdHeader = (level: number, text: string) =>
-	`${"#".repeat(level)} ${text}\n\n`;
-export const code = (lang: string, c: string) =>
-	`\`\`\`${lang}\n${c}\n\`\`\`\n\n`;
 
 // runtime guard + parse
 export function parseDoc(raw: string): DocFileMap {
@@ -28,24 +21,6 @@ export function parseDoc(raw: string): DocFileMap {
 	}
 	return parsed as DocFileMap;
 }
-
-export function shortenPath(path: string): string {
-	const parts = path.split("/");
-	const srcIndex = parts.findIndex((p) => p === "src");
-	if (srcIndex >= 0) {
-		return parts.slice(srcIndex).join("/");
-	}
-	return path;
-}
-
-export function removeCwd(path: string): string {
-	const cwd = normalize(Deno.cwd());
-	const loc = path.indexOf(cwd);
-	return loc === -1 ? path : path.slice(cwd.length + loc + 1);
-}
-
-export const makeSafeFilename = (name: string): string =>
-	name.replace(/[:\/\\]/g, "_").replace(/^_+/, "");
 
 export function allSymbols(doc: DocFileMap): DocSymbol[] {
 	const out: DocSymbol[] = [];
@@ -75,6 +50,15 @@ export function allFilePaths(doc: DocFileMap): string[] {
 	return Object.keys(doc.nodes);
 }
 
+export const excludeByFilenames = (exclude: string[]) => (sym: DocSymbol) => {
+	if (!sym.declarations) return true; // Keep symbols with no declarations (safe default)
+	return sym.declarations.every((d) => {
+		const filename = d.location?.filename || "";
+		return !exclude.some((substr) => filename.includes(substr));
+	});
+};
+
 export const extractDoc = (dec: DocDeclaration): string => dec.jsDoc?.doc || "";
+
 export const extractDocTags = (dec: DocDeclaration): JsDocTag[] =>
 	dec.jsDoc?.tags || [];

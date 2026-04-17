@@ -28,8 +28,7 @@
     "@std/fs": "jsr:@std/fs@^1.0.23",
     "@std/path": "jsr:@std/path@^1.1.4",
     "@std/semver": "jsr:@std/semver@^1.0.8",
-    "@std/yaml": "jsr:@std/yaml@^1.0.12",
-    "typedoc": "npm:typedoc@^0.28.18"
+    "@std/yaml": "jsr:@std/yaml@^1.0.12"
   },
   "lint": {
     "include": [
@@ -78,6 +77,11 @@
       },
       "read": true,
       "write": true
+    },
+    "docsmd": {
+      "read": true,
+      "write": true,
+      "run": true
     }
   },
   "tasks": {
@@ -102,7 +106,8 @@
       "description": "Runs fmt, lint, and tests with the correct permissions set"
     },
     "dlint": "deno doc --lint src/ ",
-    "docs": "deno doc --html --output=docs-html src/ "
+    "docs:html": "deno doc --html --output=docs-html src/ ",
+    "docs:md": "deno run -P=docsmd src/_meta/deno_docs--markdown.ts src/ docs-md"
   },
   "test": {
     "include": [

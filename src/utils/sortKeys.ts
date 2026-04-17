@@ -1,4 +1,5 @@
 // deno-lint-ignore-file no-explicit-any
+/** Function to sort any object or array, recursively. */
 export function sortKeys(value: any): any {
 	if (Array.isArray(value)) return value.map(sortKeys);
 	if (value && typeof value === "object") {
@@ -10,10 +11,3 @@ export function sortKeys(value: any): any {
 	}
 	return value;
 }
-
-const obj = JSON.parse(Deno.readTextFileSync(`${Deno.cwd()}\\deno_doc.json`));
-const stable = sortKeys(obj);
-Deno.writeTextFileSync(
-	`${Deno.cwd()}\\doc_stable.json`,
-	JSON.stringify(stable, null, 2),
-);
