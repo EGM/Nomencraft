@@ -7,6 +7,40 @@ import type { Result } from "./types.ts";
 import { runPipeline } from "./runPipeline.ts";
 
 /**
+ * @interface
+ * @name Pipeline
+ * @template I
+ * @author John LaDuke
+ * @version 0.0.0-dev
+ * @description todo
+ */
+export interface Pipeline<I> {
+	/**
+	 * @property
+	 * @name components
+	 * @description todo
+	 */
+	components: (PipelineComponent<I, I> & BaseComponent)[];
+	/**
+	 * @name observeWith
+	 * @method
+	 * @param {{ observeComponent(c: BaseComponent): void }} service
+	 * @access public
+	 * @description todo
+	 */
+	observeWith(service: { observeComponent(c: BaseComponent): void }): void;
+	/**
+	 * @name run
+	 * @method
+	 * @param {I} input
+	 * @returns {Promise<Result<I, I>>}
+	 * @access public
+	 * @description todo
+	 */
+	run(input: I): Promise<Result<I, I>>;
+}
+
+/**
  * @name createPipeline
  * @function
  * @param {Array<PipelineComponent<I, I> & BaseComponent>} components
@@ -25,7 +59,7 @@ import { runPipeline } from "./runPipeline.ts";
  */
 export function createPipeline<I>(
 	...components: Array<PipelineComponent<I, I> & BaseComponent>
-) {
+): Pipeline<I> {
 	return {
 		/**
 		 * @name components

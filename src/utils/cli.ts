@@ -67,8 +67,15 @@ const patternCli = new Command()
 		}
 	});
 
+// Dumb thing I added:
+const DenoDocLint = "\u{1F6C7}";
+/** todo */
+// deno-lint-ignore no-explicit-any
+export type DenoDocLintIsDumb = any;
 // Main command line interface
-export const cli = new Command()
+
+/** todo */
+export const cli: DenoDocLintIsDumb = new Command()
 	.name("batch-rename")
 	.description("Batch rename files based on lab data")
 	.argument("<path:string>", "Directory to scan for files (default: .)", {

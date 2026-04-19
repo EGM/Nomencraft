@@ -6,7 +6,8 @@ import {
 } from "./lib/parse-helpers.ts";
 import { docNodeToMarkdown } from "./lib/doc-helpers.ts";
 import { DELIMITER, normalize, resolve, SEPARATOR } from "@std/path";
-import { DocSymbol } from "./lib/types.ts";
+import { DocFileMap, DocNode, DocSymbol } from "./lib/types.ts";
+import { validateToString } from "../utils/validateToString.ts";
 
 // Set up filters, maps, sorts here.
 const notMetaOrTest = excludeByFilenames(["/_meta/", ".test."]);
@@ -43,15 +44,19 @@ async function main() {
 	//cons flt = doc.nodes.map(x => x.nap)
 
 	let markdown = "";
+	let count = 0;
 	for (const [file, node] of Object.entries(doc.nodes)) {
 		for (const symbol of node.symbols.filter(notMetaOrTest)) {
 			markdown += docNodeToMarkdown(node, symbol.name);
+			count++;
 		}
 	}
 
 	await ensureDir(outDir);
 	const docPath = resolve(outDir, "API.md");
-	console.info(`✅ API docs written to: ${docPath}`);
+	console.info(
+		`✅ ${count} symbols have been written to: API docs in ${docPath}`,
+	);
 	await Deno.writeTextFile(docPath, markdown, { create: true });
 	//await Deno.writeTextFile(docPath, JSON.stringify(allSymbols(doc)), {		create: true,	});
 }

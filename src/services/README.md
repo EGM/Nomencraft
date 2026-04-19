@@ -56,27 +56,27 @@ Components emit events, and only `ControllerService` listens to them. No other s
 
 ### Simplified Testing
 
-Supporting services can be tested in isolation.  
+Supporting services can be tested in isolation.\
 `ControllerService` can be tested as a workflow.
 
 ### Extensibility
 
-New services can be added without affecting pipeline orchestration.  
+New services can be added without affecting pipeline orchestration.\
 New components can be added without modifying supporting services.
 
 ### Maintainability
 
 Responsibilities are cleanly divided:
 
-- **ControllerService** = workflow + orchestration  
-- **Supporting services** = domain logic + utilities  
+- **ControllerService** = workflow + orchestration
+- **Supporting services** = domain logic + utilities
 
 ---
 
 ## Summary
 
-- `ControllerService` is the **pipeline orchestrator**.  
-- All other services are **API‑style helpers**.  
-- Only `ControllerService` interacts with components.  
-- Supporting services provide logic, not orchestration.  
+- `ControllerService` is the **pipeline orchestrator**.
+- All other services are **API‑style helpers**.
+- Only `ControllerService` interacts with components.
+- Supporting services provide logic, not orchestration.
 - This separation keeps the system modular, testable, and easy to extend.

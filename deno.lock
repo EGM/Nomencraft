@@ -13,6 +13,7 @@
     "jsr:@cross/utils@0.16": "0.16.0",
     "jsr:@iankulin/logger@^1.1.1": "1.1.1",
     "jsr:@psych/sheet@^1.0.8": "1.0.8",
+    "jsr:@std/assert@*": "1.0.19",
     "jsr:@std/assert@^1.0.19": "1.0.19",
     "jsr:@std/cli@^1.0.28": "1.0.28",
     "jsr:@std/encoding@^1.0.10": "1.0.10",

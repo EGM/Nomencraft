@@ -60,7 +60,7 @@
     "Hidden*"
   ],
   "annotation.behavior": {
-    "mode": "replace" // keep until cleanup is done
+    "mode": "skip" // keep until cleanup is done
   },
   "annotation.global": {
     "authorInfo": "John LaDuke",

@@ -1,6 +1,6 @@
 // src/components/ParseExcelFiles.structure.test.ts
 // deno-lint-ignore-file no-explicit-any
-import "../test_globals.ts";
+import "../_meta/test_globals.ts";
 import { assert, assertEquals } from "@std/assert";
 import { ParseExcelFiles } from "./ParseExcelFiles.ts";
 import { __setImportSheetMock } from "../utils/sheet.ts";

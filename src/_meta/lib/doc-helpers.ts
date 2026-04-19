@@ -1,23 +1,44 @@
 import { DocNode } from "./types.ts";
 
-export const trim = (s = "") => String(s ?? "").trim();
+/** todo */
+export function trim(s = ""): string {
+	return String(s ?? "").trim();
+}
 
-export const mdHeader = (level: number, text: string) =>
-	`${"#".repeat(level)} ${text}\n\n`;
+/** todo */
+export function mdHeader(level: number, text: string): string {
+	return `${"#".repeat(level)} ${text}\n\n`;
+}
 
-export const code = (lang: string, c: string) =>
-	`\`\`\`${lang}\n${c}\n\`\`\`\n\n`;
+/** todo */
+export function code(lang: string, c: string): string {
+	return `\`\`\`${lang}\n${c}\n\`\`\`\n\n`;
+}
 
+/**
+ * @name docNodeToMarkdown
+ * @function
+ * @param {DocNode} node
+ * @param {string} symbolName
+ * @returns {string}
+ * @access public
+ * @description todo
+ */
 export function docNodeToMarkdown(node: DocNode, symbolName: string): string {
+	// 1. Determine the symbol kind and start the section header
 	let md = `## ${symbolName} (${
 		node.symbols[0]?.declarations?.[0]?.kind || "module"
 	})\n\n`;
 
+	// 2. Extract the primary declaration
 	const decl = node.symbols[0]?.declarations?.[0];
+
+	// 3. Add the JSDoc summary/description
 	if (decl?.jsDoc?.doc) {
 		md += `${decl.jsDoc.doc.trim()}\n\n`;
 	}
 
+	// 4. Render JSDoc/custom tags as a list
 	if (decl?.jsDoc?.tags && decl.jsDoc.tags.length > 0) {
 		md += "### Tags\n\n";
 		decl.jsDoc.tags.forEach((tag) => {
@@ -28,6 +49,7 @@ export function docNodeToMarkdown(node: DocNode, symbolName: string): string {
 		md += "\n";
 	}
 
+	// 5. Render constructors
 	const def = decl?.def;
 	if (def?.constructors) {
 		md += "### Constructors\n\n";
@@ -44,6 +66,7 @@ export function docNodeToMarkdown(node: DocNode, symbolName: string): string {
 		md += "\n";
 	}
 
+	// 6. Render properties
 	if (def?.properties) {
 		md += "### Properties\n\n";
 		def.properties.forEach((prop) => {
@@ -55,6 +78,7 @@ export function docNodeToMarkdown(node: DocNode, symbolName: string): string {
 		md += "\n";
 	}
 
+	// 7. Render methods
 	if (def?.methods) {
 		md += "### Methods\n\n";
 		def.methods.forEach((method) => {
@@ -73,5 +97,6 @@ export function docNodeToMarkdown(node: DocNode, symbolName: string): string {
 		md += "\n";
 	}
 
+	// 8. Return the assembled Markdown fragment
 	return md;
 }

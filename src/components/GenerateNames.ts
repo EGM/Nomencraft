@@ -30,14 +30,30 @@ export function findByJobId(
 	jobId: string,
 	items: Array<{ jobId: string }>,
 ): { jobId: string } | null;
+/**
+ * @description Retrieves an item matching the given jobId from arrays with differing identifier shapes.
+ */
 export function findByJobId(
 	jobId: string,
 	items: Array<{ job_id: string }>,
 ): { job_id: string } | null;
+/**
+ * @description Retrieves an item matching the given jobId from arrays with differing identifier shapes.
+ */
 export function findByJobId(
 	jobId: string,
 	items: Array<{ pdfNewName?: string }>,
 ): { pdfNewName?: string } | null;
+/**
+ * @name findByJobId
+ * @function
+ * @param {string} jobId
+ * @param {T[]} items
+ * @returns {T | null}
+ * @access public
+ * @template T
+ * @description todo
+ */
 export function findByJobId<T extends { jobId: string }>(
 	jobId: string,
 	items: T[],

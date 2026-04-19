@@ -27,7 +27,10 @@ export function useState<T>(initialValue: T): [() => T, (newValue: T) => void] {
  * const timer = useInterval(() => console.log("Tick"), 1000);
  * timer.start();
  */
-export function useInterval(callback: () => void, delay: number) {
+export function useInterval(
+	callback: () => void,
+	delay: number,
+): { start: () => void; stop: () => void } {
 	let intervalId: number | null = null;
 
 	const start = () => {
@@ -55,7 +58,7 @@ export function useInterval(callback: () => void, delay: number) {
 export function useFileWatcher(
 	path: string,
 	onChange: (event: Deno.FsEvent) => void,
-) {
+): { start: () => void; stop: () => void } {
 	let watcher: Deno.FsWatcher | null = null;
 
 	const start = async () => {
@@ -87,7 +90,7 @@ export function useEventListener<
 	type: K,
 	handler: (event: Event) => void,
 	options?: boolean | AddEventListenerOptions,
-) {
+): () => void {
 	target.addEventListener(type, handler as EventListener, options);
 	return () =>
 		target.removeEventListener(type, handler as EventListener, options);
@@ -103,7 +106,7 @@ export function useEventListener<
 export function useDebounce<T extends (...args: unknown[]) => void>(
 	callback: T,
 	delay: number,
-) {
+): () => void {
 	let timeoutId: number | null = null;
 
 	return (...args: Parameters<T>) => {
@@ -126,7 +129,7 @@ export function useDebounce<T extends (...args: unknown[]) => void>(
 export function useThrottle<T extends (...args: unknown[]) => void>(
 	callback: T,
 	delay: number,
-) {
+): () => void {
 	let lastCall = 0;
 
 	return (...args: Parameters<T>) => {

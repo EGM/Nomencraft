@@ -35,6 +35,13 @@ export class PatternService extends BaseService {
 	/** Absolute path to the patterns directory. */
 	private patternsDir!: string;
 
+	/**
+	 * @name constructor
+	 * @constructor
+	 * @param {PatternServiceOptions} options
+	 * @access public
+	 * @description Creates and initializes pattern service using options.
+	 */
 	constructor(private options: PatternServiceOptions) {
 		super("PatternService");
 	}

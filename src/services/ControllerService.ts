@@ -26,6 +26,14 @@ import { configDir } from "../utils/configDir.ts";
  * ```
  */
 export class ControllerService extends BaseService {
+	/**
+	 * @name constructor
+	 * @constructor
+	 * @param {ControllerOptions} options
+	 * @param {string} path
+	 * @access public
+	 * @description Initializes ControllerService with the options provided to it.
+	 */
 	constructor(private options: ControllerOptions, private path: string) {
 		super("ControllerService");
 		configDir.init();

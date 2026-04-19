@@ -14,6 +14,7 @@ function ensure<T>(value: T | null | undefined, msg: string): T {
  * @description Manages the application's configuration and pattern directories.
  * @intent Provides a centralized, OS-safe location for storing configuration and pattern files.
  * @see {@link createConfigDir}
+ * @internal
  * @example
  * await configDir.init();
  * console.log(configDir.config);
@@ -53,6 +54,7 @@ class ConfigDir {
 }
 
 // The real singleton used by the CLI
+/** todo */
 export const configDir = new ConfigDir();
 
 /**

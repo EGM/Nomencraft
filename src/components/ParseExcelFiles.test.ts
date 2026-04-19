@@ -1,5 +1,5 @@
 // src/components/ParseExcelFiles.test.ts
-import "../test_globals.ts";
+import "../_meta/test_globals.ts";
 import { assert, assertEquals, assertRejects } from "@std/assert";
 import { ParseExcelFiles } from "./ParseExcelFiles.ts";
 import { __setImportSheetMock } from "../utils/sheet.ts";

@@ -18,7 +18,7 @@ let writeFile: null | FileWriter;
  */
 export const configureLogger = (
 	{ json, quiet, logFilename }: LoggerOptions,
-) => {
+): void => {
 	log = new Logger({
 		level: quiet ? "error" : "debug", // <-- @TODO: Set to "info" when you're done debugging!
 		format: json ? "json" : "simple",
@@ -38,7 +38,7 @@ export const appLog = (
 	message: string,
 	component: string,
 	details?: Record<string, unknown>,
-) => {
+): void => {
 	if (!log) configureLogger({ json: false, quiet: false });
 
 	// Helper to safely stringify complex values

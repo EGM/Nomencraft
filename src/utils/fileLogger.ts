@@ -60,7 +60,7 @@ function resolveLogFilename(logFilename: string): string {
  * @description Creates a logger that writes messages to a versioned log file.
  * @see resolveLogFilename
  */
-export function fileLogger(logFilename: string) {
+export function fileLogger(logFilename: string): (msg: string) => void {
 	const resolved = resolveLogFilename(logFilename);
 
 	return (msg: string) => {
@@ -68,7 +68,10 @@ export function fileLogger(logFilename: string) {
 	};
 }
 
-/** @description Type alias for the file logger factory. */
+/**
+ * @internal
+ * @description Type alias for the file logger factory.
+ */
 type FileLogger = typeof fileLogger;
 
 /** @description Type alias for the logger function returned by fileLogger. */

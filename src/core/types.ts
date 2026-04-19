@@ -57,10 +57,35 @@ export type ControllerOptions = {
  * transformation, and reporting.
  */
 export interface Measurement {
+	/**
+	 * @property
+	 * @name labId
+	 * @description todo
+	 */
 	labId: string;
+	/**
+	 * @property
+	 * @name site
+	 * @description todo
+	 */
 	site: string;
+	/**
+	 * @property
+	 * @name parameter
+	 * @description todo
+	 */
 	parameter: string;
+	/**
+	 * @property
+	 * @name unit
+	 * @description todo
+	 */
 	unit: string;
+	/**
+	 * @property
+	 * @name value
+	 * @description todo
+	 */
 	value: string;
 }
 
@@ -72,10 +97,35 @@ export interface Measurement {
  * @intent Defines the core unit of laboratory data within a parsed job, ensuring consistent structure for downstream processing.
  */
 export interface Sample {
+	/**
+	 * @property
+	 * @name id
+	 * @description todo
+	 */
 	id: string;
+	/**
+	 * @property
+	 * @name site
+	 * @description todo
+	 */
 	site: string;
+	/**
+	 * @property
+	 * @name date
+	 * @description todo
+	 */
 	date: string;
+	/**
+	 * @property
+	 * @name sampledBy
+	 * @description todo
+	 */
 	sampledBy: string;
+	/**
+	 * @property
+	 * @name measurements
+	 * @description todo
+	 */
 	measurements: Measurement[];
 }
 
@@ -88,9 +138,29 @@ export interface Sample {
  * reporting across the pipeline.
  */
 export interface ParsedData {
+	/**
+	 * @property
+	 * @name job_id
+	 * @description todo
+	 */
 	job_id: string;
+	/**
+	 * @property
+	 * @name sample_date
+	 * @description todo
+	 */
 	sample_date: string;
+	/**
+	 * @property
+	 * @name type_code
+	 * @description todo
+	 */
 	type_code: string;
+	/**
+	 * @property
+	 * @name samples
+	 * @description todo
+	 */
 	samples: Sample[];
 }
 
@@ -102,8 +172,23 @@ export interface ParsedData {
  * locate and process related files.
  */
 export interface FilePair {
+	/**
+	 * @property
+	 * @name jobId
+	 * @description todo
+	 */
 	jobId: string;
+	/**
+	 * @property
+	 * @name excelPath
+	 * @description todo
+	 */
 	excelPath: string;
+	/**
+	 * @property
+	 * @name pdfPath
+	 * @description todo
+	 */
 	pdfPath?: string;
 }
 
@@ -116,11 +201,46 @@ export interface FilePair {
  * logging, and downstream processing.
  */
 export interface NamedFile {
+	/**
+	 * @property
+	 * @name originalPath
+	 * @description The original directory of the files being renamed.
+	 */
 	originalPath: string;
+	/**
+	 * @property
+	 * @name newPath
+	 * @description The new path for moved files.
+	 */
 	newPath: string;
+	/**
+	 * @property
+	 * @name typeCode
+	 * @description The pattern that matched the file contents.
+	 */
 	typeCode: string;
+	/**
+	 * @property
+	 * @name typeWord
+	 * @description todo
+	 */
 	typeWord: string;
+	/**
+	 * @property
+	 * @name reason
+	 * @description todo
+	 */
 	reason: string;
+	/**
+	 * @property
+	 * @name pdfPath
+	 * @description The PDF report that accompanies the Excel file.
+	 */
 	pdfPath?: string;
+	/**
+	 * @property
+	 * @name pdfNewName
+	 * @description The newly minted name for the PDF report.
+	 */
 	pdfNewName?: string;
 }
