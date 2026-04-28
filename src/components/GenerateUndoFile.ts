@@ -1,43 +1,80 @@
 // src/components/GenerateUndoFile.ts
-
 import { BaseComponent } from "../core/BaseComponent.ts";
-import type { NamedFile, Result } from "../core/types.ts";
-import * as path from "@std/path";
-import { configDir } from "../utils/configDir.ts";
+import type {
+	FilePair,
+	InputMap,
+	NamedFile,
+	OutputMap,
+	Result,
+} from "../core/types.ts";
 
 /**
- * @description Generates a CSV listing original and new filenames so rename operations can be undone.
- * @see BaseComponent
- * @see Result
+ * @name GenerateUndoFile
+ * @class
+ * @extends BaseComponent
+ * @description
+ * Produces a *pure* undo description based on FilePair + NamedFile.
+ *
+ * This component does NOT know about paths or the filesystem.
+ * It simply describes what would be undone if ActuateFiles performs moves.
+ *
+ * This is intentionally kept as a reference/example component.
  */
 export class GenerateUndoFile extends BaseComponent {
-	/** @description Registers the component name with the BaseComponent lifecycle. */
 	constructor() {
 		super("GenerateUndoFile");
 	}
 
-	/**
-	 * @description Validates input, builds the undo CSV, writes it to the config directory, and stores the output path.
-	 */
-	async process(
-		input: Map<string, unknown>,
-	): Promise<Result<Map<string, unknown>, Map<string, unknown>>> {
+	override async process(
+		input: InputMap,
+	): Promise<Result<InputMap, OutputMap>> {
 		this.started();
 
 		try {
+			const filePairs = input.get("filePairs") as FilePair[] | undefined;
 			const namedFiles = input.get("namedFiles") as
 				| NamedFile[]
 				| undefined;
-			if (!namedFiles) {
-				this.failed(`Missing required field: namedFiles`);
+
+			if (!filePairs || !Array.isArray(filePairs)) {
+				this.failed("Missing or invalid 'filePairs'");
 			}
 
-			const undoContent = this.buildUndoCsv(namedFiles);
+			if (!namedFiles || !Array.isArray(namedFiles)) {
+				this.failed("Missing or invalid 'namedFiles'");
+			}
 
-			const undoPath = path.join(configDir.config, "undo_rename.csv");
-			await Deno.writeTextFile(undoPath, undoContent);
+			if (filePairs.length !== namedFiles.length) {
+				this.failed(
+					`Invariant broken: filePairs (${filePairs.length}) and namedFiles (${namedFiles.length}) must match 1:1`,
+				);
+			}
 
-			input.set("undoFileWritten", undoPath);
+			const undoEntries = [];
+
+			for (let i = 0; i < filePairs.length; i++) {
+				const pair = filePairs[i];
+				const named = namedFiles[i];
+
+				// Pure description of what would be undone
+				undoEntries.push({
+					jobId: pair.jobId,
+					excel: {
+						originalName: pair.excelName,
+						newName: named.newExcelName,
+					},
+					...(pair.pdfName && named.newPdfName
+						? {
+							pdf: {
+								originalName: pair.pdfName,
+								newName: named.newPdfName,
+							},
+						}
+						: {}),
+				});
+			}
+
+			input.set("undoEntries", undoEntries);
 
 			this.finished();
 			return { success: true, value: input };
@@ -45,33 +82,5 @@ export class GenerateUndoFile extends BaseComponent {
 			this.emitError({ failed: this.name, error: err });
 			return { success: false, input, error: String(err) };
 		}
-	}
-
-	/**
-	 * @description Builds CSV content for undo operations, including PDF info when present.
-	 */
-	private buildUndoCsv(namedFiles: NamedFile[]): string {
-		const hasAnyPdf = namedFiles.some((f) => f.pdfPath);
-
-		const header = hasAnyPdf
-			? `"path","original","new","pdfOriginal","pdfNew"`
-			: `"path","original","new"`;
-
-		const lines = namedFiles.map((f) => {
-			const absDir = path.resolve(path.dirname(f.originalPath));
-			const original = path.basename(f.originalPath);
-			const newName = path.basename(f.newPath);
-
-			const base = `"${absDir}","${original}","${newName}"`;
-
-			if (!hasAnyPdf) return base;
-
-			const pdfOriginal = f.pdfPath ? path.basename(f.pdfPath) : "";
-			const pdfNew = f.pdfNewName ?? "";
-
-			return `${base},"${pdfOriginal}","${pdfNew}"`;
-		});
-
-		return [header, ...lines].join("\n");
 	}
 }

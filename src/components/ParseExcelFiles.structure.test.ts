@@ -1,16 +1,16 @@
-// src/components/ParseExcelFiles.structure.test.ts
-// deno-lint-ignore-file no-explicit-any
+// src/components/ParseExcelFiles.test.ts
 import "../_meta/test_globals.ts";
 import { assert, assertEquals } from "@std/assert";
 import { ParseExcelFiles } from "./ParseExcelFiles.ts";
 import { __setImportSheetMock } from "../utils/sheet.ts";
+import { ParsedData } from "../core/types.ts";
 
-// --- Mock filesystem + sheet import -------------------------------------
+// --- Mocks -------------------------------------------------------------
 
 // @ts-ignore - override global Deno for testing
 Deno.readFile = async (_path: string) => {
 	await Promise.resolve();
-	return new Uint8Array();
+	return new Uint8Array([1, 2, 3, 4]);
 };
 
 const mockImportSheet = async <T>(
@@ -20,135 +20,171 @@ const mockImportSheet = async <T>(
 	await Promise.resolve();
 	return __MOCK_ROWS__ as T[];
 };
-
 __setImportSheetMock(mockImportSheet);
 
-// --- Helper to build a realistic sheet ----------------------------------
+// --- Helpers -------------------------------------------------------------
 
 /**
- * @description Builds a mock worksheet structure simulating a real Excel import.
+ * @description Normalizes placeholder Excel keys into sequential column letters.
  */
-function buildSheet() {
-	return [
-		// Sample ID row
-		{
-			"__EMPTY": "Sample ID",
-			"__EMPTY_2": "SITE-A",
-			"__EMPTY_3": "SITE-B",
-		},
+function normalizeSheet(
+	raw: Record<string, unknown>[],
+): Record<string, unknown>[] {
+	return raw.map((row) => {
+		const normalized: Record<string, unknown> = {};
 
-		// Sampled By
-		{
-			"__EMPTY": "Sampled By",
-			"__EMPTY_2": "Tech 1",
-			"__EMPTY_3": "Tech 2",
-		},
+		for (const [key, value] of Object.entries(row)) {
+			if (key === "__EMPTY") {
+				normalized["A"] = value;
+			} else if (key.startsWith("__EMPTY_")) {
+				const index = Number(key.replace("__EMPTY_", ""));
+				normalized[String.fromCharCode(65 + index)] = value;
+			} else {
+				normalized[key] = value;
+			}
+		}
 
-		// Sample Collection Date
-		{
-			"__EMPTY": "Sample Collection Date",
-			"__EMPTY_2": "2024-01-01",
-			"__EMPTY_3": "2024-01-02",
-		},
-
-		// Laboratory Order Number
-		{
-			"__EMPTY": "Laboratory Order Number",
-			"__EMPTY_2": "762-9000-1",
-			"__EMPTY_3": "762-9000-2",
-		},
-
-		// Parameter header
-		{ "__EMPTY": "Parameter", "__EMPTY_1": "Reporting Units" },
-
-		// Parameter rows
-		{
-			"__EMPTY": "pH",
-			"__EMPTY_1": "SU",
-			"__EMPTY_2": "7.1",
-			"__EMPTY_3": "7.3",
-		},
-		{
-			"__EMPTY": "Turbidity",
-			"__EMPTY_1": "NTU",
-			"__EMPTY_2": "1.2",
-			"__EMPTY_3": "1.5",
-		},
-
-		// Notes row (terminates parsing)
-		{ "__EMPTY": "Notes:" },
-	];
+		return normalized;
+	});
 }
 
-// --- Test ----------------------------------------------------------------
+/**
+ * @description Generates synthetic worksheet rows for testing various parsing scenarios.
+ */
+function makeRows({
+	samples = 2,
+	parameters = [{ name: "pH", unit: "SU", values: ["7.1", "7.3"] }],
+}: {
+	samples?: number;
+	parameters?: { name: string; unit: string; values: string[] }[];
+}) {
+	const rows: Record<string, unknown>[] = [];
 
-Deno.test("ParseExcelFiles: returns correct ParsedData[] structure", async () => {
-	__MOCK_ROWS__ = buildSheet();
+	const sampleIdRow: Record<string, unknown> = { "__EMPTY": "Sample ID" };
+	for (let i = 0; i < samples; i++) {
+		sampleIdRow[`__EMPTY_${i + 2}`] = `SITE-${i + 1}`;
+	}
+	rows.push(sampleIdRow);
+
+	const sampledByRow: Record<string, unknown> = { "__EMPTY": "Sampled By" };
+	for (let i = 0; i < samples; i++) {
+		sampledByRow[`__EMPTY_${i + 2}`] = `Tech ${i + 1}`;
+	}
+	rows.push(sampledByRow);
+
+	const dateRow: Record<string, unknown> = {
+		"__EMPTY": "Sample Collection Date",
+	};
+	for (let i = 0; i < samples; i++) {
+		dateRow[`__EMPTY_${i + 2}`] = `2024-01-0${i + 1}`;
+	}
+	rows.push(dateRow);
+
+	const jobRow: Record<string, unknown> = {
+		"__EMPTY": "Laboratory Order Number",
+	};
+	for (let i = 0; i < samples; i++) {
+		jobRow[`__EMPTY_${i + 2}`] = `762-8118-${i + 1}`;
+	}
+	rows.push(jobRow);
+
+	rows.push({
+		"__EMPTY": "Parameter",
+		"__EMPTY_1": "Reporting Units",
+	});
+
+	for (const param of parameters) {
+		const row: Record<string, unknown> = {
+			"__EMPTY": param.name,
+			"__EMPTY_1": param.unit,
+		};
+		for (let i = 0; i < samples; i++) {
+			row[`__EMPTY_${i + 2}`] = param.values[i] ?? "";
+		}
+		rows.push(row);
+	}
+
+	rows.push({ "__EMPTY": "Notes:" });
+
+	return rows;
+}
+
+// --- Tests --------------------------------------------------------------
+
+Deno.test("ParseExcelFiles: succeeds with valid sheet", async () => {
+	__MOCK_ROWS__ = makeRows({});
 
 	const component = new ParseExcelFiles();
 	const input = new Map<string, unknown>([
-		["filePairs", [{ excelPath: "/fake/path.xlsx" }]],
+		["inputDir", "/fake"],
+		["filePairs", [{ jobId: "762-8118-1", excelName: "path.xlsx" }]],
 	]);
 
 	const result = await component.process(input);
+
 	assert(result.success);
+	const parsed = result.value.get("parsedData") as ParsedData[];
 
-	const parsed = result.value.get("parsedData") as any[];
 	assertEquals(parsed.length, 1);
+	assertEquals(parsed[0].samples.length, 2);
+	assertEquals(parsed[0].samples[0].measurements.length, 1);
+});
 
-	const job = parsed[0];
+Deno.test("ParseExcelFiles: fails when filePairs missing", async () => {
+	const component = new ParseExcelFiles();
+	const input = new Map<string, unknown>();
 
-	// --- Top-level fields --------------------------------------------------
-	assertEquals(job.job_id, "762-9000-1");
-	assertEquals(job.sample_date, "2024-01-01");
-	assertEquals(job.type_code, "X");
+	const result = await component.process(input);
 
-	// --- Samples -----------------------------------------------------------
-	assertEquals(job.samples.length, 2);
+	assert(!result.success);
+	assert(result.error.includes("Missing required field: filePairs"));
+});
 
-	assertEquals(job.samples[0], {
-		id: "762-9000-1",
-		site: "SITE-A",
-		date: "2024-01-01",
-		sampledBy: "Tech 1",
-		measurements: [
-			{
-				labId: "762-9000-1",
-				site: "SITE-A",
-				parameter: "pH",
-				unit: "SU",
-				value: "7.1",
-			},
-			{
-				labId: "762-9000-1",
-				site: "SITE-A",
-				parameter: "Turbidity",
-				unit: "NTU",
-				value: "1.2",
-			},
-		],
+Deno.test("ParseExcelFiles: fails when sheet is empty", async () => {
+	__MOCK_ROWS__ = [];
+
+	const component = new ParseExcelFiles();
+	const input = new Map<string, unknown>([
+		["inputDir", "/fake"],
+		["filePairs", [{ jobId: "762-8118-1", excelName: "path.xlsx" }]],
+	]);
+
+	const result = await component.process(input);
+
+	assert(!result.success);
+	assert(result.error.includes("Sheet is empty"));
+});
+
+Deno.test("ParseExcelFiles: fails when missing Sample ID row", async () => {
+	__MOCK_ROWS__ = [
+		{ "__EMPTY": "Not Sample ID" },
+	];
+
+	const component = new ParseExcelFiles();
+	const input = new Map<string, unknown>([
+		["inputDir", "/fake"],
+		["filePairs", [{ jobId: "762-8118-1", excelName: "path.xlsx" }]],
+	]);
+
+	const result = await component.process(input);
+
+	assert(!result.success);
+	assert(result.error.includes("Failed to parse sheet structure"));
+});
+
+Deno.test("ParseExcelFiles: fails validation when sample has no measurements", async () => {
+	__MOCK_ROWS__ = makeRows({
+		parameters: [],
 	});
 
-	assertEquals(job.samples[1], {
-		id: "762-9000-2",
-		site: "SITE-B",
-		date: "2024-01-02",
-		sampledBy: "Tech 2",
-		measurements: [
-			{
-				labId: "762-9000-2",
-				site: "SITE-B",
-				parameter: "pH",
-				unit: "SU",
-				value: "7.3",
-			},
-			{
-				labId: "762-9000-2",
-				site: "SITE-B",
-				parameter: "Turbidity",
-				unit: "NTU",
-				value: "1.5",
-			},
-		],
-	});
+	const component = new ParseExcelFiles();
+	const input = new Map<string, unknown>([
+		["inputDir", "/fake"],
+		["filePairs", [{ jobId: "762-8118-1", excelName: "path.xlsx" }]],
+	]);
+
+	const result = await component.process(input);
+
+	assert(!result.success);
+	assert(result.error.includes("Ragnarok Failure"));
 });

@@ -1,4 +1,5 @@
 // src/components/GenerateNames.ts
+import { resolve } from "@std/path";
 import { BaseComponent } from "../core/BaseComponent.ts";
 import type {
 	FilePair,
@@ -22,7 +23,49 @@ interface PatternConfig {
 }
 
 /**
+ * @description Retrieves an item matching the given jobId from arrays with differing identifier shapes.
+ */
+export function findByJobId(
+	jobId: string,
+	items: Array<{ jobId: string }>,
+): { jobId: string } | null;
+export function findByJobId(
+	jobId: string,
+	items: Array<{ job_id: string }>,
+): { job_id: string } | null;
+export function findByJobId(
+	jobId: string,
+	items: Array<{ pdfNewName?: string }>,
+): { pdfNewName?: string } | null;
+/**
+ * @name findByJobId
+ * @function
+ * @param {string} jobId
+ * @param {T[]} items
+ * @returns {T | null}
+ * @access public
+ * @template T
+ */
+export function findByJobId<T extends { jobId: string }>(
+	jobId: string,
+	items: T[],
+): T | null {
+	for (const item of items) {
+		if ("jobId" in item && item.jobId === jobId) return item;
+		if ("job_id" in item && item.job_id === jobId) return item;
+
+		if ("pdfNewName" in item) {
+			const suffix = jobId.split("-").slice(1).join("-");
+			if (String(item.pdfNewName).includes(`J${suffix}`)) return item;
+		}
+	}
+	return null;
+}
+
+/**
  * @description Applies naming patterns to parsed job data and generates standardized filenames.
+ * @see BaseComponent
+ * @see Result
  */
 export class GenerateNames extends BaseComponent {
 	constructor() {
@@ -41,7 +84,6 @@ export class GenerateNames extends BaseComponent {
 			const patternPath = input.get("patternPath") as string | undefined;
 			const filePairs = input.get("filePairs") as FilePair[] | undefined;
 
-			// Validate inputs
 			if (
 				!parsedList || !Array.isArray(parsedList) ||
 				parsedList.length === 0
@@ -64,17 +106,21 @@ export class GenerateNames extends BaseComponent {
 				);
 			}
 
-			if (filePairs.length !== parsedList.length) {
+			if (filePairs!.length !== parsedList!.length) {
 				this.failed(
-					`Invariant broken: filePairs (${filePairs.length}) and parsedData (${parsedList.length}) must match 1:1`,
+					`Invariant broken: filePairs (${
+						filePairs!.length
+					}) and parsedData (${parsedList!.length}) must match 1:1`,
 				);
 			}
 
 			this.emitDebug(
-				`Received ${parsedList.length} ParsedData entries and ${filePairs.length} filePairs`,
+				`Received ${parsedList!.length} ParsedData entries and ${
+					filePairs!.length
+				} filePairs`,
 			);
 
-			const patterns = await this.loadPatterns(patternPath);
+			const patterns = await this.loadPatterns(patternPath!);
 			if (patterns.length === 0) {
 				this.failed("No patterns loaded. Check pattern path.");
 			}
@@ -83,18 +129,26 @@ export class GenerateNames extends BaseComponent {
 
 			const allNamedFiles: NamedFile[] = [];
 
-			for (let i = 0; i < parsedList.length; i++) {
-				const job = parsedList[i];
-				const filePair = filePairs[i];
-
-				// Hard invariant: job IDs must match
-				if (filePair.jobId !== job.job_id) {
-					this.failed(
-						`Invariant broken: filePair.jobId (${filePair.jobId}) does not match parsed.job_id (${job.job_id})`,
-					);
-				}
+			for (let i = 0; i < parsedList!.length; i++) {
+				const job = parsedList![i];
+				let filePair = filePairs![i];
 
 				this.emitDebug(`Processing job ${job.job_id}`);
+
+				if (filePair.jobId !== job.job_id) {
+					this.emitWarning(
+						`Index mismatch at [${i}]: filePair.jobId=${filePair.jobId}, parsed.job_id=${job.job_id}. Falling back to findByJobId().`,
+					);
+
+					const fallback = findByJobId(job.job_id, filePairs!);
+					if (!fallback) {
+						this.failed(
+							`No filePair found for job_id '${job.job_id}' via fallback. Invariant broken.`,
+						);
+					}
+
+					filePair = fallback as FilePair;
+				}
 
 				const matched = this.findMatchedPattern(job, patterns);
 
@@ -116,8 +170,8 @@ export class GenerateNames extends BaseComponent {
 					);
 				}
 
-				const named = this.generateNames(job, pattern, filePair);
-				allNamedFiles.push(named);
+				const names = this.generateNames(job, pattern, filePair);
+				allNamedFiles.push(...names);
 			}
 
 			input.set("namedFiles", allNamedFiles);
@@ -182,8 +236,9 @@ export class GenerateNames extends BaseComponent {
 		job: ParsedData,
 		pattern: PatternConfig,
 		filePair: FilePair,
-	): NamedFile {
-		const hasPdf = Boolean(filePair.pdfName);
+	): NamedFile[] {
+		const hasPdf = Boolean(filePair.pdfPath);
+		const results: NamedFile[] = [];
 
 		const dateObj = new Date(job.sample_date);
 		const dateStr = dateObj.toISOString().split("T")[0];
@@ -198,32 +253,39 @@ export class GenerateNames extends BaseComponent {
 		}
 
 		const jobSuffix = job.job_id.split("-").slice(1).join("-");
+		//const siteName = job.samples[0]?.site ?? "Unknown";
 		const labName = "EF";
 
-		// Excel name
-		const newExcelName =
+		const excelName =
 			`${dateStr} (${pattern.code}) Lab Report ${labName} WWTP1.xlsx`;
 
-		// PDF name
-		let newPdfName: string | undefined = undefined;
+		const pdfMiddlePart = pattern.code === "D" || pattern.code === "S"
+			? dayOfWeek
+			: pattern.code === "Q"
+			? `Q${Math.ceil((dateObj.getMonth() + 1) / 3)}`
+			: pattern.type_word;
+
+		const pdfName =
+			`${dateStr} ${pdfMiddlePart} Lab ${labName} ${typeWord} J${jobSuffix}.pdf`;
 
 		if (hasPdf) {
-			const pdfMiddlePart = pattern.code === "D" || pattern.code === "S"
-				? dayOfWeek
-				: pattern.code === "Q"
-				? `Q${Math.ceil((dateObj.getMonth() + 1) / 3)}`
-				: pattern.type_word;
-
-			newPdfName =
-				`${dateStr} ${pdfMiddlePart} Lab ${labName} ${typeWord} J${jobSuffix}.pdf`;
+			console.log(
+				`Generated PDF name: ${pdfName} for job ${job.job_id}. Original PDF: ${filePair.pdfPath}`,
+			);
 		}
 
-		return {
-			newExcelName,
+		results.push({
+			originalPath: filePair.excelPath,
+			newPath: excelName,
 			typeCode: pattern.code,
 			typeWord,
 			reason: `Matched pattern: ${pattern.name}`,
-			...(hasPdf && { newPdfName }),
-		};
+			...(hasPdf && {
+				pdfPath: filePair.pdfPath,
+				pdfNewName: pdfName,
+			}),
+		});
+
+		return results;
 	}
 }

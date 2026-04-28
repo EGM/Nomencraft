@@ -2,7 +2,7 @@
 import { assert, assertEquals } from "@std/assert";
 import { ReadFilePairs } from "./ReadFilePairs.ts";
 import * as path from "@std/path";
-import { FilePair } from "../core/types.ts";
+import type { FilePair } from "../core/types.ts";
 
 Deno.test("ReadFilePairs: pairs Excel and PDF files", async () => {
 	const temp = Deno.makeTempDirSync({ prefix: "BRF_", suffix: "_tests" });
@@ -18,7 +18,7 @@ Deno.test("ReadFilePairs: pairs Excel and PDF files", async () => {
 	}
 
 	const component = new ReadFilePairs();
-	const input = new Map<string, unknown>([["dirPath", temp]]);
+	const input = new Map<string, unknown>([["inputDir", temp]]);
 
 	const result = await component.process(input);
 
@@ -30,16 +30,23 @@ Deno.test("ReadFilePairs: pairs Excel and PDF files", async () => {
 
 	const jobIds = pairs.map((p: FilePair) => p.jobId).sort();
 	assertEquals(jobIds, ["123-4567-8", "555-9999-1"]);
+
+	// sanity: excelName/pdfName are just basenames
+	const excelNames = pairs.map((p) => p.excelName).sort();
+	assertEquals(excelNames, [
+		"123-4567-8_FLPivot.xlsx",
+		"555-9999-1_FLPivot.xlsx",
+	]);
 });
 
-Deno.test("ReadFilePairs: missing PDF produces undefined pdfPath", async () => {
+Deno.test("ReadFilePairs: missing PDF produces undefined pdfName", async () => {
 	const temp = Deno.makeTempDirSync({ prefix: "BRF_", suffix: "_tests" });
 
 	const excel = path.join(temp, "123-4567-8_FLPivot.xlsx");
 	Deno.writeTextFileSync(excel, "");
 
 	const component = new ReadFilePairs();
-	const input = new Map<string, unknown>([["dirPath", temp]]);
+	const input = new Map<string, unknown>([["inputDir", temp]]);
 
 	const result = await component.process(input);
 
@@ -48,22 +55,23 @@ Deno.test("ReadFilePairs: missing PDF produces undefined pdfPath", async () => {
 
 	assertEquals(pairs.length, 1);
 	assertEquals(pairs[0].jobId, "123-4567-8");
-	assertEquals(pairs[0].pdfPath, undefined);
+	assertEquals(pairs[0].excelName, "123-4567-8_FLPivot.xlsx");
+	assertEquals(pairs[0].pdfName, undefined);
 });
 
-Deno.test("ReadFilePairs: fails when dirPath missing", async () => {
+Deno.test("ReadFilePairs: fails when inputDir missing", async () => {
 	const component = new ReadFilePairs();
 	const input = new Map<string, unknown>();
 
 	const result = await component.process(input);
 
 	assert(!result.success);
-	assert(result.error.includes("dirPath"));
+	assert(result.error.includes("inputDir"));
 });
 
 Deno.test("ReadFilePairs: fails when directory does not exist", async () => {
 	const component = new ReadFilePairs();
-	const input = new Map<string, unknown>([["dirPath", "/no/such/path"]]);
+	const input = new Map<string, unknown>([["inputDir", "/no/such/path"]]);
 
 	const result = await component.process(input);
 

@@ -1,6 +1,6 @@
 // src/components/ParseExcelFiles.test.ts
 import "../_meta/test_globals.ts";
-import { assert, assertEquals, assertRejects } from "@std/assert";
+import { assert, assertEquals } from "@std/assert";
 import { ParseExcelFiles } from "./ParseExcelFiles.ts";
 import { __setImportSheetMock } from "../utils/sheet.ts";
 import { ParsedData } from "../core/types.ts";
@@ -114,11 +114,10 @@ function makeRows({
 Deno.test("ParseExcelFiles: succeeds with valid sheet", async () => {
 	__MOCK_ROWS__ = makeRows({});
 
-	console.log("MOCK ROWS:", __MOCK_ROWS__);
-
 	const component = new ParseExcelFiles();
 	const input = new Map<string, unknown>([
-		["filePairs", [{ excelPath: "/fake/path.xlsx" }]],
+		["inputDir", "/fake"],
+		["filePairs", [{ jobId: "762-8118-1", excelName: "path.xlsx" }]],
 	]);
 
 	const result = await component.process(input);
@@ -146,7 +145,8 @@ Deno.test("ParseExcelFiles: fails when sheet is empty", async () => {
 
 	const component = new ParseExcelFiles();
 	const input = new Map<string, unknown>([
-		["filePairs", [{ excelPath: "/fake/path.xlsx" }]],
+		["inputDir", "/fake"],
+		["filePairs", [{ jobId: "762-8118-1", excelName: "path.xlsx" }]],
 	]);
 
 	const result = await component.process(input);
@@ -162,7 +162,8 @@ Deno.test("ParseExcelFiles: fails when missing Sample ID row", async () => {
 
 	const component = new ParseExcelFiles();
 	const input = new Map<string, unknown>([
-		["filePairs", [{ excelPath: "/fake/path.xlsx" }]],
+		["inputDir", "/fake"],
+		["filePairs", [{ jobId: "762-8118-1", excelName: "path.xlsx" }]],
 	]);
 
 	const result = await component.process(input);
@@ -178,7 +179,8 @@ Deno.test("ParseExcelFiles: fails validation when sample has no measurements", a
 
 	const component = new ParseExcelFiles();
 	const input = new Map<string, unknown>([
-		["filePairs", [{ excelPath: "/fake/path.xlsx" }]],
+		["inputDir", "/fake"],
+		["filePairs", [{ jobId: "762-8118-1", excelName: "path.xlsx" }]],
 	]);
 
 	const result = await component.process(input);

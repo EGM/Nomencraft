@@ -1,4 +1,5 @@
 // src/components/ReadFilePairs.ts
+import { basename, join } from "@std/path";
 import { existsSync } from "@std/fs";
 import { BaseComponent } from "../core/BaseComponent.ts";
 import type { PipelineComponent } from "../core/PipelineComponent.ts";
@@ -9,11 +10,8 @@ import type { FilePair, InputMap, OutputMap, Result } from "../core/types.ts";
  * @class
  * @extends BaseComponent
  * @implements {PipelineComponent<InputMap, OutputMap>}
- * @description Scans a directory for Excel and PDF files, extracts job IDs from Excel filenames,
+ * @description Scans a directory for Excel and PDF files, extracts job IDs from filenames,
  * and produces paired `FilePair` objects linking each Excel file to its corresponding PDF when available.
- *
- * NOTE: This component is intentionally impure — it interacts with the filesystem.
- * It produces *pure* FilePair objects containing only names, not paths.
  */
 export class ReadFilePairs extends BaseComponent
 	implements PipelineComponent<InputMap, OutputMap> {
@@ -53,57 +51,42 @@ export class ReadFilePairs extends BaseComponent
 			this.failed(`Directory not found: ${dirPath}`);
 		}
 
-		const excelNames: string[] = [];
-		const pdfNames: string[] = [];
+		const excelFiles: string[] = [];
+		const pdfFiles: string[] = [];
 
 		for await (const entry of Deno.readDir(dirPath)) {
 			if (!entry.isFile) continue;
+			const fullPath = join(dirPath, entry.name);
 
-			const name = entry.name;
-
-			if (this.matches(name, "*_FLPivot.xlsx")) {
-				excelNames.push(name);
-			} else if (this.matches(name, "*UDS Level 2 Report*.pdf")) {
-				pdfNames.push(name);
+			if (this.matches(entry.name, "*_FLPivot.xlsx")) {
+				excelFiles.push(fullPath);
+			} else if (this.matches(entry.name, "*UDS Level 2 Report*.pdf")) {
+				pdfFiles.push(fullPath);
 			}
 		}
 
 		this.emitDebug(
-			`Found ${excelNames.length} Excel and ${pdfNames.length} PDF files`,
+			`Found ${excelFiles.length} Excel and ${pdfFiles.length} PDF files`,
 		);
 
-		// Map jobId → pdfName (but jobId comes ONLY from Excel)
 		const pdfMap = new Map<string, string>();
-
-		for (const pdfName of pdfNames) {
-			// We do NOT extract job IDs from PDFs anymore.
-			// PDFs are matched only if their jobId matches an Excel jobId.
-			// So we temporarily store them by name and match later.
-			pdfMap.set(pdfName, pdfName);
+		for (const pdf of pdfFiles) {
+			const jobId = this.extractJobId(basename(pdf));
+			if (jobId) pdfMap.set(jobId, pdf);
 		}
 
 		const pairs: FilePair[] = [];
-
-		for (const excelName of excelNames) {
-			const jobId = this.extractJobId(excelName);
-
+		for (const excel of excelFiles) {
+			const jobId = this.extractJobId(basename(excel));
 			if (!jobId) {
-				this.emitWarning(`Could not extract Job ID from: ${excelName}`);
+				this.emitWarning(`Could not extract Job ID from: ${excel}`);
 				continue;
 			}
 
-			// Find a PDF whose name contains the jobId
-			const pdfName = [...pdfMap.keys()].find((pdf) =>
-				pdf.includes(jobId)
-			);
+			const pdfPath = pdfMap.get(jobId);
+			pairs.push({ excelPath: excel, pdfPath, jobId });
 
-			pairs.push({
-				jobId,
-				excelName,
-				pdfName,
-			});
-
-			if (!pdfName) {
+			if (!pdfPath) {
 				this.emitWarning(`No matching PDF for Job ID: ${jobId}`);
 			}
 		}
@@ -117,15 +100,16 @@ export class ReadFilePairs extends BaseComponent
 		return regex.test(filename);
 	}
 
-	/**
-	 * Extracts job ID ONLY from Excel filenames.
-	 * Example: "762-7832-1_FLPivot.xlsx" → "762-7832-1"
-	 */
 	private extractJobId(filename: string): string | null {
 		const excelMatch = filename.match(
 			/^(\d{3}-\d{4,5}-\d)_FLPivot\.xlsx$/i,
 		);
 
-		return excelMatch ? excelMatch[1] : null;
+		if (excelMatch) return excelMatch[1];
+
+		const pdfMatch = filename.match(/^J(\d{4}-\d)\s+/i);
+		if (pdfMatch) return `762-${pdfMatch[1]}`;
+
+		return null;
 	}
 }

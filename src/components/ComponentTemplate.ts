@@ -1,5 +1,5 @@
 import { BaseComponent } from "../core/BaseComponent.ts";
-import type { Result } from "../core/types.ts";
+import type { InputMap, OutputMap, Result } from "../core/types.ts";
 
 /**
  * @description Template component demonstrating the expected lifecycle pattern for new components.
@@ -22,16 +22,16 @@ export class ComponentTemplate extends BaseComponent {
 	/**
 	 * @description Validates input, performs work, mutates the blackboard, and returns a structured Result.
 	 */
-	async process(
-		input: Map<string, unknown>,
-	): Promise<Result<Map<string, unknown>, Map<string, unknown>>> {
+	override async process(
+		input: InputMap,
+	): Promise<Result<InputMap, OutputMap>> {
 		this.started();
 
 		try {
 			// 1. Validate input
 			const example = input.get("exampleKey");
 			if (!example) {
-				this.failed(`Missing required field: exampleKey`);
+				this.failed("Missing required field: exampleKey");
 			}
 
 			// 2. Perform work (may throw)

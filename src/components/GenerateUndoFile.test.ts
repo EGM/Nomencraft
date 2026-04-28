@@ -1,91 +1,142 @@
-// tests/GenerateUndoFile.test.ts
+// components/GenerateUndoFile.test.ts
 
-import { assertEquals } from "@std/assert";
+import { assert, assertEquals } from "@std/assert";
 import { GenerateUndoFile } from "./GenerateUndoFile.ts";
-import type { NamedFile } from "../core/types.ts";
-import * as path from "@std/path";
+import type { FilePair, NamedFile } from "../core/types.ts";
 
-Deno.test("GenerateUndoFile - no PDFs", () => {
+Deno.test("GenerateUndoFile - no PDFs", async () => {
 	const component = new GenerateUndoFile();
+
+	const filePairs: FilePair[] = [
+		{
+			jobId: "762-8118-1",
+			excelName: "a.xlsx",
+		},
+	];
 
 	const namedFiles: NamedFile[] = [
 		{
-			originalPath: "/tmp/a.xlsx",
-			newPath: "/tmp/a_new.xlsx",
+			newExcelName: "a_new.xlsx",
 			typeCode: "A",
 			typeWord: "Annual",
 			reason: "Test",
 		},
 	];
 
-	const csv = (component as GenerateUndoFile)
-		// @ts-ignore - testing private method
-		.buildUndoCsv(namedFiles);
+	const input = new Map<string, unknown>([
+		["filePairs", filePairs],
+		["namedFiles", namedFiles],
+	]);
 
-	const expected = [
-		`"path","original","new"`,
-		`"${path.resolve("/tmp")}","a.xlsx","a_new.xlsx"`,
-	].join("\n");
+	const result = await component.process(input);
 
-	assertEquals(csv, expected);
+	assert(result.success);
+	const undoEntries = result.value.get("undoEntries") as unknown[];
+
+	assert(Array.isArray(undoEntries));
+	assertEquals(undoEntries.length, 1);
+
+	const entry = undoEntries[0] as any;
+	assertEquals(entry.jobId, "762-8118-1");
+	assertEquals(entry.excel.originalName, "a.xlsx");
+	assertEquals(entry.excel.newName, "a_new.xlsx");
+	assertEquals(entry.pdf, undefined);
 });
 
-Deno.test("GenerateUndoFile - mixed PDFs", () => {
+Deno.test("GenerateUndoFile - mixed PDFs", async () => {
 	const component = new GenerateUndoFile();
+
+	const filePairs: FilePair[] = [
+		{
+			jobId: "762-8118-1",
+			excelName: "a.xlsx",
+		},
+		{
+			jobId: "762-8118-2",
+			excelName: "b.xlsx",
+			pdfName: "b.pdf",
+		},
+	];
 
 	const namedFiles: NamedFile[] = [
 		{
-			originalPath: "/tmp/a.xlsx",
-			newPath: "/tmp/a_new.xlsx",
+			newExcelName: "a_new.xlsx",
 			typeCode: "A",
 			typeWord: "Annual",
 			reason: "Test",
 		},
 		{
-			originalPath: "/tmp/b.xlsx",
-			newPath: "/tmp/b_new.xlsx",
+			newExcelName: "b_new.xlsx",
+			newPdfName: "b_new.pdf",
 			typeCode: "D",
 			typeWord: "Daily",
 			reason: "Test",
-			pdfPath: "/tmp/b.pdf",
-			pdfNewName: "b_new.pdf",
 		},
 	];
 
-	const csv = (component as GenerateUndoFile)
-		// @ts-ignore - testing private method
-		.buildUndoCsv(namedFiles);
+	const input = new Map<string, unknown>([
+		["filePairs", filePairs],
+		["namedFiles", namedFiles],
+	]);
 
-	const expected = [
-		`"path","original","new","pdfOriginal","pdfNew"`,
-		`"${path.resolve("/tmp")}","a.xlsx","a_new.xlsx","",""`,
-		`"${path.resolve("/tmp")}","b.xlsx","b_new.xlsx","b.pdf","b_new.pdf"`,
-	].join("\n");
+	const result = await component.process(input);
 
-	assertEquals(csv, expected);
+	assert(result.success);
+	const undoEntries = result.value.get("undoEntries") as unknown[];
+
+	assert(Array.isArray(undoEntries));
+	assertEquals(undoEntries.length, 2);
+
+	const first = undoEntries[0] as any;
+	assertEquals(first.jobId, "762-8118-1");
+	assertEquals(first.excel.originalName, "a.xlsx");
+	assertEquals(first.excel.newName, "a_new.xlsx");
+	assertEquals(first.pdf, undefined);
+
+	const second = undoEntries[1] as any;
+	assertEquals(second.jobId, "762-8118-2");
+	assertEquals(second.excel.originalName, "b.xlsx");
+	assertEquals(second.excel.newName, "b_new.xlsx");
+	assertEquals(second.pdf.originalName, "b.pdf");
+	assertEquals(second.pdf.newName, "b_new.pdf");
 });
 
-Deno.test("GenerateUndoFile - quoting paths with spaces", () => {
+Deno.test("GenerateUndoFile - mismatched lengths fails", async () => {
 	const component = new GenerateUndoFile();
+
+	const filePairs: FilePair[] = [
+		{
+			jobId: "762-8118-1",
+			excelName: "a.xlsx",
+		},
+	];
 
 	const namedFiles: NamedFile[] = [
 		{
-			originalPath: "/tmp/folder with space/a.xlsx",
-			newPath: "/tmp/folder with space/a_new.xlsx",
+			newExcelName: "a_new.xlsx",
 			typeCode: "A",
 			typeWord: "Annual",
 			reason: "Test",
 		},
+		{
+			newExcelName: "extra.xlsx",
+			typeCode: "X",
+			typeWord: "Extra",
+			reason: "Should fail",
+		},
 	];
 
-	const csv = (component as GenerateUndoFile)
-		// @ts-ignore - testing private method
-		.buildUndoCsv(namedFiles);
+	const input = new Map<string, unknown>([
+		["filePairs", filePairs],
+		["namedFiles", namedFiles],
+	]);
 
-	const expected = [
-		`"path","original","new"`,
-		`"${path.resolve("/tmp/folder with space")}","a.xlsx","a_new.xlsx"`,
-	].join("\n");
+	const result = await component.process(input);
 
-	assertEquals(csv, expected);
+	assert(!result.success);
+	assert(
+		String(result.error).includes(
+			"filePairs (1) and namedFiles (2) must match 1:1",
+		),
+	);
 });

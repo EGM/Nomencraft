@@ -1,5 +1,4 @@
 // src/components/ParseExcelFiles.ts
-import { join } from "@std/path";
 import { importSheet, ImportTypes } from "../utils/sheet.ts";
 import { BaseComponent } from "../core/BaseComponent.ts";
 import type {
@@ -16,9 +15,6 @@ import type {
  * @class
  * @extends BaseComponent
  * @description Parses all Excel files listed in `filePairs` and extracts structured laboratory sample data.
- *
- * NOTE: This component is intentionally impure — it reads files from disk.
- * It reconstructs full paths using inputDir + excelName.
  */
 export class ParseExcelFiles extends BaseComponent {
 	constructor() {
@@ -36,18 +32,15 @@ export class ParseExcelFiles extends BaseComponent {
 				this.failed("Missing required field: filePairs");
 			}
 
-			const inputDir = input.get("inputDir");
-			if (typeof inputDir !== "string") {
-				this.failed("Missing or invalid 'inputDir' in input map");
-			}
-
 			const parsedResults: ParsedData[] = [];
 
 			for (const pair of filePairs as FilePair[]) {
-				// Construct full path here (correct place)
-				const excelPath = join(inputDir, pair.excelName);
+				if (!pair.excelPath) {
+					this.emitWarning("Skipping file pair with no excelPath");
+					continue;
+				}
 
-				const parsed = await this.parseFile(excelPath);
+				const parsed = await this.parseFile(pair.excelPath);
 				if (parsed) parsedResults.push(parsed);
 			}
 
