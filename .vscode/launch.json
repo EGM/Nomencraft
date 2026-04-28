@@ -25,6 +25,57 @@
         "docs-md"
       ],
       "attachSimplePort": 9229
+    },
+    {
+      "request": "launch",
+      "name": "Launch Test Docs",
+      "type": "node",
+      "program": "${workspaceFolder}/src/_meta/DocMd.ts",
+      "cwd": "${workspaceFolder}",
+      "env": {},
+      "runtimeExecutable": "C:\\Users\\John\\.deno\\bin\\deno.EXE",
+      "runtimeArgs": [
+        "run",
+        "--unstable",
+        "--config",
+        "./deno.json",
+        "--inspect-wait",
+        "--allow-all"
+      ],
+      "args": [
+        "src/**/*.ts",
+        "-o",
+        "out_folder",
+        "-e",
+        "test"
+      ],
+      "attachSimplePort": 9229
+    },
+    {
+      "request": "launch",
+      "name": "Launch Nomencraft",
+      "type": "node",
+      "program": "${workspaceFolder}/src/main.ts",
+      "cwd": "${workspaceFolder}",
+      "env": {},
+      "runtimeExecutable": "C:\\Users\\John\\.deno\\bin\\deno.EXE",
+      "runtimeArgs": [
+        "run",
+        "--unstable",
+        "--config",
+        "./deno.json",
+        "--inspect-wait",
+        // "--allow-all",
+        "-P"
+      ],
+      "args": [
+        ".research/products",
+        "--log",
+        "./log/log.log",
+        "--pattern",
+        "patterns"
+      ],
+      "attachSimplePort": 9229
     }
   ]
 }
