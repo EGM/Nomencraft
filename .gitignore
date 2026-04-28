@@ -5,3 +5,5 @@ logs/
 *.log
 # Ignore generated markdown documentation, for now.
 docs-md/
+# Tools I don't have time for right now.
+.scripts/

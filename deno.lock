@@ -37,7 +37,9 @@
     "jsr:@std/semver@^1.0.8": "1.0.8",
     "jsr:@std/streams@^1.0.17": "1.0.17",
     "jsr:@std/text@^1.0.17": "1.0.17",
+    "jsr:@std/yaml@^1.0.6": "1.1.0",
     "jsr:@std/yaml@^1.1.0": "1.1.0",
+    "jsr:@tmpl/core@~0.6.3": "0.6.3",
     "npm:@types/node@*": "24.2.0",
     "npm:hyparquet@1.5.0": "1.5.0"
   },
@@ -214,6 +216,12 @@
     },
     "@std/yaml@1.1.0": {
       "integrity": "fc1c5c63e05c4c5eb6118355f557958035d41940d6c29d35b306ef7155d6edb0"
+    },
+    "@tmpl/core@0.6.3": {
+      "integrity": "d4b0311a4607247ab319a051d9a60085d6693bffe747cdfbcc50ffa75d7225bc",
+      "dependencies": [
+        "jsr:@std/yaml@^1.0.6"
+      ]
     }
   },
   "npm": {
@@ -241,7 +249,8 @@
       "jsr:@std/fs@^1.0.23",
       "jsr:@std/path@^1.1.4",
       "jsr:@std/semver@^1.0.8",
-      "jsr:@std/yaml@^1.1.0"
+      "jsr:@std/yaml@^1.1.0",
+      "jsr:@tmpl/core@~0.6.3"
     ]
   }
 }

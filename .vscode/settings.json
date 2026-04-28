@@ -34,6 +34,7 @@
     "Orthophosphate",
     "Principia",
     "repr",
+    "strikethrough",
     "therapize",
     "Trichloroethane",
     "Validatable",
@@ -48,9 +49,11 @@
     "docsmd",
     "iankulin",
     "lfirst",
+    "paletted",
     "reallyfinal",
     "replayable",
-    "stdlib"
+    "stdlib",
+    "tmpl"
   ],
   // TODO Tree settings
   "todoSidebar.activeFile": "./docs/TODO.md",
