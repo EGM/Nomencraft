@@ -1,4 +1,6 @@
 // src/core/BaseComponent.ts
+import { InputMap, OutputMap, Result } from "./types.ts";
+
 /**
  * @name BaseComponent
  * @class
@@ -41,6 +43,8 @@ export abstract class BaseComponent extends EventTarget {
 		super();
 		this.name = name;
 	}
+
+	abstract process(input: InputMap): Promise<Result<InputMap, OutputMap>>;
 
 	/**
 	 * @name emitDebug

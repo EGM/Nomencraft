@@ -1,6 +1,7 @@
 // src/core/BaseService.ts
 import { appLog } from "../utils/logger.ts";
-import type { LogEntry, Result } from "./types.ts";
+import { BaseComponent } from "./BaseComponent.ts";
+import type { InputMap, LogEntry, OutputMap, Result } from "./types.ts";
 
 /**
  * @name BaseService
@@ -25,6 +26,7 @@ import type { LogEntry, Result } from "./types.ts";
  * }
  * ```
  */
+
 export abstract class BaseService {
 	/**
 	 * @property
@@ -122,24 +124,44 @@ export abstract class BaseService {
 	 * @description Wraps a successful operation result in a standardized `Result` object.
 	 * @intent Provides a consistent success return shape for all service operations, simplifying downstream handling.
 	 */
-	protected ok<I, O>(input: I, value: O): Result<I, O> {
-		return { success: true, value };
+	protected ok(value: unknown): Result<InputMap, OutputMap> {
+		// If it's already a Map<string, unknown>, pass it through
+		if (value instanceof Map) {
+			return { success: true, value };
+		}
+
+		// If it's a plain object, convert to Map<string, unknown>
+		if (value && typeof value === "object") {
+			const map = new Map<string, unknown>(
+				Object.entries(value as Record<string, unknown>),
+			);
+			return { success: true, value: map };
+		}
+
+		// Anything else (string, number, undefined, null)
+		// Wrap it in a Map under a generic key
+		return {
+			success: true,
+			value: new Map([["value", value]]),
+		};
 	}
 
 	/**
 	 * @name fail
 	 * @method
-	 * @param {I} input
 	 * @param {string | Error} error
-	 * @returns {Result<I, never>}
+	 * @param {InputMap} input
+	 * @returns {Result<InputMap, never>}
 	 * @access protected
-	 * @template I
 	 * @description Wraps a failure result in a standardized `Result`` object without throwing.
 	 * @intent Allows services to return controlled failures while avoiding exceptions, enabling predictable error handling patterns.
 	 */
-	protected fail<I>(input: I, error: string | Error): Result<I, never> {
+	protected fail(
+		error: string | Error,
+		input: InputMap,
+	): Result<InputMap, never> {
 		const msg = error instanceof Error ? error.message : error;
-		return { success: false, input, error: msg };
+		return { success: false as const, input, error: msg };
 	}
 
 	/**
@@ -178,7 +200,7 @@ export abstract class BaseService {
 	 * @description Executes the full service lifecycle: initialization, execution, cleanup, and structured error handling.
 	 * @intent Centralizes the service execution flow so derived classes only implement execute() while inheriting consistent lifecycle behavior.
 	 */
-	async run(): Promise<Result<void, unknown>> {
+	async run(): Promise<Result<InputMap, OutputMap>> {
 		try {
 			await this.onInit?.();
 			this.log("info", "Starting service execution");
@@ -193,7 +215,9 @@ export abstract class BaseService {
 			const msg = err instanceof Error ? err.message : String(err);
 			this.log("error", "Service crashed", { error: msg });
 			await this.onCleanup?.();
-			return { success: false as const, input: undefined, error: msg };
+			//return { success: false as const, input: undefined, error: msg };
+			// catastrophic failure: no blackboard available
+			return this.fail(msg, new Map());
 		}
 	}
 
@@ -205,5 +229,67 @@ export abstract class BaseService {
 	 * @description Abstract method representing the core operation of the service.
 	 * @intent Forces derived services to define their primary behavior while relying on the base class for lifecycle and logging.
 	 */
-	protected abstract execute(): Promise<Result<void, unknown>>;
+	protected abstract execute(): Promise<Result<InputMap, OutputMap>>;
 }
+
+//Proposed Changes:
+/*
+interface BaseServiceResult<T> {
+  success: boolean;          // true = no catastrophic failures
+  fatal: boolean;            // true = unrecoverable system error
+  errors: ServiceError[];    // validation + operational errors
+  data: T;                   // service-specific payload
+}
+
+interface ServiceError {
+  type: "validation" | "operation" | "fatal";
+  message: string;
+  file?: string;
+  cause?: unknown;
+}
+
+abstract class BaseService<TOptions, TResult> {
+  protected options: TOptions;
+
+  async run(): Promise<BaseServiceResult<TResult>> {
+    try {
+      const validation = await this.validate();
+      if (validation.errors.length > 0) {
+        return {
+          success: true,          // validation failures are NOT catastrophic
+          fatal: false,
+          errors: validation.errors,
+          data: validation.data,
+        };
+      }
+
+      const execution = await this.execute();
+      return {
+        success: !execution.catastrophic,
+        fatal: false,
+        errors: execution.errors,
+        data: execution.data,
+      };
+
+    } catch (err) {
+      return {
+        success: false,
+        fatal: true,
+        errors: [{ type: "fatal", message: "Fatal service error", cause: err }],
+        data: null as any,
+      };
+    }
+  }
+
+  protected abstract validate(): Promise<{
+    errors: ServiceError[];
+    data: any;
+  }>;
+
+  protected abstract execute(): Promise<{
+    catastrophic: boolean;
+    errors: ServiceError[];
+    data: any;
+  }>;
+}
+*/
