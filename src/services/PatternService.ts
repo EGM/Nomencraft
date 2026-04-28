@@ -1,55 +1,26 @@
+// src/services/PatternService.ts
 import { basename, join } from "@std/path";
 import { BaseService } from "../core/BaseService.ts";
-import type { Result } from "../core/types.ts";
+import type { InputMap, OutputMap, Result } from "../core/types.ts";
 import { configDir } from "../utils/configDir.ts";
 import * as YAML from "@std/yaml";
 import { exists } from "@std/fs";
 
-/**
- * Options for configuring PatternService actions.
- */
 export interface PatternServiceOptions {
-	/** The action to perform on patterns. */
 	action: "list" | "info" | "validate" | "add" | null;
-
-	/** The logical pattern name (without extension). */
 	name?: string;
-
-	/** Source file path when adding a new pattern. */
 	file?: string;
-
-	/** Whether to overwrite an existing pattern when adding. */
 	force: boolean;
 }
 
-/**
- * @description Service for listing, inspecting, validating, and adding pattern files.
- * @intent Provides a service-layer abstraction for pattern operations, keeping file logic out of controllers and components.
- * @see {@link BaseService}
- * @example
- * const svc = new PatternService({ action: "list", force: false });
- * const result = await svc.run();
- * if (result.success) console.log(result.value);
- */
 export class PatternService extends BaseService {
-	/** Absolute path to the patterns directory. */
 	private patternsDir!: string;
 
-	/**
-	 * @name constructor
-	 * @constructor
-	 * @param {PatternServiceOptions} options
-	 * @access public
-	 * @description Creates and initializes pattern service using options.
-	 */
 	constructor(private options: PatternServiceOptions) {
 		super("PatternService");
 	}
 
-	/**
-	 * Executes the selected pattern action.
-	 */
-	protected override async execute(): Promise<Result<void, unknown>> {
+	protected override async execute(): Promise<Result<InputMap, OutputMap>> {
 		this.patternsDir = configDir.patterns;
 
 		const { action, name, file, force } = this.options;
@@ -59,25 +30,22 @@ export class PatternService extends BaseService {
 				return await this.listPatterns();
 
 			case "info":
-				if (!name) return this.fail(undefined, "Missing pattern name");
+				if (!name) return this.fail("Missing pattern name", new Map());
 				return await this.getPatternInfo(name);
 
 			case "validate":
-				if (!name) return this.fail(undefined, "Missing pattern name");
+				if (!name) return this.fail("Missing pattern name", new Map());
 				return await this.validatePattern(name);
 
 			case "add":
-				if (!file) return this.fail(undefined, "Missing file path");
+				if (!file) return this.fail("Missing file path", new Map());
 				return await this.addPattern(file, force);
 
 			default:
-				return this.fail(undefined, `Unknown action: ${action}`);
+				return this.fail(`Unknown action: ${action}`, new Map());
 		}
 	}
 
-	/**
-	 * Checks whether a file exists at the given path.
-	 */
 	private async fileExists(path: string): Promise<boolean> {
 		try {
 			await Deno.stat(path);
@@ -87,16 +55,8 @@ export class PatternService extends BaseService {
 		}
 	}
 
-	/**
-	 * Finds all pattern files matching the given logical name.
-	 */
 	private async findAllPatternFiles(name: string): Promise<string[]> {
-		const candidates = [
-			`${name}.yaml`,
-			`${name}.yml`,
-			`${name}.json`,
-		];
-
+		const candidates = [`${name}.yaml`, `${name}.yml`, `${name}.json`];
 		const results: string[] = [];
 
 		for (const file of candidates) {
@@ -109,10 +69,7 @@ export class PatternService extends BaseService {
 		return results;
 	}
 
-	/**
-	 * Returns all unique logical pattern names in the patterns directory.
-	 */
-	private async listPatterns(): Promise<Result<void, string[]>> {
+	private async listPatterns(): Promise<Result<InputMap, OutputMap>> {
 		try {
 			const names: string[] = [];
 
@@ -137,34 +94,33 @@ export class PatternService extends BaseService {
 			}
 
 			const unique = [...new Set(names)];
-			return this.ok(undefined, unique);
+			return this.ok(new Map([["patterns", unique]]));
 		} catch (err) {
 			return this.fail(
-				undefined,
-				err instanceof Error ? err : String(err),
+				err instanceof Error ? err.message : String(err),
+				new Map(),
 			);
 		}
 	}
 
-	/**
-	 * Loads and parses a pattern file, returning its contents.
-	 */
-	private async getPatternInfo(name: string): Promise<Result<void, unknown>> {
+	private async getPatternInfo(
+		name: string,
+	): Promise<Result<InputMap, OutputMap>> {
 		const matches = await this.findAllPatternFiles(name);
 
 		if (matches.length === 0) {
-			return this.fail(undefined, `Pattern '${name}' not found`);
+			return this.fail(`Pattern '${name}' not found`, new Map());
 		}
 
 		if (matches.length > 1) {
 			return this.fail(
-				undefined,
 				[
 					`Multiple pattern files found for '${name}':`,
 					...matches.map((m) => `  - ${basename(m)}`),
 					"",
-					"I can't guess which one you meant. Please clean up duplicates.",
+					"Clean up duplicates and try again.",
 				].join("\n"),
+				new Map(),
 			);
 		}
 
@@ -175,34 +131,34 @@ export class PatternService extends BaseService {
 			const parsed = path.endsWith(".json")
 				? JSON.parse(raw)
 				: YAML.parse(raw);
-			return this.ok(undefined, parsed);
+
+			return this.ok(new Map([["pattern", parsed]]));
 		} catch (err) {
 			return this.fail(
-				undefined,
-				err instanceof Error ? err : String(err),
+				err instanceof Error ? err.message : String(err),
+				new Map(),
 			);
 		}
 	}
 
-	/**
-	 * Validates that a pattern file exists and contains valid YAML or JSON.
-	 */
-	private async validatePattern(name: string): Promise<Result<void, string>> {
+	private async validatePattern(
+		name: string,
+	): Promise<Result<InputMap, OutputMap>> {
 		const matches = await this.findAllPatternFiles(name);
 
 		if (matches.length === 0) {
-			return this.fail(undefined, `Pattern '${name}' not found`);
+			return this.fail(`Pattern '${name}' not found`, new Map());
 		}
 
 		if (matches.length > 1) {
 			return this.fail(
-				undefined,
 				[
 					`Multiple pattern files found for '${name}':`,
 					...matches.map((m) => `  - ${basename(m)}`),
 					"",
-					"Validate WHICH one? Clean up duplicates and try again.",
+					"Clean up duplicates and try again.",
 				].join("\n"),
+				new Map(),
 			);
 		}
 
@@ -210,59 +166,56 @@ export class PatternService extends BaseService {
 
 		try {
 			const raw = await Deno.readTextFile(path);
+
 			if (path.endsWith(".json")) {
 				JSON.parse(raw);
 			} else {
 				YAML.parse(raw);
 			}
 
-			return this.ok(undefined, "Pattern is valid");
+			return this.ok(new Map([["message", "Pattern is valid"]]));
 		} catch (err) {
 			return this.fail(
-				undefined,
 				`Invalid pattern: ${
 					err instanceof Error ? err.message : String(err)
 				}`,
+				new Map(),
 			);
 		}
 	}
 
-	/**
-	 * Copies a pattern file into the patterns directory, optionally overwriting.
-	 */
 	private async addPattern(
 		file: string,
 		force: boolean,
-	): Promise<Result<void, string>> {
+	): Promise<Result<InputMap, OutputMap>> {
 		try {
 			const base = basename(file);
 			const dest = join(this.patternsDir, base);
 
-			const isFile = await exists(dest);
+			const existsAlready = await exists(dest);
 
-			if (!force && isFile) {
+			if (!force && existsAlready) {
 				return this.fail(
-					undefined,
 					`Pattern '${base}' already exists. Use --force to overwrite.`,
+					new Map(),
 				);
 			}
 
-			if (force && isFile) {
+			if (force && existsAlready) {
 				await Deno.remove(dest);
 			}
 
 			await Deno.copyFile(file, dest);
 
-			return this.ok(
-				undefined,
-				isFile && force
-					? `Pattern '${base}' overwritten`
-					: `Pattern '${base}' added`,
-			);
+			const message = existsAlready && force
+				? `Pattern '${base}' overwritten`
+				: `Pattern '${base}' added`;
+
+			return this.ok(new Map([["message", message]]));
 		} catch (err) {
 			return this.fail(
-				undefined,
-				err instanceof Error ? err : String(err),
+				err instanceof Error ? err.message : String(err),
+				new Map(),
 			);
 		}
 	}

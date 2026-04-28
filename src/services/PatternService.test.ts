@@ -65,7 +65,7 @@ Deno.test("PatternService: list, info, validate, add", async (t) => {
 		const result = await svc.run();
 
 		assert(result.success);
-		assertEquals(result.value, ["invoice"]);
+		assertEquals(result.value.get("patterns"), ["invoice"]);
 	});
 
 	// ------------------------------------------------------------
@@ -101,7 +101,10 @@ Deno.test("PatternService: list, info, validate, add", async (t) => {
 
 			assert(!result.success);
 			assertStringIncludes(result.error, "Multiple pattern files found");
-			assertStringIncludes(result.error, "Validate WHICH one");
+			assertStringIncludes(
+				result.error,
+				"Clean up duplicates and try again.",
+			);
 		},
 	);
 

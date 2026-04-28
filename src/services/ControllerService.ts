@@ -6,8 +6,15 @@ import { ReadFilePairs } from "../components/ReadFilePairs.ts";
 import { BaseComponent } from "../core/BaseComponent.ts";
 import { BaseService } from "../core/BaseService.ts";
 import { createPipeline } from "../core/createPipeline.ts";
-import { ControllerOptions, Result } from "../core/types.ts";
+import {
+	ControllerOptions,
+	InputMap,
+	OutputMap,
+	Result,
+} from "../core/types.ts";
 import { configDir } from "../utils/configDir.ts";
+import { ShowData } from "../components/ShowData.ts";
+import { ActuateFiles } from "../components/ActuateFiles.ts";
 
 /**
  * @name ControllerService
@@ -44,7 +51,7 @@ export class ControllerService extends BaseService {
 	 * @method
 	 * @param {BaseComponent} component
 	 * @access public
-	 * @description Subscribes to all lifecycle and diagnostic events emitted by a
+	 * @description Subscribes to lifecycle and diagnostic events emitted by a
 	 * pipeline component and forwards them to the service’s logging system.
 	 * @intent Provides centralized, consistent logging for every component in the
 	 * pipeline, enabling traceability, debugging, and structured diagnostics.
@@ -64,25 +71,12 @@ export class ControllerService extends BaseService {
 			const detail = (e as CustomEvent).detail;
 			this.log("error", JSON.stringify(detail));
 		});
-
-		component.addEventListener("started", () => {
-			this.log("info", `Started ${component.name}`);
-		});
-
-		component.addEventListener("finished", () => {
-			this.log("info", `Finished ${component.name}`);
-		});
-
-		component.addEventListener("failed", (e: Event) => {
-			const detail = (e as CustomEvent).detail;
-			this.log("error", `Failed ${component.name}: ${detail.error}`);
-		});
 	}
 
 	/**
 	 * @name execute
 	 * @method
-	 * @returns {Promise<Result<void>>}
+	 * @returns {Promise<Result<InputMap, OutputMap>>}
 	 * @access protected
 	 * @description Builds the blackboard, constructs the pipeline, attaches
 	 * observers, executes the pipeline, and interprets the final Result.
@@ -90,11 +84,14 @@ export class ControllerService extends BaseService {
 	 * pipeline results are normalized into the standard Result type and that
 	 * failures propagate cleanly to callers.
 	 */
-	protected async execute(): Promise<Result<void, void>> {
-		const board = new Map<string, unknown>();
-		board.set("dirPath", this.path);
+	protected override async execute(): Promise<Result<InputMap, OutputMap>> {
+		const board: InputMap = new Map();
+		board.set("inputDir", this.path); //changed from "dirPath", so input
 		board.set("mode", this.options.mode);
-		board.set("outputDir", this.options.outputDir);
+
+		const outputDir = this.options.outputDir ?? this.path;
+		board.set("outputDir", outputDir);
+
 		board.set(
 			"patternPath",
 			join(configDir.config, "patterns", `${this.options.pattern}.yaml`),
@@ -105,6 +102,8 @@ export class ControllerService extends BaseService {
 			new ParseExcelFiles(),
 			new GenerateNames(),
 			new GenerateUndoFile(),
+			new ShowData(),
+			new ActuateFiles(this.options.mode), //<-- Why does this have a parameter, when none of the other ones do?
 		);
 
 		pipeline.observeWith(this);
@@ -112,11 +111,15 @@ export class ControllerService extends BaseService {
 		const result = await pipeline.run(board);
 
 		if (!result.success) {
-			return this.fail(undefined, result.error);
+			// propagate the blackboard state from the pipeline failure
+			return this.fail(result.error, result.input);
 		}
 
-		const obj = Object.fromEntries(result.value.entries());
+		const showData = result.value.get("showData");
+		if (showData !== undefined) {
+			this.log("info", JSON.stringify(showData));
+		}
 
-		return this.ok(undefined, undefined);
+		return this.ok(result.value);
 	}
 }
