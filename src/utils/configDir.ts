@@ -1,5 +1,5 @@
 import { dir } from "@cross/dir";
-import { ensureDir } from "@std/fs/ensure-dir";
+import { ensureDir } from "@std/fs";
 import { join } from "@std/path";
 
 /**
