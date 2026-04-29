@@ -9,11 +9,13 @@ Deno.test("ReadFilePairs: pairs Excel and PDF files", async () => {
 
 	const excel1 = path.join(temp, "123-4567-8_FLPivot.xlsx");
 	const excel2 = path.join(temp, "555-9999-1_FLPivot.xlsx");
+	const excel3 = path.join(temp, "850-1762-1_FLPivot.xlsx");
 
-	const pdf1 = path.join(temp, "J4567-8 UDS Level 2 Report.pdf");
-	const pdf2 = path.join(temp, "J9999-1 UDS Level 2 Report.pdf");
+	const pdf1 = path.join(temp, "J4567-8 UDS Level 2 Report Final Report.pdf");
+	const pdf2 = path.join(temp, "J1238-1 UDS Level 2 Report Final Report.pdf");
+	const pdf3 = path.join(temp, "J9999-1 UDS Level 2 Report Final Report.pdf");
 
-	for (const f of [excel1, excel2, pdf1, pdf2]) {
+	for (const f of [excel1, excel2, excel3, pdf1, pdf2, pdf3]) {
 		Deno.writeTextFileSync(f, "");
 	}
 
@@ -26,16 +28,25 @@ Deno.test("ReadFilePairs: pairs Excel and PDF files", async () => {
 	const out = result.value;
 	const pairs = out.get("filePairs") as Array<FilePair>;
 	assert(Array.isArray(pairs));
-	assertEquals(pairs.length, 2);
+	assertEquals(pairs.length, 3);
+
+	console.debug(pairs);
 
 	const jobIds = pairs.map((p: FilePair) => p.jobId).sort();
-	assertEquals(jobIds, ["123-4567-8", "555-9999-1"]);
+	assertEquals(jobIds, ["123-4567-8", "555-9999-1", "850-1762-1"]);
 
 	// sanity: excelName/pdfName are just basenames
 	const excelNames = pairs.map((p) => p.excelName).sort();
 	assertEquals(excelNames, [
 		"123-4567-8_FLPivot.xlsx",
 		"555-9999-1_FLPivot.xlsx",
+		"850-1762-1_FLPivot.xlsx",
+	]);
+	const pdfNames = pairs.map((p) => p.pdfName).sort();
+	assertEquals(pdfNames, [
+		"J4567-8 UDS Level 2 Report Final Report.pdf",
+		"J9999-1 UDS Level 2 Report Final Report.pdf",
+		undefined,
 	]);
 });
 

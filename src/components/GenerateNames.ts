@@ -207,7 +207,7 @@ export class GenerateNames extends BaseComponent {
 
 		// Excel name
 		const newExcelName =
-			`${dateStr} (${pattern.code}) Lab Report ${labName} WWTP1.xlsx`;
+			`${dateStr} (${pattern.code}) Lab Report EF WWTP1.xlsx`;
 
 		// PDF name
 		let newPdfName: string | undefined = undefined;
@@ -220,7 +220,9 @@ export class GenerateNames extends BaseComponent {
 				: pattern.type_word;
 
 			newPdfName =
-				`${dateStr} ${pdfMiddlePart} Lab ${labName} ${typeWord} J${jobSuffix}.pdf`;
+				`${dateStr} Lab ${labName} ${pdfMiddlePart} J${jobSuffix}.pdf`;
+			//2026-02-19 Lab EF Weekly J8586-1 <----- right
+			//2026-04-22 Wed Lab EF Daily J9140-1 <-- wrong
 		}
 
 		return {

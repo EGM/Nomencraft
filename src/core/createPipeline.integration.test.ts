@@ -2,14 +2,18 @@ import { assert, assertEquals } from "@std/assert";
 import { copy, exists } from "@std/fs";
 import { ControllerService } from "../services/ControllerService.ts";
 import { ControllerOptions, InputMap } from "./types.ts";
+import * as path from "@std/path";
 
 Deno.test("Full pipeline: valid folder produces expected output", async () => {
 	// 1. Arrange: create temp folder
 	const dir = Deno.makeTempDirSync({ prefix: "BRF_", suffix: "_tests" });
 
 	// 2. Arrange: copy real Excel files into temp folder
-	const sourceDir =
-		"C:/Users/John/source/repos/Nomencraft/.research/products";
+	const sourceDir = path.join(
+		Deno.cwd(),
+		".research",
+		"products",
+	);
 	await copy(sourceDir, dir, { overwrite: true });
 
 	// 3. Arrange: instantiate the real orchestrator

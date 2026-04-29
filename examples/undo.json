@@ -1,0 +1,1478 @@
+[
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-02-13 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-02-13 Lab EF Fri J80668-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-02-13 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-02-13 Lab EF Fri J80668-1.pdf",
+      "excelSource": "670-80668-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-02-13 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J80668-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-02-13 Lab EF Fri J80668-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-02-27 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-02-27 Lab EF Fri J81730-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-02-27 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-02-27 Lab EF Fri J81730-1.pdf",
+      "excelSource": "670-81730-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-02-27 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J81730-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-02-27 Lab EF Fri J81730-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-06 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-06 Lab EF Fri J82336-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-06 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-06 Lab EF Fri J82336-1.pdf",
+      "excelSource": "670-82336-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-06 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J82336-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-06 Lab EF Fri J82336-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-13 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "file": {
+      "newExcelName": "2026-03-13 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "excelSource": "670-82929-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-13 (D) Lab Report EF WWTP1.xlsx"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-17 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-17 Lab EF Tue J83123-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-17 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-17 Lab EF Tue J83123-1.pdf",
+      "excelSource": "670-83123-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-17 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J83123-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-17 Lab EF Tue J83123-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-20 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-20 Lab EF Fri J83428-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-20 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-20 Lab EF Fri J83428-1.pdf",
+      "excelSource": "670-83428-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-20 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J83428-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-20 Lab EF Fri J83428-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-27 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-27 Lab EF Fri J83876-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-27 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-27 Lab EF Fri J83876-1.pdf",
+      "excelSource": "670-83876-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-27 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J83876-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-27 Lab EF Fri J83876-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-03 (X) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-03 Lab EF Unknown J84409-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-03 (X) Lab Report EF WWTP1.xlsx",
+      "typeCode": "X",
+      "typeWord": "Unknown",
+      "reason": "Matched pattern: Unknown",
+      "newPdfName": "2026-04-03 Lab EF Unknown J84409-1.pdf",
+      "excelSource": "670-84409-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-03 (X) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J84409-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-03 Lab EF Unknown J84409-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-10 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "file": {
+      "newExcelName": "2026-04-10 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "excelSource": "670-85098-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-10 (D) Lab Report EF WWTP1.xlsx"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-17 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-17 Lab EF Fri J85734-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-17 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-17 Lab EF Fri J85734-1.pdf",
+      "excelSource": "670-85734-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-17 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J85734-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-17 Lab EF Fri J85734-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-01-22 (W) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-01-22 Lab EF Weekly J8338-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-01-22 (W) Lab Report EF WWTP1.xlsx",
+      "typeCode": "W",
+      "typeWord": "Weekly",
+      "reason": "Matched pattern: Weekly",
+      "newPdfName": "2026-01-22 Lab EF Weekly J8338-1.pdf",
+      "excelSource": "762-8338-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-01-22 (W) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8338-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-01-22 Lab EF Weekly J8338-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-02-18 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-02-18 Lab EF Wed J8574-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-02-18 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-02-18 Lab EF Wed J8574-1.pdf",
+      "excelSource": "762-8574-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-02-18 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8574-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-02-18 Lab EF Wed J8574-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-02-23 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-02-23 Lab EF Mon J8602-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-02-23 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-02-23 Lab EF Mon J8602-1.pdf",
+      "excelSource": "762-8602-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-02-23 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8602-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-02-23 Lab EF Mon J8602-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-02-21 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-02-21 Lab EF Sat J8603-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-02-21 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-02-21 Lab EF Sat J8603-1.pdf",
+      "excelSource": "762-8603-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-02-21 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8603-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-02-21 Lab EF Sat J8603-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-02-22 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-02-22 Lab EF Sun J8604-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-02-22 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-02-22 Lab EF Sun J8604-1.pdf",
+      "excelSource": "762-8604-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-02-22 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8604-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-02-22 Lab EF Sun J8604-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-02-24 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-02-24 Lab EF Tue J8620-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-02-24 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-02-24 Lab EF Tue J8620-1.pdf",
+      "excelSource": "762-8620-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-02-24 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8620-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-02-24 Lab EF Tue J8620-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-02-25 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-02-25 Lab EF Wed J8636-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-02-25 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-02-25 Lab EF Wed J8636-1.pdf",
+      "excelSource": "762-8636-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-02-25 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8636-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-02-25 Lab EF Wed J8636-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-02-26 (W) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-02-26 Lab EF Weekly J8649-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-02-26 (W) Lab Report EF WWTP1.xlsx",
+      "typeCode": "W",
+      "typeWord": "Weekly",
+      "reason": "Matched pattern: Weekly",
+      "newPdfName": "2026-02-26 Lab EF Weekly J8649-1.pdf",
+      "excelSource": "762-8649-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-02-26 (W) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8649-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-02-26 Lab EF Weekly J8649-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-02-26 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-02-26 Lab EF Thu J8650-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-02-26 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-02-26 Lab EF Thu J8650-1.pdf",
+      "excelSource": "762-8650-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-02-26 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8650-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-02-26 Lab EF Thu J8650-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-02 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-02 Lab EF Mon J8666-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-02 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-02 Lab EF Mon J8666-1.pdf",
+      "excelSource": "762-8666-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-02 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8666-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-02 Lab EF Mon J8666-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-02-28 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-02-28 Lab EF Sat J8667-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-02-28 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-02-28 Lab EF Sat J8667-1.pdf",
+      "excelSource": "762-8667-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-02-28 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8667-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-02-28 Lab EF Sat J8667-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-01 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-01 Lab EF Sun J8668-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-01 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-01 Lab EF Sun J8668-1.pdf",
+      "excelSource": "762-8668-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-01 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8668-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-01 Lab EF Sun J8668-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-03 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-03 Lab EF Tue J8678-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-03 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-03 Lab EF Tue J8678-1.pdf",
+      "excelSource": "762-8678-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-03 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8678-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-03 Lab EF Tue J8678-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-04 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-04 Lab EF Wed J8695-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-04 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-04 Lab EF Wed J8695-1.pdf",
+      "excelSource": "762-8695-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-04 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8695-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-04 Lab EF Wed J8695-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-04 (V) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-04 Lab EF MLVSS J8697-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-04 (V) Lab Report EF WWTP1.xlsx",
+      "typeCode": "V",
+      "typeWord": "MLVSS",
+      "reason": "Matched pattern: MLVSS",
+      "newPdfName": "2026-03-04 Lab EF MLVSS J8697-1.pdf",
+      "excelSource": "762-8697-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-04 (V) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8697-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-04 Lab EF MLVSS J8697-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-05 (W) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-05 Lab EF Weekly J8715-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-05 (W) Lab Report EF WWTP1.xlsx",
+      "typeCode": "W",
+      "typeWord": "Weekly",
+      "reason": "Matched pattern: Weekly",
+      "newPdfName": "2026-03-05 Lab EF Weekly J8715-1.pdf",
+      "excelSource": "762-8715-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-05 (W) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8715-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-05 Lab EF Weekly J8715-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-05 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "file": {
+      "newExcelName": "2026-03-05 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "excelSource": "762-8716-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-05 (D) Lab Report EF WWTP1.xlsx"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-05 (M) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-05 Lab EF Monthly J8717-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-05 (M) Lab Report EF WWTP1.xlsx",
+      "typeCode": "M",
+      "typeWord": "Monthly",
+      "reason": "Matched pattern: Monthly",
+      "newPdfName": "2026-03-05 Lab EF Monthly J8717-1.pdf",
+      "excelSource": "762-8717-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-05 (M) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8717-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-05 Lab EF Monthly J8717-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-09 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-09 Lab EF Mon J8728-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-09 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-09 Lab EF Mon J8728-1.pdf",
+      "excelSource": "762-8728-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-09 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8728-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-09 Lab EF Mon J8728-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-07 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-07 Lab EF Sat J8729-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-07 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-07 Lab EF Sat J8729-1.pdf",
+      "excelSource": "762-8729-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-07 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8729-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-07 Lab EF Sat J8729-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-08 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-08 Lab EF Sun J8730-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-08 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-08 Lab EF Sun J8730-1.pdf",
+      "excelSource": "762-8730-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-08 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8730-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-08 Lab EF Sun J8730-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-10 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-10 Lab EF Tue J8740-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-10 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-10 Lab EF Tue J8740-1.pdf",
+      "excelSource": "762-8740-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-10 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8740-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-10 Lab EF Tue J8740-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-11 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-11 Lab EF Wed J8756-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-11 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-11 Lab EF Wed J8756-1.pdf",
+      "excelSource": "762-8756-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-11 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8756-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-11 Lab EF Wed J8756-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-12 (W) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-12 Lab EF Weekly J8768-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-12 (W) Lab Report EF WWTP1.xlsx",
+      "typeCode": "W",
+      "typeWord": "Weekly",
+      "reason": "Matched pattern: Weekly",
+      "newPdfName": "2026-03-12 Lab EF Weekly J8768-1.pdf",
+      "excelSource": "762-8768-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-12 (W) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8768-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-12 Lab EF Weekly J8768-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-12 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-12 Lab EF Thu J8769-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-12 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-12 Lab EF Thu J8769-1.pdf",
+      "excelSource": "762-8769-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-12 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8769-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-12 Lab EF Thu J8769-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-16 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-16 Lab EF Mon J8789-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-16 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-16 Lab EF Mon J8789-1.pdf",
+      "excelSource": "762-8789-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-16 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8789-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-16 Lab EF Mon J8789-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-14 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-14 Lab EF Sat J8790-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-14 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-14 Lab EF Sat J8790-1.pdf",
+      "excelSource": "762-8790-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-14 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8790-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-14 Lab EF Sat J8790-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-15 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-15 Lab EF Sun J8791-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-15 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-15 Lab EF Sun J8791-1.pdf",
+      "excelSource": "762-8791-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-15 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8791-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-15 Lab EF Sun J8791-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-18 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-18 Lab EF Wed J8833-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-18 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-18 Lab EF Wed J8833-1.pdf",
+      "excelSource": "762-8833-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-18 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8833-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-18 Lab EF Wed J8833-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-18 (V) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-18 Lab EF MLVSS J8835-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-18 (V) Lab Report EF WWTP1.xlsx",
+      "typeCode": "V",
+      "typeWord": "MLVSS",
+      "reason": "Matched pattern: MLVSS",
+      "newPdfName": "2026-03-18 Lab EF MLVSS J8835-1.pdf",
+      "excelSource": "762-8835-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-18 (V) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8835-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-18 Lab EF MLVSS J8835-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-19 (W) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-19 Lab EF Weekly J8842-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-19 (W) Lab Report EF WWTP1.xlsx",
+      "typeCode": "W",
+      "typeWord": "Weekly",
+      "reason": "Matched pattern: Weekly",
+      "newPdfName": "2026-03-19 Lab EF Weekly J8842-1.pdf",
+      "excelSource": "762-8842-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-19 (W) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8842-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-19 Lab EF Weekly J8842-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-19 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-19 Lab EF Thu J8843-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-19 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-19 Lab EF Thu J8843-1.pdf",
+      "excelSource": "762-8843-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-19 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8843-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-19 Lab EF Thu J8843-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-23 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-23 Lab EF Mon J8851-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-23 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-23 Lab EF Mon J8851-1.pdf",
+      "excelSource": "762-8851-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-23 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8851-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-23 Lab EF Mon J8851-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-21 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-21 Lab EF Sat J8852-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-21 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-21 Lab EF Sat J8852-1.pdf",
+      "excelSource": "762-8852-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-21 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8852-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-21 Lab EF Sat J8852-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-22 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-22 Lab EF Sun J8853-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-22 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-22 Lab EF Sun J8853-1.pdf",
+      "excelSource": "762-8853-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-22 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8853-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-22 Lab EF Sun J8853-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-24 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-24 Lab EF Tue J8869-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-24 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-24 Lab EF Tue J8869-1.pdf",
+      "excelSource": "762-8869-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-24 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8869-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-24 Lab EF Tue J8869-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-25 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-25 Lab EF Wed J8892-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-25 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-25 Lab EF Wed J8892-1.pdf",
+      "excelSource": "762-8892-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-25 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8892-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-25 Lab EF Wed J8892-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-26 (W) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-26 Lab EF Weekly J8905-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-26 (W) Lab Report EF WWTP1.xlsx",
+      "typeCode": "W",
+      "typeWord": "Weekly",
+      "reason": "Matched pattern: Weekly",
+      "newPdfName": "2026-03-26 Lab EF Weekly J8905-1.pdf",
+      "excelSource": "762-8905-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-26 (W) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8905-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-26 Lab EF Weekly J8905-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-26 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-26 Lab EF Thu J8906-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-26 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-26 Lab EF Thu J8906-1.pdf",
+      "excelSource": "762-8906-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-26 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8906-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-26 Lab EF Thu J8906-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-30 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-30 Lab EF Mon J8914-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-30 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-30 Lab EF Mon J8914-1.pdf",
+      "excelSource": "762-8914-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-30 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8914-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-30 Lab EF Mon J8914-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-28 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-28 Lab EF Sat J8915-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-28 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-28 Lab EF Sat J8915-1.pdf",
+      "excelSource": "762-8915-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-28 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8915-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-28 Lab EF Sat J8915-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-29 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-29 Lab EF Sun J8916-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-29 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-29 Lab EF Sun J8916-1.pdf",
+      "excelSource": "762-8916-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-29 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8916-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-29 Lab EF Sun J8916-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-03-31 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-03-31 Lab EF Tue J8924-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-03-31 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-03-31 Lab EF Tue J8924-1.pdf",
+      "excelSource": "762-8924-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-03-31 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8924-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-03-31 Lab EF Tue J8924-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-01 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-01 Lab EF Wed J8941-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-01 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-01 Lab EF Wed J8941-1.pdf",
+      "excelSource": "762-8941-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-01 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8941-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-01 Lab EF Wed J8941-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-02 (W) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-02 Lab EF Weekly J8955-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-02 (W) Lab Report EF WWTP1.xlsx",
+      "typeCode": "W",
+      "typeWord": "Weekly",
+      "reason": "Matched pattern: Weekly",
+      "newPdfName": "2026-04-02 Lab EF Weekly J8955-1.pdf",
+      "excelSource": "762-8955-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-02 (W) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8955-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-02 Lab EF Weekly J8955-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-02 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-02 Lab EF Thu J8956-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-02 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-02 Lab EF Thu J8956-1.pdf",
+      "excelSource": "762-8956-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-02 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8956-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-02 Lab EF Thu J8956-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-02 (M) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-02 Lab EF Monthly J8959-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-02 (M) Lab Report EF WWTP1.xlsx",
+      "typeCode": "M",
+      "typeWord": "Monthly",
+      "reason": "Matched pattern: Monthly",
+      "newPdfName": "2026-04-02 Lab EF Monthly J8959-1.pdf",
+      "excelSource": "762-8959-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-02 (M) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8959-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-02 Lab EF Monthly J8959-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-06 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-06 Lab EF Mon J8972-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-06 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-06 Lab EF Mon J8972-1.pdf",
+      "excelSource": "762-8972-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-06 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8972-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-06 Lab EF Mon J8972-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-04 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-04 Lab EF Sat J8973-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-04 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-04 Lab EF Sat J8973-1.pdf",
+      "excelSource": "762-8973-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-04 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8973-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-04 Lab EF Sat J8973-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-05 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-05 Lab EF Sun J8974-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-05 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-05 Lab EF Sun J8974-1.pdf",
+      "excelSource": "762-8974-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-05 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8974-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-05 Lab EF Sun J8974-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-07 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-07 Lab EF Tue J8988-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-07 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-07 Lab EF Tue J8988-1.pdf",
+      "excelSource": "762-8988-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-07 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J8988-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-07 Lab EF Tue J8988-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-08 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-08 Lab EF Wed J9003-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-08 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-08 Lab EF Wed J9003-1.pdf",
+      "excelSource": "762-9003-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-08 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J9003-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-08 Lab EF Wed J9003-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-08 (V) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-08 Lab EF MLVSS J9006-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-08 (V) Lab Report EF WWTP1.xlsx",
+      "typeCode": "V",
+      "typeWord": "MLVSS",
+      "reason": "Matched pattern: MLVSS",
+      "newPdfName": "2026-04-08 Lab EF MLVSS J9006-1.pdf",
+      "excelSource": "762-9006-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-08 (V) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J9006-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-08 Lab EF MLVSS J9006-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-09 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-09 Lab EF Thu J9013-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-09 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-09 Lab EF Thu J9013-1.pdf",
+      "excelSource": "762-9013-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-09 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J9013-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-09 Lab EF Thu J9013-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-09 (W) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-09 Lab EF Weekly J9014-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-09 (W) Lab Report EF WWTP1.xlsx",
+      "typeCode": "W",
+      "typeWord": "Weekly",
+      "reason": "Matched pattern: Weekly",
+      "newPdfName": "2026-04-09 Lab EF Weekly J9014-1.pdf",
+      "excelSource": "762-9014-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-09 (W) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J9014-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-09 Lab EF Weekly J9014-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-13 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "file": {
+      "newExcelName": "2026-04-13 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "excelSource": "762-9030-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-13 (D) Lab Report EF WWTP1.xlsx"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-14 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-14 Lab EF Tue J9048-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-14 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-14 Lab EF Tue J9048-1.pdf",
+      "excelSource": "762-9048-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-14 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J9048-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-14 Lab EF Tue J9048-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-16 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-16 Lab EF Thu J9091-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-16 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-16 Lab EF Thu J9091-1.pdf",
+      "excelSource": "762-9091-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-16 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J9091-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-16 Lab EF Thu J9091-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-16 (W) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-16 Lab EF Weekly J9092-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-16 (W) Lab Report EF WWTP1.xlsx",
+      "typeCode": "W",
+      "typeWord": "Weekly",
+      "reason": "Matched pattern: Weekly",
+      "newPdfName": "2026-04-16 Lab EF Weekly J9092-1.pdf",
+      "excelSource": "762-9092-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-16 (W) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J9092-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-16 Lab EF Weekly J9092-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-20 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-20 Lab EF Mon J9099-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-20 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-20 Lab EF Mon J9099-1.pdf",
+      "excelSource": "762-9099-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-20 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J9099-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-20 Lab EF Mon J9099-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-18 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-18 Lab EF Sat J9100-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-18 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-18 Lab EF Sat J9100-1.pdf",
+      "excelSource": "762-9100-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-18 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J9100-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-18 Lab EF Sat J9100-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-19 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-19 Lab EF Sun J9101-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-19 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-19 Lab EF Sun J9101-1.pdf",
+      "excelSource": "762-9101-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-19 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J9101-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-19 Lab EF Sun J9101-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-21 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-21 Lab EF Tue J9121-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-21 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-21 Lab EF Tue J9121-1.pdf",
+      "excelSource": "762-9121-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-21 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J9121-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-21 Lab EF Tue J9121-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-22 (D) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-22 Lab EF Wed J9140-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-22 (D) Lab Report EF WWTP1.xlsx",
+      "typeCode": "D",
+      "typeWord": "Daily",
+      "reason": "Matched pattern: Daily",
+      "newPdfName": "2026-04-22 Lab EF Wed J9140-1.pdf",
+      "excelSource": "762-9140-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-22 (D) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J9140-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-22 Lab EF Wed J9140-1.pdf"
+    }
+  },
+  {
+    "action": "delete",
+    "excel": {
+      "from": "out\\2026-04-22 (V) Lab Report EF WWTP1.xlsx"
+    },
+    "pdf": {
+      "from": "out\\2026-04-22 Lab EF MLVSS J9141-1.pdf"
+    },
+    "file": {
+      "newExcelName": "2026-04-22 (V) Lab Report EF WWTP1.xlsx",
+      "typeCode": "V",
+      "typeWord": "MLVSS",
+      "reason": "Matched pattern: MLVSS",
+      "newPdfName": "2026-04-22 Lab EF MLVSS J9141-1.pdf",
+      "excelSource": "762-9141-1_FLPivot.xlsx",
+      "excelDest": "out\\2026-04-22 (V) Lab Report EF WWTP1.xlsx",
+      "pdfSource": "J9141-1 UDS Level 2 Report Final Report.pdf",
+      "pdfDest": "out\\2026-04-22 Lab EF MLVSS J9141-1.pdf"
+    }
+  }
+]

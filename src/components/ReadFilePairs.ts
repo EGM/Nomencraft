@@ -46,6 +46,7 @@ export class ReadFilePairs extends BaseComponent
 		}
 	}
 
+	/** This is the function responsible for selecting the files to read, read the selected files, and pairing them. */
 	private async readPairsFromDirectory(dirPath: string): Promise<FilePair[]> {
 		this.emitDebug(`Scanning directory: ${dirPath}`);
 
@@ -63,7 +64,9 @@ export class ReadFilePairs extends BaseComponent
 
 			if (this.matches(name, "*_FLPivot.xlsx")) {
 				excelNames.push(name);
-			} else if (this.matches(name, "*UDS Level 2 Report*.pdf")) {
+			} else if (
+				this.matches(name, "*UDS Level 2 Report Final Report.pdf")
+			) {
 				pdfNames.push(name);
 			}
 		}
@@ -79,7 +82,7 @@ export class ReadFilePairs extends BaseComponent
 			// We do NOT extract job IDs from PDFs anymore.
 			// PDFs are matched only if their jobId matches an Excel jobId.
 			// So we temporarily store them by name and match later.
-			pdfMap.set(pdfName, pdfName);
+			pdfMap.set(this.extractJobIdPdf(pdfName), pdfName);
 		}
 
 		const pairs: FilePair[] = [];
@@ -93,9 +96,12 @@ export class ReadFilePairs extends BaseComponent
 			}
 
 			// Find a PDF whose name contains the jobId
+			/*
 			const pdfName = [...pdfMap.keys()].find((pdf) =>
 				pdf.includes(jobId)
 			);
+			*/
+			const pdfName = pdfMap.get(this.partialId(jobId));
 
 			pairs.push({
 				jobId,
@@ -127,5 +133,19 @@ export class ReadFilePairs extends BaseComponent
 		);
 
 		return excelMatch ? excelMatch[1] : null;
+	}
+	private extractJobIdPdf(filename: string): string {
+		const pdfMatch = filename.match(
+			/^J(\d{4,5}-\d) UDS Level 2 Report Final Report\.pdf$/i,
+		);
+
+		return pdfMatch ? pdfMatch[1] : filename;
+	}
+	private partialId(jobId: string): string {
+		const idMatch = jobId.match(
+			/^\d{3}-(\d{4,5}-\d)$/i,
+		);
+
+		return idMatch ? idMatch[1] : jobId;
 	}
 }

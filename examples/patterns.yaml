@@ -37,10 +37,10 @@
   code: "V"
   type_word: "MLVSS"
   triggers:
-    - parameter: "MLSS"
-      sites: ["Ditch #1", "Ditch #2", "Ditch #3"]
-    - parameter: "MLVSS"
-      sites: ["Ditch #1", "Ditch #2", "Ditch #3"]
+    - parameter: "Total Suspended Solids"
+      sites: ["Ditch #3", "Ditch #4", "Ditch #5"]
+    - parameter: "Total Volatile Suspended Solids"
+      sites: ["Ditch #3", "Ditch #4", "Ditch #5"]
   date_format: "fixed"
 
 - name: "Monthly"
