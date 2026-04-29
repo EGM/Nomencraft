@@ -15,12 +15,17 @@ Deno.test("configDir: accessing patterns before init throws", () => {
 	assertThrows(() => cfg.patterns);
 });
 
+Deno.test("configDir: accessing whoops before init throws", () => {
+	const cfg = createConfigDir();
+	assertThrows(() => cfg.whoops);
+});
+
 Deno.test("configDir: config path resolves correctly after init", async () => {
 	const cfg = createConfigDir();
 	await cfg.init();
 
 	const home = await dir("config");
-	const expected = join(home, "batch-rename");
+	const expected = join(home, "Nomencraft");
 
 	assertEquals(cfg.config, expected);
 });
@@ -30,7 +35,17 @@ Deno.test("configDir: patterns path resolves correctly after init", async () => 
 	await cfg.init();
 
 	const home = await dir("config");
-	const expected = join(home, "batch-rename", "patterns");
+	const expected = join(home, "Nomencraft", "patterns");
 
 	assertEquals(cfg.patterns, expected);
+});
+
+Deno.test("configDir: whoops path resolves correctly after init", async () => {
+	const cfg = createConfigDir();
+	await cfg.init();
+
+	const home = await dir("config");
+	const expected = join(home, "Nomencraft", "whoops");
+
+	assertEquals(cfg.whoops, expected);
 });

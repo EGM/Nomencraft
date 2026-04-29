@@ -3,6 +3,7 @@ import { exists } from "@std/fs";
 import { join } from "@std/path";
 import { BaseServiceWithFailProtection } from "../core/BaseServiceWithFailProtection.ts";
 import type { InputMap, OutputMap, Result } from "../core/types.ts";
+import { configDir } from "../utils/configDir.ts";
 
 export interface ActuationFile {
 	excelSource: string;
@@ -234,8 +235,7 @@ export class FileService extends BaseServiceWithFailProtection {
 			}
 		});
 
-		const dir = Deno.makeTempDirSync({ prefix: "BRF_UNDO_" });
-		const undoPath = join(dir, "undo.json");
+		const undoPath = join(configDir.whoops, "undo.json");
 
 		await Deno.writeTextFile(
 			undoPath,

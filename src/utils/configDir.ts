@@ -26,6 +26,8 @@ class ConfigDir {
 	/** Absolute path to the patterns directory after initialization. */
 	private _patternDir: string | null = null;
 
+	private _whoopsDir: string | null = null;
+
 	get config(): string {
 		return ensure(
 			this._configDir,
@@ -40,16 +42,25 @@ class ConfigDir {
 		);
 	}
 
+	get whoops(): string {
+		return ensure(
+			this._whoopsDir,
+			"Undo directory is not set. You must run `await configDir.init()`",
+		);
+	}
+
 	/**
 	 * @description Initializes the config and pattern directories, creating them if necessary.
 	 */
 	async init(): Promise<void> {
 		const home = await dir("config");
-		this._configDir = join(home, "batch-rename");
+		this._configDir = join(home, "Nomencraft");
 		this._patternDir = join(this._configDir, "patterns");
+		this._whoopsDir = join(this._configDir, "whoops");
 
 		// Creating the patterns directory automatically creates the config directory
 		await ensureDir(this._patternDir);
+		await ensureDir(this._whoopsDir);
 	}
 }
 
