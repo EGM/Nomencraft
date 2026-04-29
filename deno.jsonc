@@ -1,4 +1,6 @@
 {
+  //"name": "nomencraft",
+  //"version": " 0.0.0-dev",
   "compilerOptions": {
     "lib": [
       "dom",
@@ -87,6 +89,10 @@
     }
   },
   "tasks": {
+    // ------------------------------------------------------------
+    // Developer tasks
+    // ------------------------------------------------------------
+    // These are for running Nomencraft from source, checking code, and generating docs.
     "run:simple": {
       "command": "deno run -P src/main.ts",
       "description": "Runs main with no commands or options"
@@ -107,9 +113,28 @@
       "command": "deno fmt src && deno lint src && deno test -P=test src",
       "description": "Runs fmt, lint, and tests with the correct permissions set"
     },
-    "dlint": "deno doc --lint src/ ",
+    "docs:lint": "deno doc --lint src/ ",
     "docs:html": "deno doc --html --output=docs-html src/ ",
-    "docs:md": "deno run -P=docsmd src/_meta/deno_docs--markdown.ts src/ docs-md"
+    "docs:md": "deno run -P=docsmd src/_meta/deno_docs--markdown.ts src/ docs-md",
+    // ------------------------------------------------------------
+    // Installation tasks
+    // ------------------------------------------------------------
+    "install:local": {
+      "command": "deno install --global -f -n nomencraft --config deno.jsonc --allow-read --allow-write --allow-env=init_cwd,appdata --allow-sys=hostname src/main.ts",
+      "description": "Install Nomencraft globally from local source"
+    },
+    "uninstall": {
+      "command": "deno uninstall nomencraft",
+      "description": "Uninstalls the Nomencraft CLI"
+    },
+    "reinstall:local": { // Caution: Use ONLY from the project root!
+      "command": "deno task uninstall && deno task install:local && echo Reinstall complete!",
+      "description": "Reinstalls Nomencraft locally"
+    },
+    "reinstall": {
+      "command": "deno uninstall nomencraft && deno install --global -f -n nomencraft --config deno.jsonc -P src/main.ts",
+      "description": "Reinstalls Nomencraft cleanly"
+    }
   },
   "test": {
     "include": [
