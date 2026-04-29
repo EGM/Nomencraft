@@ -36,6 +36,15 @@ export class ParseExcelFiles extends BaseComponent {
 				this.failed("Missing required field: filePairs");
 			}
 
+			if (filePairs.length === 0) {
+				this.emitWarning(
+					"No Excel files found. Skipping ParseExcelFiles.",
+				);
+				input.set("parsedData", []);
+				this.finished();
+				return { success: true, value: input };
+			}
+
 			const inputDir = input.get("inputDir");
 			if (typeof inputDir !== "string") {
 				this.failed("Missing or invalid 'inputDir' in input map");
