@@ -76,7 +76,7 @@ export type DenoDocLintIsDumb = any;
 
 /** todo */
 export const cli: DenoDocLintIsDumb = new Command()
-	.name("batch-rename")
+	.name("nomencraft")
 	.description("Batch rename files based on lab data")
 	.argument("<path:string>", "Directory to scan for files (default: .)", {
 		default: ".",
@@ -103,8 +103,6 @@ export const cli: DenoDocLintIsDumb = new Command()
 		"File to capture logging output to instead of console",
 	)
 	.action((options, path) => {
-		console.log("Path:", path);
-		console.log("Options:", options);
 		if (shallowEqual(options, defaultOptions)) cli.showHelp();
 
 		// The next line is to modify the type of options.node from <string | true> to <string> for the ControllerService,

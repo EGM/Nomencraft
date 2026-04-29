@@ -86,7 +86,7 @@ export class ControllerService extends BaseService {
 	 */
 	protected override async execute(): Promise<Result<InputMap, OutputMap>> {
 		const board: InputMap = new Map();
-		board.set("inputDir", this.path); //changed from "dirPath", so input
+		board.set("inputDir", this.path); //changed from "dirPath", to input
 		board.set("mode", this.options.mode);
 
 		const outputDir = this.options.outputDir ?? this.path;
@@ -113,11 +113,6 @@ export class ControllerService extends BaseService {
 		if (!result.success) {
 			// propagate the blackboard state from the pipeline failure
 			return this.fail(result.error, result.input);
-		}
-
-		const showData = result.value.get("showData");
-		if (showData !== undefined) {
-			this.log("info", JSON.stringify(showData));
 		}
 
 		return this.ok(result.value);

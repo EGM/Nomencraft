@@ -20,7 +20,7 @@ export const configureLogger = (
 	{ json, quiet, logFilename }: LoggerOptions,
 ): void => {
 	log = new Logger({
-		level: quiet ? "error" : "debug", // <-- @TODO: Set to "info" when you're done debugging!
+		level: quiet ? "error" : "info", // <-- @TODO: Set to "info" when you're done debugging!
 		format: json ? "json" : "simple",
 	});
 
