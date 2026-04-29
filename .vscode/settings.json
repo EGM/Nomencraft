@@ -2,7 +2,7 @@
   // Turn on the Deno language server for this workspace
   "deno.enable": true,
   // Point to your config file (deno.json or deno.jsonc)
-  "deno.config": "./deno.json",
+  "deno.config": "./deno.jsonc",
   // Use Deno as the formatter
   "editor.defaultFormatter": "denoland.vscode-deno",
   "editor.formatOnSave": true,
