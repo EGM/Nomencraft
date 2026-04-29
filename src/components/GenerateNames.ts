@@ -35,20 +35,25 @@ export class GenerateNames extends BaseComponent {
 		this.started();
 
 		try {
-			const parsedList = input.get("parsedData") as
-				| ParsedData[]
-				| undefined;
+			const parsedList = input.get("parsedData");
+
 			const patternPath = input.get("patternPath") as string | undefined;
 			const filePairs = input.get("filePairs") as FilePair[] | undefined;
 
 			// Validate inputs
-			if (
-				!parsedList || !Array.isArray(parsedList) ||
-				parsedList.length === 0
-			) {
+			if (!parsedList || !Array.isArray(parsedList)) {
 				this.failed(
 					"Missing or invalid 'parsedData' (must be ParsedData[])",
 				);
+			}
+
+			if (parsedList.length === 0) {
+				this.emitWarning(
+					"No parsed data found. Skipping GenerateNames.",
+				);
+				input.set("namedFiles", []); // <-- valid output, not garbage
+				this.finished();
+				return { success: true, value: input };
 			}
 
 			if (!patternPath || typeof patternPath !== "string") {
