@@ -9,6 +9,7 @@ import type {
 	Result,
 } from "../core/types.ts";
 import { parse as parseYaml } from "@std/yaml";
+import { canonicalizeIdentifier } from "../utils/canonicalizeIdentifier.ts";
 
 /**
  * @description Structure of a naming pattern loaded from YAML.
@@ -168,7 +169,13 @@ export class GenerateNames extends BaseComponent {
 		for (const pattern of patterns) {
 			for (const trigger of pattern.triggers) {
 				const hasMatch = job.samples.some((sample) => {
-					if (!trigger.sites.includes(sample.site)) return false;
+					//if (!trigger.sites.includes(sample.site)) return false;
+					const site = canonicalizeIdentifier(sample.site);
+					const triggerSites = trigger.sites.map(
+						canonicalizeIdentifier,
+					);
+
+					if (!triggerSites.includes(site)) return false;
 
 					return sample.measurements.some((m) =>
 						m.parameter.toLowerCase() ===

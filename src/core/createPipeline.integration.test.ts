@@ -3,16 +3,18 @@ import { copy, exists } from "@std/fs";
 import { ControllerService } from "../services/ControllerService.ts";
 import { ControllerOptions, InputMap } from "./types.ts";
 import * as path from "@std/path";
+import { configDir } from "../utils/configDir.ts";
 
 Deno.test("Full pipeline: valid folder produces expected output", async () => {
 	// 1. Arrange: create temp folder
 	const dir = Deno.makeTempDirSync({ prefix: "BRF_", suffix: "_tests" });
+	await configDir.init();
 
 	// 2. Arrange: copy real Excel files into temp folder
 	const sourceDir = path.join(
 		Deno.cwd(),
-		".research",
-		"products",
+		"examples",
+		"source",
 	);
 	await copy(sourceDir, dir, { overwrite: true });
 
@@ -26,8 +28,8 @@ Deno.test("Full pipeline: valid folder produces expected output", async () => {
 	// 5. Extract blackboard
 	const bb: InputMap = result.success ? result.value : result.input;
 
-	//console.log("Result:", result);
-	//log("Blackboard keys:", [...bb.keys()]);
+	console.log("Result:", result);
+	console.log("Blackboard keys:", [...bb.keys()]);
 
 	// 6. Assert: pipeline succeeded
 	assertEquals(result.success, true);
@@ -44,7 +46,7 @@ Deno.test("Full pipeline: valid folder produces expected output", async () => {
 	console.debug("Undo Path:", undoPath);
 
 	assert(undoPath);
-	assert(await exists(undoPath));
+	assert(await exists(undoPath as string));
 
 	// 9. Assert: at least one renamed file exists
 	// We cannot assert specific filenames because naming is dynamic,
