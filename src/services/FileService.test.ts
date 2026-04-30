@@ -7,6 +7,7 @@ import {
 	FileServiceOptions,
 } from "./FileService.ts";
 import type { InputMap, OutputMap, Result } from "../core/types.ts";
+import { configDir } from "../utils/configDir.ts";
 
 function makeExcelOnly(
 	excelSource: string,
@@ -24,6 +25,7 @@ function makeExcelOnly(
 
 Deno.test("FileService: fails when excelSource does not exist", async () => {
 	const temp = Deno.makeTempDirSync({ prefix: "BRF_", suffix: "_tests" });
+	await configDir.init();
 
 	const options: FileServiceOptions = {
 		action: "move",
@@ -52,6 +54,7 @@ Deno.test("FileService: fails when excelSource does not exist", async () => {
 
 Deno.test("FileService: move succeeds and file is moved", async () => {
 	const temp = Deno.makeTempDirSync({ prefix: "BRF_", suffix: "_tests" });
+	await configDir.init();
 
 	const original = `${temp}/source.txt`;
 	const target = `${temp}/moved.txt`;
@@ -91,6 +94,7 @@ Deno.test("FileService: move succeeds and file is moved", async () => {
 
 Deno.test("FileService: copy succeeds and original remains", async () => {
 	const temp = Deno.makeTempDirSync({ prefix: "BRF_", suffix: "_tests" });
+	await configDir.init();
 
 	const original = `${temp}/source.txt`;
 	const target = `${temp}/copied.txt`;
@@ -126,6 +130,7 @@ Deno.test("FileService: copy succeeds and original remains", async () => {
 
 Deno.test("FileService: mixed batch — one valid, one missing", async () => {
 	const temp = Deno.makeTempDirSync({ prefix: "BRF_", suffix: "_tests" });
+	await configDir.init();
 
 	const originalA = `${temp}/a.txt`;
 	const targetA = `${temp}/a_moved.txt`;
@@ -169,6 +174,7 @@ Deno.test("FileService: mixed batch — one valid, one missing", async () => {
 
 Deno.test("FileService: undo file preserves ordering", async () => {
 	const temp = Deno.makeTempDirSync({ prefix: "BRF_", suffix: "_tests" });
+	await configDir.init();
 
 	const a = `${temp}/a.txt`;
 	const a2 = `${temp}/a2.txt`;
@@ -201,6 +207,7 @@ Deno.test("FileService: undo file preserves ordering", async () => {
 
 Deno.test("FileService: undo reverses a successful move", async () => {
 	const temp = Deno.makeTempDirSync({ prefix: "BRF_", suffix: "_tests" });
+	await configDir.init();
 
 	const original = `${temp}/source.txt`;
 	const target = `${temp}/moved.txt`;
