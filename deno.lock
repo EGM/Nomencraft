@@ -15,6 +15,7 @@
     "jsr:@deno/doc@0.198": "0.198.0",
     "jsr:@deno/graph@0.100": "0.100.1",
     "jsr:@deno/graph@0.86": "0.86.9",
+    "jsr:@egm/wtflib@0.1": "0.1.0",
     "jsr:@iankulin/logger@^1.1.1": "1.1.1",
     "jsr:@psych/sheet@^1.0.8": "1.0.8",
     "jsr:@std/assert@*": "1.0.19",
@@ -130,6 +131,9 @@
     "@deno/graph@0.100.1": {
       "integrity": "91ae087c95fe3d97f35f84b3ea38ea21163d12df28c6ec70bb89f253fd99870e"
     },
+    "@egm/wtflib@0.1.0": {
+      "integrity": "b0ccf684b74ad5e7355a026f8cfc3a5d44b8de75aedc53f16de8ac2d29d5f1b2"
+    },
     "@iankulin/logger@1.1.1": {
       "integrity": "6f81e6e1c7923c98b7d34eeaefeef8b67f7b54e5e4da7d8b8c8afdd59c9697ec"
     },
@@ -243,6 +247,7 @@
       "jsr:@cliffy/command@1",
       "jsr:@cross/dir@^1.1.1",
       "jsr:@deno/doc@0.198",
+      "jsr:@egm/wtflib@0.1",
       "jsr:@iankulin/logger@^1.1.1",
       "jsr:@psych/sheet@^1.0.8",
       "jsr:@std/assert@^1.0.19",

@@ -9,7 +9,7 @@ import type {
 	Result,
 } from "../core/types.ts";
 import { parse as parseYaml } from "@std/yaml";
-import { canonicalizeIdentifier } from "../utils/canonicalizeIdentifier.ts";
+import { canonicalizeIdentifier } from "@egm/wtflib";
 
 /**
  * @description Structure of a naming pattern loaded from YAML.
